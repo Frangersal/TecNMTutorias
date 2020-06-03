@@ -32,7 +32,7 @@
                             <td>{{ $question->name }} </td>
 
                             
-		                    <form action ="{{ route('student.answers.store', $question->id)}}" method="POST">
+		                    <form action ="{{ route('student.answers.store') }}" method="POST">
                             @csrf
 				                <td>
                                     <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
@@ -42,6 +42,10 @@
                                         </span>
                                     @enderror
 				                </td>
+
+                                <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
+
+
 
                                 <td>
                                     <button type="submit" class="btn btn-success">Responder</button>

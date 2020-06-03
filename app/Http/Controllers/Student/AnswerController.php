@@ -37,6 +37,11 @@ class AnswerController extends Controller
         return view('student.answers.create');
     }
 
+    //public function arriba(Request $request, $id){
+    //    $id=21;
+    //    return view();
+    //}
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,15 +51,15 @@ class AnswerController extends Controller
     //Argumentos question_id=id 
     public function store(Request $request)
     {
+        //var_dump($request->get('idQuestion')); die();
         $request->validate([
             'txtName'=>'required',
         ]);
 
-        //$question_id = Question::find($id);
-        $user_id = Auth::user()->id;
+        $user_id = auth()->id();
 
         $answer = new Answer([
-            'question_id' =>'1',
+            'question_id' =>$request->get('idQuestion'),
             'user_id' =>$user_id,
             'name' => $request->get('txtName')
         ]);
@@ -69,9 +74,23 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show( Request $request)
+    { /*
+        $request->validate([
+            'txtName'=>'required',
+        ]);
+
+        //$question_id = Question::find($id);
+        $user_id = auth()->id();
+
+        $answer = new Answer([
+            'question_id' =>'1',
+            'user_id' =>$user_id,
+            'name' => $request->get('txtName')
+        ]);
+ 
+        $answer->save();
+        return redirect()->route('student.forms.index');*/
     }
 
     /**

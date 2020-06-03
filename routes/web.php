@@ -52,3 +52,5 @@ Route::namespace('Student')->prefix('student')->name('student.')->middleware('ca
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
 	Route::resource('/answers','AnswerController', ['except'=>['destroy']]);
 });
+
+//Route::post('student/answers/up/{id?}','AnswerController@arriba');
