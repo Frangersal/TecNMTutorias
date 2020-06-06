@@ -9,7 +9,7 @@ class Question extends Model
     protected $table ='questions';
 
     protected $fillable = [
-        'form_id','name',
+        'form_id','name','answer_type_id',
     ];
 
     public function forms()
@@ -20,5 +20,10 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany('App\Answer');
+    }
+
+    public function answer_type()
+    {
+        return $this->belongsTo('App\AnswersTypes','answer_type_id');
     }
 }

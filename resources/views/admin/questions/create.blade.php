@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="txtName" class="col-md-2 col-form-label text-md-right">Escriba la pregunta</label>
+                            <label for="txtName" class="col-md-3 col-form-label text-md-right">Escriba la pregunta</label>
 
                             <div class="col-md-6">
                                 <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName" >
@@ -24,6 +24,34 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>                            
+                        </div>
+
+
+                        
+                        <div class="form-group row">
+                            <label for="txtName" class="col-md-3 col-form-label text-md-right">Selecciona un Formulario</label>
+                            <div class="col-md-6">
+                                <select class="form-control " name="txtIdForm" >
+                                    @foreach($forms as $form)
+                                        <option value="{{ $form->id }}">{{ $form->id }} - {{ $form->name }}</option> 
+                                    @endforeach 
+                                    
+                                </select> 
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label for="txtName" class="col-md-3 col-form-label text-md-right">Tipo de pregunta</label>
+                            <div class="col-md-6">
+                                <select class="form-control " name="txtIdAnswerType" >
+                                    @foreach($answers_types as $answer_type)
+                                        <option value="{{ $answer_type->id }}" >{{ $answer_type->id }} - {{ $answer_type->name }}</option> 
+                                    @endforeach 
+                                    
+                                </select> 
                             </div>
                         </div>
 

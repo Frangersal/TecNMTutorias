@@ -45,6 +45,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 	Route::resource('/questions','QuestionsController', ['except'=>['show',]]);
 });
 
+
+
+// AnswerOption
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/answers/options','AnswerOptionController', ['except'=>['show',]]);
+});
+
+
+
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
 	Route::resource('/forms','FormsController', ['except'=>['destroy']]);
 });
@@ -53,4 +62,4 @@ Route::namespace('Student')->prefix('student')->name('student.')->middleware('ca
 	Route::resource('/answers','AnswerController', ['except'=>['destroy']]);
 });
 
-//Route::post('student/answers/up/{id?}','AnswerController@arriba');
+//

@@ -16,11 +16,11 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">f id</th>
-                            <th scope="col">Pregunta</th>
-                            <th scope="col">Respuesta</th>
-                            <th scope="col">Accion</th>
+                                <th scope="col">q d</th>
+                                <th scope="col">f id</th>
+                                <th scope="col">Pregunta</th>
+                                <th scope="col">Respuesta</th>
+                                <th scope="col">Accion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,7 +31,6 @@
                             <td>{{ $question->form_id }} </td>
                             <td>{{ $question->name }} </td>
 
-                            
 		                    <form action ="{{ route('student.answers.store') }}" method="POST">
                             @csrf
 				                <td>
@@ -51,10 +50,18 @@
                                     <button type="submit" class="btn btn-success">Responder</button>
                                 </td>
                             </form> 
-                            
-                            
                            
                             </tr>
+                            <tr>
+                            <th scope="row">{{ $question->id }} </th>
+                            <td>{{ $question->form_id }} </td>
+                            <td>{{ $question->name }} </td>
+                            <td> 
+                                <select class="form-control " name="form_id" >
+                                        <option>Juju</option>                                    
+                                        <option>Jaja</option>     
+                                </select> 
+                            </td>
                         @endforeach
 
                         </tbody>
