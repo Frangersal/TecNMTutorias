@@ -84,7 +84,7 @@
                     <img src="/images/Logo-TecNM-2017.png" width="320" height="197">
                 </div>
                 <div class="title m-b-md">
-                    TecNM Tutorias
+                    TecNM Tutorias [Beta]
                 </div>
             </div>
         </div>

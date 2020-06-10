@@ -49,7 +49,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 // AnswerOption
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/answers/options','AnswerOptionController', ['except'=>['show',]]);
+	Route::resource('/options','OptionsController', ['except'=>['show',]]);
 });
 
 

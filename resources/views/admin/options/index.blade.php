@@ -8,13 +8,13 @@
             <div class="card">
                 <div class="card-header">
                     <h5>
-                        Opciones de la pregunta
+                        Opciones para las pregunas
                     </h5>
                 </div>
                 <div class="card-body">
 
 
-                    <a href="{{ route('admin.forms.create') }}">
+                    <a href="{{ route('admin.options.create') }}">
                         <button type="button" class="btn btn-success">Crear opcion</button>
                     </a> 
                     <br><br>
@@ -31,18 +31,19 @@
                         </thead>
                         <tbody>
 
-                        @foreach($answers_options as $answer_option)
+                        @foreach($options as $option)
                             <tr>
-                            <th scope="row">{{ $answer_option->id }} </th>
-                            <td>{{ $answer_option->question_id }} </td>
-                            <td>{{ $answer_option->name }} </td>
+                            <th scope="row">{{ $option->id }} </th>
+                            <td>{{ $option->question_id }} </td>
+                            <td>{{ $option->name }} </td>
                             <td>
 
-                                <a href="{{ route('admin.forms.edit',  $answer_option->id) }}">
+                                <a href="{{ route('admin.options.edit', $option->id) }}">
                                     <button type="button" class="btn btn-warning float-lef">Editar</button>
                                 </a>
 
-                                <form action="{{ route('admin.forms.destroy',  $answer_option) }}" method="POST" class="float-left"> 
+                                
+                                <form action="{{ route('admin.options.destroy', $option) }}" method="POST" class="float-left"> 
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Eliminar</button>

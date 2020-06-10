@@ -60,6 +60,8 @@ class QuestionsController extends Controller
             'form_id' => $request->get('txtIdForm'),
             'answer_type_id' =>$request->get('txtIdAnswerType'),
             'name' => $request->get('txtName'),
+           // 'option' => $request->get('txtOption'),
+            
             
         ]);
  
@@ -112,12 +114,14 @@ class QuestionsController extends Controller
             'txtIdForm'=>'required',
             'txtIdAnswerType'=>'required',
             'name'=>'required',
+            //'txtOption'=>'required',
         ]);
 
         $question = Question::find($id);
         $question->form_id = $request->get('txtIdForm');
         $question->answer_type_id = $request->get('txtIdAnswerType');
         $question->name = $request->get('name');
+        //$question->option = $request->get('txtOption');
         $question->update();
 
         return redirect()->route('admin.questions.index');

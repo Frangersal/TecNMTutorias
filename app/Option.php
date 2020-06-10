@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AnswerOption extends Model
+class Option extends Model
 {
     //
     protected $table ='answers_options';
@@ -13,7 +13,7 @@ class AnswerOption extends Model
         'name','question_id',
     ];
 
-    public function forms()
+    public function questions()
     {
         return $this->belongsTo('App\Question','question_id');
     }
