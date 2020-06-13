@@ -25,48 +25,74 @@
                         </thead>
                         <tbody>
 
-                        @foreach($questions as $question)
-                            <tr>
-                            <th scope="row">{{ $question->id }} </th>
-                            <td>{{ $question->form_id }} </td>
-                            <td>{{ $question->name }} </td>
+                        
+                        @foreach($questions as $question) 
 
-		                    <form action ="{{ route('student.answers.store') }}" method="POST">
-                            @csrf
-				                <td>
-                                    <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-				                </td>
+                                    @if(("{$question->answer_type_id}" == "2") )   
+                                    
+                                                
+                                        <!--imprimir opciones-->
+                                        <!-- --------------TIPO OPCION-------------- -->
+                                        <tr>
+                                            <th scope="row">{{ $question->id }} </th>
+                                                <td>{{ $question->form_id }} </td>
+                                                <td>{{ $question->name }} </td>
+                                                
+                                                <form action ="{{ route('student.answers.store') }}" method="POST">
+                                                @csrf
+                                                    <td>
+                                                        <select class="form-control " name="txtName" > 
+                                                            @foreach($options as $option)
+                                                                @if("{$question->id}" == "{$option->question_id}")
+                                                                    <option value="{{ $option->name }}">{{ $option->question_id }} - {{ $option->name }}</option>   
+                                                                    @else                                    
+                                                                @endif
+                                                            @endforeach 
+                                                        </select> 
+                                                        </td>
+                                                        <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
+                                                        <td>
+                                                            <button type="submit" class="btn btn-success">Responder</button>
+                                                        </td>
+                                                    </form>                            
+                                                </tr>
+                                                <!-- ----------------FIN -> TIPO OPCION------------ -->
+                                    @else
+                                        <!--imprimir texto-->
 
-                                <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
-
-
-
-                                <td>
-                                    <button type="submit" class="btn btn-success">Responder</button>
-                                </td>
-                            </form> 
-                           
-                            </tr>
-                            <tr>
-                            <th scope="row">{{ $question->id }} </th>
-                            <td>{{ $question->form_id }} </td>
-                            <td>{{ $question->name }} </td>
-                            <td> 
-                                <select class="form-control " name="form_id" >
-                                        <option>Juju</option>                                    
-                                        <option>Jaja</option>     
-                                </select> 
-                            </td>
+                                            <!-- --------------TIPO TEXTO-------------- -->
+                                            <tr>
+                                                <th scope="row">{{ $question->id }} </th>
+                                                <td>{{ $question->form_id }} </td>
+                                                <td>{{ $question->name }} </td>
+                                                <form action ="{{ route('student.answers.store') }}" method="POST">
+                                                @csrf
+                                                    <td>
+                                                        <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
+                                                        @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </td>
+                                                    <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
+                                                    <td>
+                                                        <button type="submit" class="btn btn-success">Responder</button>
+                                                    </td>
+                                                </form>                            
+                                            </tr>
+                                            <!-- ----------------FIN -> TIPO TEXTO------------ -->
+                                    
+                                        <!--Imprimir el choro de abajo --> 
+                                    @endif    
                         @endforeach
 
+
+                        <!---->
+
+
                         </tbody>
-                    </table>
-                    
+                    </table>                    
                 </div>
             </div>
         </div>

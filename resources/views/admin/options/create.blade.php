@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                <h5>Crear Fomulario </h5></div>
+                <h5>Crear Opcion </h5></div>
 
                 <div class="card-body">
 
@@ -36,7 +36,7 @@
                                     @endforeach 
                                     
                                 </select> 
-                            </div>@if($question->answer_option->)@endif
+                            </div>
                         </div>
                         -->
 
@@ -47,7 +47,11 @@
                                 <select class="form-control " name="txtIdQuestion" >
                                     
                                     @foreach($questions as $question)
-                                        <option value="{{ $question->id }}">{{ $question->id }} - {{ $question->name }}</option> 
+                                        @if("{$question->answer_type_id}" == "2")
+                                            <option value="{{ $question->id }}">{{ $question->id }} - {{ $question->name }}</option> 
+                                        @else
+                                        @endif
+                                        
                                     @endforeach 
                                     
                                     

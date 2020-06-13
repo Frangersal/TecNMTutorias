@@ -31,7 +31,6 @@
                             <th scope="col">f_id</th>
                             <th scope="col">q_id</th>
                             <th scope="col">tipo q</th>
-                            <th scope="col">opciones?</th>
                             <th scope="col">Pregunta</th>
                             <th scope="col">Accion</th>
                             </tr>
@@ -43,7 +42,6 @@
                             <th scope="row">{{ $question->form_id }}  </th>
                             <th scope="row">{{ $question->id }} </th>
                             <th scope="row">{{ $question->answer_type_id }} </th>
-                            <th scope="row">{{ $question->option }} </th>
                             <td>{{ $question->name }}</td>
                             <td>
                                 <a href="{{ route('admin.questions.edit', $question->id) }}">
