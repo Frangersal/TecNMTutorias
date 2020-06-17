@@ -142,7 +142,7 @@
                 <li><a href="{{ route('admin.users.index') }}"><i class="fas fa-users"></i>  Pupilos</a></li>
                 <li><a href="{{ route('admin.forms.index') }}"><i class="fas fa-address-card"></i>  Formularios</a></li>
                 <li><a href="{{ route('admin.questions.index') }}"><i class="fas fa-question-circle"></i>  Preguntas</a></li> 
-                <li><a href="#"><i class="fas fa-chart-bar"></i>  Estadisticas</a></li> 
+                <li><a href="{{ route('admin.chart.index') }}"><i class="fas fa-chart-bar"></i>  Estadisticas</a></li> 
                 @endcan
 
                 <!-- Acciones de Estudiante-->

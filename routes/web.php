@@ -52,6 +52,20 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 	Route::resource('/options','OptionsController', ['except'=>['show',]]);
 });
 
+// Chart
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/chart','ChartsController');
+});
+// Chart specificYear
+Route::namespace('Admin\Chart')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/chart/specificyear','specificYearController');
+});
+// Chart specificYear-> general
+Route::namespace('Admin\Chart')->prefix('admin')->name('admin.charts.specificYear.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/charts/specificYear/general','generalSYController');
+});
+
+
 
 
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
