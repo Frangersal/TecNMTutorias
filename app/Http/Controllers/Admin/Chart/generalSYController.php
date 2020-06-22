@@ -58,13 +58,9 @@ class generalSYController extends Controller
     {
         $questions = Question::where('id', $id)->get();
 
-        //---- En un arreglo con 2 dim
-        ///*
         $data      = DB::select('SELECT DISTINCT name, COUNT(name) as repetido  FROM answers WHERE question_id='.$id.' GROUP BY name');
         
-        
         // $dataArray = json_encode($data, true);
-        
         // var_dump($dataArray[0]);
 
         $labels = array();
@@ -80,70 +76,8 @@ class generalSYController extends Controller
         //var_dump($datas);die;
         //var_dump($labels);
         
-
         return view('admin.charts.specificYear.general.show',['datas'=>json_encode($datas), 'labels'=>json_encode($labels)]) 
         ->with('questions',$questions);
-        //*/
-
-        //-- En dos arreglos
-        /*
-        $dataName       = DB::select('SELECT DISTINCT name FROM answers WHERE question_id='.$id.'');
-        $dataRepetido   = DB::select('SELECT COUNT(name) as repetido FROM answers WHERE question_id='.$id.' GROUP BY name');
-        
-        $nameArray = json_encode($dataName, true);
-       
-        $repetidoArray = json_encode($dataRepetido, true);
-
-        //extract($row);
-        
-        //while ($row = $dataName) {
-            # code...
-        //}
-
-        var_dump($nameArray); var_dump($repetidoArray); //die(); 
-        return view('admin.charts.specificYear.general.show',['nameArray'=>$nameArray,'repetidoArray' => $repetidoArray]) 
-        ->with('questions',$questions);
-        //*/
-
-/*
-        $answerName = Answer::where('question_id', $id)->get();
-
-        $answerName = New Answer;
-        $answerName->labels($answerName->keys());
-        $answerName->dataset('name','bar', $answerName->values());
-
-        $answerRepetition
-        $answerRetetition 
-        //SELECT DISTINCT name, COUNT(name) as repetido 
-        //FROM answers WHERE question_id='2' GROUP BY name
-        
-        
-        $viewer = View::select(DB::raw("SUM(numberofview) as count"))
-            ->orderBy("created_at")
-            ->groupBy(DB::raw("year(created_at)"))
-            ->get()->toArray();
-        $viewer = array_column($viewer, 'count');
-        
-        $answer = Answer::select(DB::raw("SUM(name) as count"))
-                                    //->orderBy("created_at")
-                                    ->groupBy(DB::raw("year(created_at)"))
-                                    ->get()->toArray();
-        $answer = array_column($answer, 'count');
-        
-
-        return view('admin.charts.specificYear.general.show')->with('questions',$questions)
-                ->with('answer',json_encode($answer,JSON_NUMERIC_CHECK));
-                
-*/
-            
-
-        //return view('admin.charts.specificYear.general.show')->with('questions',$questions);
-        
-
-
-        //------------------
-        //$questions = Question::where('id', $id)->get();
-        //return view('admin.charts.specificYear.general.show')->with('questions',$questions);
     }
 
     /**

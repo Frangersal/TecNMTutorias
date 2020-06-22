@@ -27,70 +27,41 @@
 
                         
                         @foreach($questions as $question) 
-
-                                    @if(("{$question->answer_type_id}" == "2") )   
-                                    
-                                                
-                                        <!--imprimir opciones-->
-                                        <!-- --------------TIPO OPCION-------------- -->
-                                        <tr>
-                                            <th scope="row">{{ $question->id }} </th>
-                                                <td>{{ $question->form_id }} </td>
-                                                <td>{{ $question->name }} </td>
-                                                <!-- action ="{{ route('student.answers.store') }}" method="POST" -->
-                                                <!-- <form > -->
-                                                @csrf
-                                                    <td>
-
-
-                                                        <select class="form-control idQuestion" name="txtName" > 
-                                                            @foreach($options as $option)
-                                                                @if("{$question->id}" == "{$option->question_id}")
-                                                                    <option value="{{ $option->name }}">{{ $option->question_id }} - {{ $option->name }}</option>   
-                                                                    @else                                    
-                                                                @endif
-                                                            @endforeach 
-                                                        </select> 
-                                                    </td> 
-                                                        <input  type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion">
-                                                        <td>
-                                                            <button  class="btn btn-success btn-responder ">Responder</button>
-                                                        </td>
-                                                    <!-- </form>                             -->
-                                                </tr>
-                                                <!-- ----------------FIN -> TIPO OPCION------------ -->
+                          
+                        <tr>
+                            <th scope="row">{{ $question->id }} </th>
+                                <td>{{ $question->form_id }} </td>
+                                <td>{{ $question->name }} </td>
+                                @csrf
+                                <td>
+                                    <!-- --------------TIPO OPCION-------------- -->
+                                    @if(("{$question->answer_type_id}" == "2") ) 
+                                        <select class="form-control opcion" name="txtName" > 
+                                            @foreach($options as $option)
+                                                @if("{$question->id}" == "{$option->question_id}")
+                                                    <option value="{{ $option->name }}">{{ $option->question_id }} - {{ $option->name }}</option>   
+                                                    @else                                    
+                                                @endif
+                                            @endforeach 
+                                        </select>
                                     @else
-                                        <!--imprimir texto-->
-
-                                            <!-- --------------TIPO TEXTO-------------- -->
-                                            <tr>
-                                                <th scope="row">{{ $question->id }} </th>
-                                                <td>{{ $question->form_id }} </td>
-                                                <td>{{ $question->name }} </td>
-                                                <form >
-                                                @csrf
-                                                    <td>
-                                                        <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
-                                                        @error('name')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </td>
-                                                    <input type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion">
-                                                    <td>
-                                                        <button type="submit" class="btn btn-success">Responder</button>
-                                                    </td>
-                                                </form>                            
-                                            </tr>
-                                            <!-- ----------------FIN -> TIPO TEXTO------------ -->
-                                    
-                                        <!--Imprimir el choro de abajo --> 
-                                    @endif    
+                                        <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    @endif
+                                </td> 
+                                <input  type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion">
+                                <td>
+                                    <button  class="btn btn-success btn-responder ">Responder</button>
+                                </td>
+                            </tr>
+                                   
+                                       
                         @endforeach
 
-
-                        <!---->
 
 
                         </tbody>

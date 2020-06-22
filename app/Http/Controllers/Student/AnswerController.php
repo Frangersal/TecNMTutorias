@@ -53,10 +53,9 @@ class AnswerController extends Controller
     {
         $parametros = json_decode($request->json, true);
         
-        echo $parametros['question_id'];echo $parametros['name'];die;        //var_dump($request->get('idQuestion')); die();
-        $request->validate([
-            'txtName'=>'required',
-        ]);
+        // echo $parametros['question_id'];echo $parametros['name'];die;        //var_dump($request->get('idQuestion')); die();
+        // $request->validate([
+        // ]);
 
         $user_id = auth()->id();
 
@@ -67,6 +66,7 @@ class AnswerController extends Controller
         ]);
  
         $answer->save();
+        return "success";
         // return redirect()->route('student.forms.index');
     }
 

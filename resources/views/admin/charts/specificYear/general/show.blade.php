@@ -25,118 +25,91 @@
                             <th scope="col">Pregunta</th>
                             </tr>
                         </thead>
-                        @foreach($questions as $question)
-                        @if(($question->answer_type_id)==2)
+                    @foreach($questions as $question)
                         <tbody>
-
                             <tr>
                             <th scope="row">{{ $question->form_id }}  </th>
                             <th scope="row">{{ $question->id }} </th>
-                            <!--<th scope="row">{{ $question->answer_type_id }} </th>-->
-                            <td><h4>{{ $question->name }}<h4></td>
-                            
+                            <td><h4>{{ $question->name }}<h4></td>  
                             </tr>
-
                         </tbody>
-                        @else
-                        @endif
-                        @endforeach
+                    @endforeach
+                </table> 
+                <canvas id="myChart"  width="150" height="100"></canvas>   
 
-                    </table>
-
-                <div class="card-body">
                 
-               
-                    <canvas id="myChart"  width="150" height="100"></canvas>
+                    
+                <script>
                 
-                    <script>
-                   
-                        let myChart = document.getElementById('myChart').getContext('2d');
+                    let myChart = document.getElementById('myChart').getContext('2d');
 
-                        // Global Options
-                        Chart.defaults.global.defaultFontFamily = 'Lato';
-                        Chart.defaults.global.defaultFontSize = 18;
-                        Chart.defaults.global.defaultFontColor = '#000000';
-                        
-                        
+                    // Global Options
+                    Chart.defaults.global.defaultFontFamily = 'Lato';
+                    Chart.defaults.global.defaultFontSize = 18;
+                    Chart.defaults.global.defaultFontColor = '#000000';
 
-                        var data = {!!$datas!!};
-                        var label = {!!$labels!!};
-                        
+                    var data = {!!$datas!!};
+                    var label = {!!$labels!!};
+                    console.log(data)
+                    console.log(label)
+                    // console.log(dataArray);
 
-                        console.log(data)
-                        console.log(label)
-                        // console.log(dataArray);
+                    let massPopChart = new Chart(myChart, {
+                    type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
 
-                        let massPopChart = new Chart(myChart, {
-                        type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                    data:{
+                        //Nombres de opciones ---------------- Hey listen!
+                        labels: label  ,
+                        //cd .cd ,
+                        datasets:[{
+                        label:'Respuestas',
+                        //Numeros de las opciones ------------ Watch up!
+                        data: data,
+                        //[ 617594, 181045],
 
-                        data:{
-                            //Nombres de opciones ---------------- Hey listen!
-                            labels: label  ,
-
-
-                            //cd .cd ,
-                            
-                            datasets:[{
-                            label:'Respuestas',
-                            //Numeros de las opciones ------------ Watch up!
-                            
-                            
-                            data: data,
-                            
-                            
-                            //[ 617594, 181045],
-
-                            //backgroundColor:'green',
-                            backgroundColor:[ 
-                                '#009f4d',
-                                '#e4002b',
-                                '#0085ad',
-                                '#efdf00',
-                                '#a51890',
-                                '#fe5000',
-                                '#84bd00',
-                            ],
-                            borderWidth:2,
-                            borderColor:'#ffffff',
-                            hoverBorderWidth:4,
-                            hoverBorderColor:'#00cc00'
-                            }]
+                        //backgroundColor:'green',
+                        backgroundColor:[ 
+                            '#009f4d',
+                            '#e4002b',
+                            '#0085ad',
+                            '#efdf00',
+                            '#a51890',
+                            '#fe5000',
+                            '#84bd00',
+                        ],
+                        borderWidth:2,
+                        borderColor:'#ffffff',
+                        hoverBorderWidth:4,
+                        hoverBorderColor:'#00cc00'
+                        }]
+                    },
+                    options:{
+                        title:{
+                        display:true,
+                        fontSize:25
                         },
-                        options:{
-                            title:{
-                            display:true,
-                            fontSize:25
-                            },
-                            legend:{
-                            display:true,
-                            position:'right',
-                            labels:{
-                                fontColor:'#000'
-                            }
-                            },
-                            layout:{
-                            padding:{
-                                left:0,
-                                right:0,
-                                bottom:0,
-                                top:0
-                            }
-                            },
-                            tooltips:{
-                            enabled:true
-                            }
+                        legend:{
+                        display:true,
+                        position:'right',
+                        labels:{
+                            fontColor:'#000'
                         }
-                        });
-                    </script>
-                
-                    <hr>
-                </div>
+                        },
+                        layout:{
+                        padding:{
+                            left:0,
+                            right:0,
+                            bottom:0,
+                            top:0
+                        }
+                        },
+                        tooltips:{
+                        enabled:true
+                        }
+                    }
+                    });
+                </script>
             </div>
-
-
-            
         </div>
     </div>
 </div>
