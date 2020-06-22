@@ -61,8 +61,6 @@ class FormsController extends Controller
      // Mostrar las preguntas con el ID del formulario
     public function show($id)
     {
-
-        
         $userId = auth()->id();
 
         $questions = Question::where('form_id', $id)->get();

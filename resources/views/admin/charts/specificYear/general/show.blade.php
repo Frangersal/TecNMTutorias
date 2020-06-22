@@ -1,37 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
-
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          //title: 'My Daily Activities',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <!--<div id="piechart_3d" style="width: 550px; height: 500px;"></div>-->
 
 
 <div class="container">
@@ -73,7 +45,77 @@
                     </table>
 
                 <div class="card-body">
-                    <div id="piechart_3d" style="width: 570px; height: 400px;"></div>
+                
+                
+                    <canvas id="myChart"  width="150" height="100"></canvas>
+                
+                    <script>
+                        let myChart = document.getElementById('myChart').getContext('2d');
+
+                        // Global Options
+                        Chart.defaults.global.defaultFontFamily = 'Lato';
+                        Chart.defaults.global.defaultFontSize = 18;
+                        Chart.defaults.global.defaultFontColor = '#000000';
+
+                        var dataArray = {!! $dataArray !!};
+
+                        //console.log(nameArray,repetidoArray);
+
+                        let massPopChart = new Chart(myChart, {
+                        type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+                        data:{
+                            //Nombres de opciones ---------------- Hey listen!
+                            labels: nameArray ,
+                            
+                            datasets:[{
+                            label:'Respuestas',
+                            //Numeros de las opciones ------------ Watch up!
+                            data:[ 617594, 181045],
+
+                            //backgroundColor:'green',
+                            backgroundColor:[ 
+                                '#009f4d',
+                                '#e4002b',
+                                '#0085ad',
+                                '#efdf00',
+                                '#a51890',
+                                '#fe5000',
+                                '#84bd00',
+                            ],
+                            borderWidth:2,
+                            borderColor:'#ffffff',
+                            hoverBorderWidth:4,
+                            hoverBorderColor:'#00cc00'
+                            }]
+                        },
+                        options:{
+                            title:{
+                            display:true,
+                            fontSize:25
+                            },
+                            legend:{
+                            display:true,
+                            position:'right',
+                            labels:{
+                                fontColor:'#000'
+                            }
+                            },
+                            layout:{
+                            padding:{
+                                left:0,
+                                right:0,
+                                bottom:0,
+                                top:0
+                            }
+                            },
+                            tooltips:{
+                            enabled:true
+                            }
+                        }
+                        });
+                    </script>
+                
                     <hr>
                 </div>
             </div>
@@ -83,6 +125,4 @@
         </div>
     </div>
 </div>
-  </body>
-</html>
 @endsection
