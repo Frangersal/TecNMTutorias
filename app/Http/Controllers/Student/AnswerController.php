@@ -51,7 +51,9 @@ class AnswerController extends Controller
     //Argumentos question_id=id 
     public function store(Request $request)
     {
-        //var_dump($request->get('idQuestion')); die();
+        $parametros = json_decode($request->json, true);
+        
+        echo $parametros['question_id'];echo $parametros['name'];die;        //var_dump($request->get('idQuestion')); die();
         $request->validate([
             'txtName'=>'required',
         ]);
@@ -59,13 +61,13 @@ class AnswerController extends Controller
         $user_id = auth()->id();
 
         $answer = new Answer([
-            'question_id' =>$request->get('idQuestion'),
+            'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
             'user_id' =>$user_id,
-            'name' => $request->get('txtName')
+            'name' =>  $parametros['name']//$request->get('txtName')
         ]);
  
         $answer->save();
-        return redirect()->route('student.forms.index');
+        // return redirect()->route('student.forms.index');
     }
 
     /**

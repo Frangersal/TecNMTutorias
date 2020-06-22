@@ -57,24 +57,53 @@ class generalSYController extends Controller
     public function show($id)
     {
         $questions = Question::where('id', $id)->get();
-        $data       = DB::select('SELECT DISTINCT name, COUNT(name) as repetido  FROM answers WHERE question_id='.$id.' GROUP BY name');
-        //$dataName       = DB::select('SELECT DISTINCT name FROM answers WHERE question_id='.$id.'');
-        //$dataRepetido   = DB::select('SELECT COUNT(name) as repetido FROM answers WHERE question_id='.$id.' GROUP BY name');
+
+        //---- En un arreglo con 2 dim
+        ///*
+        $data      = DB::select('SELECT DISTINCT name, COUNT(name) as repetido  FROM answers WHERE question_id='.$id.' GROUP BY name');
         
-        $dataArray = json_encode($data, true);
-        //$nameArray = json_encode($dataName, true);
-        //$repetidoArray = json_encode($dataRepetido, true);
+        
+        // $dataArray = json_encode($data, true);
+        
+        // var_dump($dataArray[0]);
 
+        $labels = array();
+        $datas = array();
 
-        //var_dump($dataArray);
+        foreach($data as $registro){
+            array_push($labels, $registro->name);
+        }
+        
+        foreach($data as $registro){
+            array_push($datas, $registro->repetido);
+        }
+        //var_dump($datas);die;
+        //var_dump($labels);
+        
 
-        //var_dump($nameArray); var_dump($repetidoArray);die(); 
-
-        return view('admin.charts.specificYear.general.show',['dataArray'=>$dataArray]) //['nameArray'=>$nameArray,'repetidoArray' => $repetidoArray]) 
+        return view('admin.charts.specificYear.general.show',['datas'=>json_encode($datas), 'labels'=>json_encode($labels)]) 
         ->with('questions',$questions);
+        //*/
+
+        //-- En dos arreglos
+        /*
+        $dataName       = DB::select('SELECT DISTINCT name FROM answers WHERE question_id='.$id.'');
+        $dataRepetido   = DB::select('SELECT COUNT(name) as repetido FROM answers WHERE question_id='.$id.' GROUP BY name');
         
+        $nameArray = json_encode($dataName, true);
+       
+        $repetidoArray = json_encode($dataRepetido, true);
 
+        //extract($row);
+        
+        //while ($row = $dataName) {
+            # code...
+        //}
 
+        var_dump($nameArray); var_dump($repetidoArray); //die(); 
+        return view('admin.charts.specificYear.general.show',['nameArray'=>$nameArray,'repetidoArray' => $repetidoArray]) 
+        ->with('questions',$questions);
+        //*/
 
 /*
         $answerName = Answer::where('question_id', $id)->get();

@@ -46,32 +46,47 @@
 
                 <div class="card-body">
                 
-                
+               
                     <canvas id="myChart"  width="150" height="100"></canvas>
                 
                     <script>
+                   
                         let myChart = document.getElementById('myChart').getContext('2d');
 
                         // Global Options
                         Chart.defaults.global.defaultFontFamily = 'Lato';
                         Chart.defaults.global.defaultFontSize = 18;
                         Chart.defaults.global.defaultFontColor = '#000000';
+                        
+                        
 
-                        var dataArray = {!! $dataArray !!};
+                        var data = {!!$datas!!};
+                        var label = {!!$labels!!};
+                        
 
-                        //console.log(nameArray,repetidoArray);
+                        console.log(data)
+                        console.log(label)
+                        // console.log(dataArray);
 
                         let massPopChart = new Chart(myChart, {
                         type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
 
                         data:{
                             //Nombres de opciones ---------------- Hey listen!
-                            labels: nameArray ,
+                            labels: label  ,
+
+
+                            //cd .cd ,
                             
                             datasets:[{
                             label:'Respuestas',
                             //Numeros de las opciones ------------ Watch up!
-                            data:[ 617594, 181045],
+                            
+                            
+                            data: data,
+                            
+                            
+                            //[ 617594, 181045],
 
                             //backgroundColor:'green',
                             backgroundColor:[ 

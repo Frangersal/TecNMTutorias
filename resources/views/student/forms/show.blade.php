@@ -37,11 +37,13 @@
                                             <th scope="row">{{ $question->id }} </th>
                                                 <td>{{ $question->form_id }} </td>
                                                 <td>{{ $question->name }} </td>
-                                                
-                                                <form action ="{{ route('student.answers.store') }}" method="POST">
+                                                <!-- action ="{{ route('student.answers.store') }}" method="POST" -->
+                                                <!-- <form > -->
                                                 @csrf
                                                     <td>
-                                                        <select class="form-control " name="txtName" > 
+
+
+                                                        <select class="form-control idQuestion" name="txtName" > 
                                                             @foreach($options as $option)
                                                                 @if("{$question->id}" == "{$option->question_id}")
                                                                     <option value="{{ $option->name }}">{{ $option->question_id }} - {{ $option->name }}</option>   
@@ -49,12 +51,12 @@
                                                                 @endif
                                                             @endforeach 
                                                         </select> 
-                                                        </td>
-                                                        <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
+                                                    </td> 
+                                                        <input  type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion">
                                                         <td>
-                                                            <button type="submit" class="btn btn-success">Responder</button>
+                                                            <button  class="btn btn-success btn-responder ">Responder</button>
                                                         </td>
-                                                    </form>                            
+                                                    <!-- </form>                             -->
                                                 </tr>
                                                 <!-- ----------------FIN -> TIPO OPCION------------ -->
                                     @else
@@ -65,7 +67,7 @@
                                                 <th scope="row">{{ $question->id }} </th>
                                                 <td>{{ $question->form_id }} </td>
                                                 <td>{{ $question->name }} </td>
-                                                <form action ="{{ route('student.answers.store') }}" method="POST">
+                                                <form >
                                                 @csrf
                                                     <td>
                                                         <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName">
@@ -75,7 +77,7 @@
                                                             </span>
                                                         @enderror
                                                     </td>
-                                                    <input id="idQuestion" type="hidden" value="{{ $question->id }}" name="idQuestion">
+                                                    <input type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion">
                                                     <td>
                                                         <button type="submit" class="btn btn-success">Responder</button>
                                                     </td>
@@ -98,4 +100,32 @@
         </div>
     </div>
 </div>
+
+<script>
+$('.btn-responder').click(function(){
+    console.log($(this).parent().parent().find('.opcion').val())
+    var answer = $(this).parent().parent().find('.opcion').val()
+    var question = $(this).parent().parent().find('.idQuestion').val()
+    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+
+
+    const mensaje= {"question_id":question,"name":answer}
+    var hola = {
+        "json": JSON.stringify(mensaje)
+    }
+
+    console.log(hola)
+    $.ajax({
+        method: "POST",
+        url: "{{ route('student.answers.store') }}",
+        dataType: "JSON",
+        data : hola 
+    });
+})
+</script>
 @endsection
