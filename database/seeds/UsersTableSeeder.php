@@ -18,19 +18,80 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'Admin@user.com',
             'password' => Hash::make('adminadmin'),
+
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '10321000',
+            'picture' => '',        
         ]);
 
         $tutor = DB::table('users')->insert([
             'name' => 'Tutor User',
             'email' => 'Tutor@user.com',
             'password' => Hash::make('tutortutor'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '10321001',
+            'picture' => '',
         ]);
 
         $student = DB::table('users')->insert([
             'name' => 'Student User',
             'email' =>'Student@user.com',
             'password' => Hash::make('studentstudent'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '10321002',
+            'picture' => '',
         ]);
         #php artisan db:seed
+        
+        $student = DB::table('users')->insert([
+            'name' => 'Francisco',
+            'email' =>'Francisco@user.com',
+            'password' => Hash::make('franciscofrancisco'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '14321079',
+            'picture' => '',
+        ]);
+
+        
+        $student = DB::table('users')->insert([
+            'name' => 'Gerardo',
+            'email' =>'Gerardo@user.com',
+            'password' => Hash::make('gerardogerardo'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '14321080',
+            'picture' => '',
+        ]);
+
+        
+        $student = DB::table('users')->insert([
+            'name' => 'Paula',
+            'email' =>'Paula@user.com',
+            'password' => Hash::make('paulapaula'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería Bioquímica',
+            'controlNumber' => '14321081',
+            'picture' => '',
+        ]);
+        
+        $student = DB::table('users')->insert([
+            'name' => 'Alina',
+            'email' =>'Alina@user.com',
+            'password' => Hash::make('alinaalina'),
+            
+            'campus' => 'Instituto Tecnologico de Acapulco',
+            'faculty' => 'Ingeniería en Sistemas Computacionales',
+            'controlNumber' => '14321078',
+            'picture' => '',
+        ]);
     }
 }

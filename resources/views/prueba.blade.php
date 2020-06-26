@@ -51,75 +51,23 @@
                 </nav>
 
                 <main role="main" class="col-12 col-md-9 col-lg-10 px-4">
-                some content
+                Diseño pre-alpha 
+                <hr> >> ------ Tutor Vista ------ <<  <br>
+                    <a href="{{ route('users.pupil.index') }}"> 
+                        <button type="button" class="btn btn-warning float-lef">/users/pupil/</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.form.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/form/</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.form.answer.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/form/anwer</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.reunion.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/reunion/</button>
+                    </a>
+                    
+                <hr>
 
-                <div class="container">
-                    <canvas id="myChart"  width="300" height="100"></canvas>
-                
-                    <script>
-
-                        let myChart = document.getElementById('myChart').getContext('2d');
-
-                        // Global Options
-                        Chart.defaults.global.defaultFontFamily = 'Lato';
-                        Chart.defaults.global.defaultFontSize = 18;
-                        Chart.defaults.global.defaultFontColor = '#000000';
-
-                        let massPopChart = new Chart(myChart, {
-                        type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-
-                        data:{
-                            //Nombres de opciones
-                            labels:['Boston', 'Worcester', 'Springfield', 'Lowell', ],
-                            datasets:[{
-                            label:'Population',
-                            //Numeros de las opciones
-                            data:[ 617594, 181045, 153060,],
-                            //backgroundColor:'green',
-                            backgroundColor:[ 
-                                '#009f4d',
-                                '#e4002b',
-                                '#0085ad',
-                                '#efdf00',
-                                '#a51890',
-                                '#fe5000',
-                                '#84bd00',
-                            ],
-                            borderWidth:2,
-                            borderColor:'#ffffff',
-                            hoverBorderWidth:4,
-                            hoverBorderColor:'#00cc00'
-                            }]
-                        },
-                        options:{
-                            title:{
-                            display:true,
-                            text:'Question. xd',
-                            fontSize:25
-                            },
-                            legend:{
-                            display:true,
-                            position:'right',
-                            labels:{
-                                fontColor:'#000'
-                            }
-                            },
-                            layout:{
-                            padding:{
-                                left:0,
-                                right:0,
-                                bottom:0,
-                                top:0
-                            }
-                            },
-                            tooltips:{
-                            enabled:true
-                            }
-                        }
-                        });
-                    </script>
-                </div>
-                
                 <!-- when you uncomment code below, it works -->
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
                 lot of content

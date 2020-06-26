@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Chart;
+namespace App\Http\Controllers\Tutor;
 
-use App\Form;
-use App\Question;
-use App\Answer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class generalSYController extends Controller
+use App\User;
+use App\Role;
+
+use Gate;
+class TutorController extends Controller
 {
-    
-    public function _construct()
-    {
-    $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function _contruct(){
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $questions = Question::all();
-        return view('admin.charts.specificYear.general.index')->with('questions',$questions);
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', '=', 'tutor'); })->get();
+        return view('users.tutor.index')->with('users', $users);
     }
 
     /**
@@ -34,7 +35,11 @@ class generalSYController extends Controller
      */
     public function create()
     {
-        //
+        
+        echo "Estoy dentro de TutorController@create <br>";
+        // var_dump($id);
+         die;
+        
     }
 
     /**
@@ -45,7 +50,22 @@ class generalSYController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        echo "Estoy dentro de TutorController@store <br>";
+        var_dump($id); die;
+        
+
+        // $request->validate([
+        //     'txtDescription'=> 'required'
+        // ]);
+
+        // $form = new Form([
+        //     'description'=> $request->get('txtDescription'),
+        // ]);
+ 
+        // $form->save();
+        //Crear registro en la tabla tutor
+        // return redirect()->route('admin.forms.index');
     }
 
     /**
@@ -56,30 +76,7 @@ class generalSYController extends Controller
      */
     public function show($id)
     {
-        $questions = Question::where('id', $id)->get();
-        $forms = Form::all();
-
-        $data      = DB::select('SELECT DISTINCT name, COUNT(name) as repetido  FROM answers WHERE question_id='.$id.' GROUP BY name');
-        
-        // $dataArray = json_encode($data, true);
-        // var_dump($dataArray[0]);
-
-        $labels = array();
-        $datas = array();
-
-        foreach($data as $registro){
-            array_push($labels, $registro->name);
-        }
-        
-        foreach($data as $registro){
-            array_push($datas, $registro->repetido);
-        }
-        //var_dump($datas);die;
-        //var_dump($labels);
-        
-        return view('admin.charts.specificYear.general.show',['datas'=>json_encode($datas), 'labels'=>json_encode($labels)]) 
-        ->with('questions',$questions)
-        ->with('forms',$forms);
+        //
     }
 
     /**
@@ -90,7 +87,9 @@ class generalSYController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo "Estoy dentro de TutorController@edit <br>";
+        var_dump($id);
+         die;
     }
 
     /**

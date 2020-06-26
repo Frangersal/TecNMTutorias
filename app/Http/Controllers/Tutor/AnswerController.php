@@ -1,21 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Chart;
+namespace App\Http\Controllers\Tutor;
 
-use App\Form;
-use App\Question;
-use App\Answer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class generalSYController extends Controller
+class AnswerController extends Controller
 {
-    
-    public function _construct()
-    {
-    $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +14,7 @@ class generalSYController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
-        return view('admin.charts.specificYear.general.index')->with('questions',$questions);
+        return view('tutor.pupil.form.answer.index');
     }
 
     /**
@@ -56,30 +46,7 @@ class generalSYController extends Controller
      */
     public function show($id)
     {
-        $questions = Question::where('id', $id)->get();
-        $forms = Form::all();
-
-        $data      = DB::select('SELECT DISTINCT name, COUNT(name) as repetido  FROM answers WHERE question_id='.$id.' GROUP BY name');
-        
-        // $dataArray = json_encode($data, true);
-        // var_dump($dataArray[0]);
-
-        $labels = array();
-        $datas = array();
-
-        foreach($data as $registro){
-            array_push($labels, $registro->name);
-        }
-        
-        foreach($data as $registro){
-            array_push($datas, $registro->repetido);
-        }
-        //var_dump($datas);die;
-        //var_dump($labels);
-        
-        return view('admin.charts.specificYear.general.show',['datas'=>json_encode($datas), 'labels'=>json_encode($labels)]) 
-        ->with('questions',$questions)
-        ->with('forms',$forms);
+        //
     }
 
     /**

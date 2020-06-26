@@ -19,28 +19,51 @@
                 <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">f_id</th>
+                            <th scope="col">Formulario</th>
                             <th scope="col">q_id</th>
-                            <!--<th scope="col">tipo q</th>-->
                             <th scope="col">Pregunta</th>
                             </tr>
                         </thead>
                     @foreach($questions as $question)
                         <tbody>
                             <tr>
-                            <th scope="row">{{ $question->form_id }}  </th>
-                            <th scope="row">{{ $question->id }} </th>
-                            <td><h4>{{ $question->name }}<h4></td>  
+                                <th scope="row">{{ $question->form_id }}  </th>
+                                <th scope="row">{{ $question->id }} </th>
+                                <td><h4>{{ $question->name }}<h4></td>  
                             </tr>
                         </tbody>
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                <th scope="col">Opcion </th>
+                                <th scope="col">Num. Respuestas </th>
+                                <th scope="col">Porcentaje</th>
+                                <th scope="col">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            <tr>
+                                <th scope="row"><?php echo $labels  ?> </th>
+                                <th scope="row"><?php echo  $datas ?></th>
+                                <th scope="row">jeje </th>
+                                <th scope="row">jeje </th>
+                            </tr>
+                            </tbody>
+                        </table>
                     @endforeach
-                </table> 
+                </table>
+
+
+                
+                
+                
+
                 <canvas id="myChart"  width="150" height="100"></canvas>   
 
                 
                     
-                <script>
-                
+                <script>                
                     let myChart = document.getElementById('myChart').getContext('2d');
 
                     // Global Options

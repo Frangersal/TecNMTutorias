@@ -88,6 +88,7 @@ class OptionsController extends Controller
     {
         $questions = Question::all();
         //$options = Option::all();
+        var_dump($option); 
 
         return view('admin.options.edit')->with('questions',$questions)->with('option',$option);
     }
