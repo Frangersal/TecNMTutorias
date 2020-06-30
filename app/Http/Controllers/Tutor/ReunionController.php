@@ -5,8 +5,19 @@ namespace App\Http\Controllers\Tutor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
+use App\User;
+use App\Tutor;
+use App\Pupil;
+use App\Reunion;
+use Gate;
+
 class ReunionController extends Controller
 {
+    public function _construct(){
+        $this->middleware('auth');
+    } 
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class ReunionController extends Controller
      */
     public function index()
     {
-        return view('tutor.pupil.reunion.index');
+        $reunions = Reunion::all();
+        return view('tutor.pupil.reunion.index')->with('reunions',$reunions);
     }
 
     /**
@@ -24,7 +36,16 @@ class ReunionController extends Controller
      */
     public function create()
     {
-        //
+        //Ojo, solo el tutor va a crear la reunion, de hacerlo el admin, deja de tener sentido este codigo
+        $user_id    = auth()->id();        
+        $tutor = DB::table('tutors')->whereUser_id($user_id)->first(); // asi es como se saca el array chingon. xd
+        $tutor_id = $tutor->id; 
+        //var_dump($tutor_id); die();
+        $pupils = Pupil::all(); 
+        // var_dump($pupils); die();
+
+        return view('tutor.pupil.reunion.create')
+        ->with('tutor_id',$tutor_id)->with('pupils',$pupils);
     }
 
     /**
@@ -35,7 +56,20 @@ class ReunionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'txtDate_time'=>'required',
+            'txtDescription'=>'required',
+        ]);
+
+        $reunion = new Reunion([
+            'date_time'     => $request->get('txtDate_time'),
+            'description'   => $request->get('txtDescription'),
+            'pupil_id'      => $request->get('txtPupil'),
+            'tutor_id'      => $request->get('txtTutor'),
+        ]);
+ 
+        $reunion->save();
+        return redirect()->route('tutor.pupil.reunion.index');
     }
 
     /**
@@ -55,9 +89,17 @@ class ReunionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reunion $reunion)
     {
-        //
+        //Ojo, solo el tutor va a crear la reunion, de hacerlo el admin, deja de tener sentido este codigo
+        $user_id    = auth()->id();        
+        $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); // asi es como se saca el array chingon. xd
+        $tutor_id   = $tutor->id; 
+        //var_dump($tutor_id); die();
+        $pupils     = Pupil::all(); 
+        // var_dump($pupils); die();
+
+        return view('tutor.pupil.reunion.edit')->with('reunion',$reunion)->with('tutor_id',$tutor_id)->with('pupils',$pupils);
     }
 
     /**
@@ -69,7 +111,20 @@ class ReunionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'txtDate_time'=>'required',
+        ]);
+
+        $reunion = Reunion::find($id);
+
+        $reunion->date_time     = $request->get('txtDate_time');
+        $reunion->description   = $request->get('txtDescription');
+        $reunion->pupil_id      = $request->get('txtPupil');
+        $reunion->tutor_id      = $request->get('txtTutor');
+
+        $reunion->update();
+
+        return redirect()->route('tutor.pupil.reunion.index');
     }
 
     /**
@@ -78,8 +133,10 @@ class ReunionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reunion $reunion)
     {
-        //
+        $reunion->delete();
+
+        return redirect()->route('tutor.pupil.reunion.index');
     }
 }

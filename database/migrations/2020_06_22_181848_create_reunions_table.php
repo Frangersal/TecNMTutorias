@@ -24,6 +24,8 @@ class CreateReunionsTable extends Migration
 
             $table->unsignedBigInteger('tutor_id');
             $table->foreign('tutor_id')->references('id')->on('tutors');
+            
+            $table->timestamps();
 
         });
     }

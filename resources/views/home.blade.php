@@ -24,8 +24,8 @@
                 <div class="card">
                     <div class="card-header"> <h5>Proximas Reuniones</h5></div>
                         <div class="card-body">
-                            <a href="#">
-                                <button type="button" class="btn btn-warning float-left">Crear</button>
+                            <a href="{{ route('tutor.pupil.reunion.index') }}">
+                                <button type="button" class="btn btn-warning float-left">Ver</button>
                             <a>
                         </div>
                     </div>   

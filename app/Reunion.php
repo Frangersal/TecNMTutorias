@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reunion extends Model
 {
-    protected $table ='pupils';
+    protected $table ='reunions';
 
     protected $fillable = [
-        'fecha','description','tutor_id','pupil_id',
+        'date_time','description','tutor_id','pupil_id',
     ];
 
     public function tutors()

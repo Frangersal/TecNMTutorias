@@ -158,16 +158,10 @@ class UsersController extends Controller
 
                 $tutors = Tutor::all();
         
-                // $pupil = Pupil::all()->last()->id;
                 return view('users.pupil.asignar.edit')->with([
                     'pupil'=>$pupil,'tutors'=>$tutors,
                 ]);
 
-                // $pupil = Pupil::all()->last()->get()->id;
-                // $pupil=Pupil::where('id_perfil',$dato)->get();
-                // var_dump($pupil);
-                // return redirect()->action('Pupil\AsignarTutorController@edit', ['pupil' => $pupil]);
-                // return redirect()->route('users.pupil.index');
                 break;
             default:
                 echo "ke pdo?! >:V";
