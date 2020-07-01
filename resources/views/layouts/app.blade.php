@@ -149,7 +149,7 @@
                 <!-- Acciones de Estudiante-->
                 @can('student-action')
                 <li><a href="{{ route('student.forms.index') }}"><i class="fas fa-address-card"></i>  Formularios alum</a></li>                
-                <li><a href="{{ route('student.answers.index') }}"><i class="fas fa-question-circle"></i>  Preguntas</a></li> 
+                <!-- <li><a href="{{ route('student.answers.index') }}"><i class="fas fa-question-circle"></i>  Preguntas</a></li>  -->
                 
                 @endcan
 

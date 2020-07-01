@@ -25,22 +25,21 @@
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col">Id</th>
+                            <th scope="col">nombre</th>
                             <th scope="col">Fecha/Hora</th>
                             <th scope="col">Descripcion</th>
-                            <th scope="col">T_Id</th>
-                            <th scope="col">P_Id</th>
                             <th scope="col">Accion</th>
                             </tr>
                         </thead>
                         <tbody>
 
                         @foreach($reunions as $reunion)
+                        @if(($reunion->tutor_id)==$tutor_id)
                             <tr>
                             <th scope="row">{{ $reunion->id }} </th>
+                            <td>{{ $reunion->pupils->users->name }} </td>
                             <td>{{ $reunion->date_time }} </td>
                             <td>{{ $reunion->description }} </td>
-                            <td>{{ $reunion->tutor_id }} </td>
-                            <td>{{ $reunion->pupil_id }} </td>
                             <td>
 
                                 <a href="{{ route('tutor.pupil.reunion.edit', $reunion->id) }}">
@@ -57,6 +56,7 @@
 
                             </td>
                             </tr>
+                            @endif
                         @endforeach
 
                         </tbody>

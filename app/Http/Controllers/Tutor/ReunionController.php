@@ -25,8 +25,12 @@ class ReunionController extends Controller
      */
     public function index()
     {
-        $reunions = Reunion::all();
-        return view('tutor.pupil.reunion.index')->with('reunions',$reunions);
+        $user_id    = auth()->id();        
+        $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); 
+        $tutor_id   = $tutor->id; 
+
+        $reunions   = Reunion::all();
+        return view('tutor.pupil.reunion.index')->with('tutor_id',$tutor_id)->with('reunions',$reunions);
     }
 
     /**
@@ -38,10 +42,10 @@ class ReunionController extends Controller
     {
         //Ojo, solo el tutor va a crear la reunion, de hacerlo el admin, deja de tener sentido este codigo
         $user_id    = auth()->id();        
-        $tutor = DB::table('tutors')->whereUser_id($user_id)->first(); // asi es como se saca el array chingon. xd
-        $tutor_id = $tutor->id; 
+        $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); // asi es como se saca el array chingon. xd
+        $tutor_id   = $tutor->id; 
         //var_dump($tutor_id); die();
-        $pupils = Pupil::all(); 
+        $pupils     = Pupil::all(); 
         // var_dump($pupils); die();
 
         return view('tutor.pupil.reunion.create')

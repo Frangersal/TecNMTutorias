@@ -31,13 +31,12 @@
                                         <td>{{ $user->faculty }}</td>
                                         <!-- <td>{{ implode(', ',$user->roles()->get()->pluck('name')->toArray()) }}</td> -->
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ route('admin.users.edit', $user->id) }}">
                                             <button type="button" class="btn btn-warning float-left">Editar</button>
                                             <a>
-
                                             
                                             <a href="#">
-                                            <button type="button" class="btn btn-success float-left">Dar alta</button>
+                                            <button type="button" class="btn btn-success float-left">:P</button>
                                             <a>
                                         </td>
                                     </tr>
@@ -46,8 +45,6 @@
                         </table>
                     </div>
                     
-                   <h2>Viva nuestro dios Sid Meier.</h2>
-                   botones: ['editar','reunion','ver formularios'];
                     
                 </div>
             </div>

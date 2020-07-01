@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>
-                        Pupilos en la BD /users/pupil/index.blade.php 
+                        Pupilos en la BD  
                     </h5>
                 </div>
                 <div class="card-body">
@@ -48,9 +48,6 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                   <h2>Viva nuestro dios Sid Meier.</h2>
-                   botones: ['editar','reunion','ver formularios'];
                     
                 </div>
             </div>

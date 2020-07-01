@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Role;
 use App\User;
 use App\Tutor;
@@ -119,56 +120,83 @@ class UsersController extends Controller
         switch ($role) {
             case 1:
                 # Admin , no hacer nada
-                echo "Selecciono D1 <br>";
+                // echo "Selecciono D1 <br>";
                 // var_dump($role,$id); 
                 $user->save(); 
                 return redirect()->route('admin.users.index');
                 break;
             case 2:
                 # Tutor, agregar id a la tabla de tutores, osea ir al metodo crate de tutorescontroller
-                echo "Selecciono D2 <br>";
+                // echo "Selecciono D2 <br>";
                 // var_dump($role,$id); users.tutor.store
                 // necesito tambien el id de user
                 $user->save(); 
 
-                //crear un tutor
-                $tutor = new Tutor([
-                    'description' => $nada,
-                    'user_id'=> $id,
-                ]);
-         
-                $tutor->save();
+                $tutorExist = DB::table('tutors')->whereUser_id($id)->first();                 
+                // var_dump($pupilExist);  die();
+                if ($tutorExist==null) {
+                    //crear un tutor
+                    $tutor = new Tutor([
+                        'description' => $nada,
+                        'user_id'=> $id,
+                    ]);
+            
+                    $tutor->save();
 
-                return redirect()->route('admin.users.index');
+                    return redirect()->route('users.tutor.index');
+                }
+                else {
+                    $tutor = $tutorExist;
+
+                    return redirect()->route('users.tutor.index');
+                }
+
+                
                 break;
             case 3:
                  # Student, agregar id a la tabla de pupilos, y redireccionar a una vista para seleccionar tutor
-                echo "Selecciono D3 <br>";
+                // echo "Selecciono D3 <br>";
                 // var_dump($role,$id); 
                 $user->save(); 
 
-                //crear un pupil
-                $pupil = new Pupil([
-                    'coment' => $nada,
-                    'tutor_id'=> $tutorDefecto,
-                    'user_id'=> $id,
-                ]);
-         
-                $pupil->save();
+                $pupilExist = DB::table('pupils')->whereUser_id($id)->first();                 
+                // var_dump($pupilExist);  die();
+                if ($pupilExist==null) {
+                    //crear un pupil
+                    // var_dump($pupilExist);
+                    $pupil = new Pupil([
+                        'coment' => $nada,
+                        'tutor_id'=> $tutorDefecto,
+                        'user_id'=> $id,
+                    ]);
+            
+                    $pupil->save();
+                    // var_dump($pupil);  die();
 
-                $tutors = Tutor::all();
+                    $tutors = Tutor::all();
         
-                return view('users.pupil.asignar.edit')->with([
-                    'pupil'=>$pupil,'tutors'=>$tutors,
-                ]);
+                    return view('users.pupil.asignar.edit')->with([
+                        'pupil'=>$pupil,'tutors'=>$tutors,
+                    ]);
+                }
+                else {
+                    $pupil = $pupilExist;
+                    var_dump($pupil);  die();
+
+                    $tutors = Tutor::all();
+            
+                    return view('users.pupil.asignar.edit')->with([
+                        'pupil'=>$pupil,'tutors'=>$tutors,
+                    ]);
+                }
 
                 break;
             default:
-                echo "ke pdo?! >:V";
+                // echo "ke pdo?! >:V";
                 // var_dump($role,$id); 
                 return redirect()->route('admin.users.index');
         }
-        echo "ke pdo?! >:V por pinches dos!!!!! >=V";
+        // echo "ke pdo?! >:V por pinches dos!!!!! >=V";
     }
 
     /**

@@ -72,6 +72,12 @@ class AuthServiceProvider extends ServiceProvider
             'tutor-student-action', function($user){
             return $user->hasAnyRoles(['tutor','student']);
         });
+        
+        //Acciones exclusivas de Admin-Estudiante
+        Gate::define(
+            'admin-student-action', function($user){
+            return $user->hasAnyRoles(['admin','student']);
+        });
 
         // use Gate; <-- en los controladores y dentro de algun metodo
         // if(Gate::denies('-action')) { return ...}

@@ -53,11 +53,31 @@ class AnswerController extends Controller
     {
         $parametros = json_decode($request->json, true);
         
-        // echo $parametros['question_id'];echo $parametros['name'];die;        //var_dump($request->get('idQuestion')); die();
+        // echo $parametros['name'];die;        //var_dump(); die();
         // $request->validate([
         // ]);
 
+
         $user_id = auth()->id();
+        $question_id = $request->get('idQuestion'); //$parametros['question_id'];
+
+
+        // $answerOfStudenExist = DB::table('answers')->whereUser_idAndQuestion_id($user_id, $question_id)->first();            
+        //         // var_dump($pupilExist);  die();
+        //         if ($tutanswerOfStudenExistorExist==null) {
+        //             $answer = new Answer([
+        //                 'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
+        //                 'user_id' =>$user_id,
+        //                 'name' =>  $parametros['name']//$request->get('txtName')
+        //             ]);
+             
+        //             $answer->save();
+                    
+        //             return "success";
+        //         }
+        // return "success";
+
+
 
         $answer = new Answer([
             'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),

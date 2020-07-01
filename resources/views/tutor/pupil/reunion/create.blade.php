@@ -55,9 +55,8 @@
                             <select class="form-control opcion" name="txtPupil" > 
                                 @foreach($pupils as $pupil)
                                     @if(($pupil->tutor_id)==$tutor_id)
-                                        <option value="{{ $pupil->id }}">{{ $pupil->id }}</option> 
-                                    @endif                               
-                                          
+                                        <option value="{{ $pupil->id }}">{{ $pupil->users->name }}</option> 
+                                    @endif  
                                 @endforeach 
                             </select>
                             </div>
