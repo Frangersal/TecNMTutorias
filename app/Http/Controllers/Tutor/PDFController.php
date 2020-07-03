@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Tutor;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Form;
 use App\Question;
 use App\Answer;
 
 use Illuminate\Support\Facades\DB;
 
-class FormController extends Controller
+class PDFController extends Controller
 {
     public function _construct(){
         $this->middleware('auth');
@@ -23,8 +27,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $forms = Form::all();
-        return view('tutor.pupil.form.index')->with('forms',$forms);
+        //
     }
 
     /**
@@ -58,19 +61,30 @@ class FormController extends Controller
     {
         $pupilId        = $id;
         $userIdPupil    = DB::table('users')->whereId($pupilId)->first(); 
-        $pupilName      = $userIdPupil->name;
-        
-        // $userId = $id;
-        // var_dump($userId); die();
+        // var_dump($userIdPupil->name); die();
+        $pupilName  = $userIdPupil->name;
         $forms      = Form::all();
         $questions  = Question::all();
         $answers    = Answer::all();
-        return view('tutor.pupil.form.show')
-        ->with('id',$id)
-        ->with('pupilName',$pupilName)
-        ->with('forms',$forms)
-        ->with('questions',$questions)
-        ->with('answers',$answers);
+
+        $arrayData = [
+            'id'        => $id,
+            'pupilName' => $pupilName,
+            'forms'     => $forms,
+            'questions' => $questions,
+            'answers'   => $answers
+        ];
+
+        $data = (object) $arrayData;
+
+        // var_dump($data); die();
+
+        // var_dump($data->pupilName); die();
+        // var_dump($data["pupilName"]); die();
+
+        
+        $pdf = \PDF::loadView('tutor.pupil.form.showpdf', compact('data'));
+        return $pdf->download('formulariosAlumno.pdf');
     }
 
     /**

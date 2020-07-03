@@ -18,6 +18,13 @@ Route::get('/perfil/forms', function () {
     return view('forms');
 });
 
+// Route::get('/pdf', 'Tutor\PDFController@PDF')->name('descargarPDF');
+// Route::get('/pdf/{}', 'Tutor\PDFController@PDFformsStudent')->name('PDFformsStudent');
+
+Route::namespace('Tutor')->prefix('users')->name('pdf.')->middleware('can:manage-users')->group(function(){
+	Route::resource('/users','PDFController');
+});
+
 Auth::routes();
 
 // Inicio

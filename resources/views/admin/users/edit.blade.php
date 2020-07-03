@@ -9,10 +9,7 @@
                 <div class="card-header"> <h5>Editar Usuarios y asignar Tutores </h5></div>
 
                 <div class="card-body">
-
                     <form action ="{{ route('admin.users.update', $user)}}" method="POST">
-
-
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label text-md-right">E-Mail</label>
 
@@ -46,7 +43,6 @@
                             <label for="campus" class="col-md-2 col-form-label text-md-right">Campus</label>
 
                             <div class="col-md-6">
-                                <!-- <input id="campus" type="text" class="form-control @error('campus') is-invalid @enderror" name="campus" value="{{ $user->campus }}" required autofocus> -->
                                 <select id="campus" class="form-control @error('campus') is-invalid @enderror campus" name="campus" value="{{ $user->campus }}" required autofocus>   
                                     <option value="{{ $user->campus }}">{{ $user->campus }}</option>  
                                     <option value="Instituto Tecnológico de Acapulco">I.T.A.</option> 
@@ -64,7 +60,6 @@
                             <label for="faculty" class="col-md-2 col-form-label text-md-right">Faculty</label>
 
                             <div class="col-md-6">
-                                <!-- <input id="faculty" type="text" class="form-control @error('faculty') is-invalid @enderror" name="faculty" value="{{ $user->faculty }}" required autofocus> -->
                                 <select id="faculty" class="form-control  @error('faculty') is-invalid @enderror faculty" name="faculty" value="{{ $user->faculty }}" required autofocus >    
                                     <option value="{{ $user->faculty }}">{{ $user->faculty }}</option> 
                                     <option value="Arquitectura">Arqui.</option> 
@@ -130,27 +125,6 @@
                         </div>
                         <hr>
                         
-
-                        <!-- <div class="form-group row">
-                            <label for="tutors" class="col-md-2 col-form-label text-md-right">Tutores</label>
-                            <div class="col-md-6">
-                                
-                                    <div class="form-check">
-                                        <input type="checkbox" name="tutors[]">
-                                        <select id="campus" class="form-control @error('campus') is-invalid @enderror campus" name="campus" value="{{ $user->campus }}" required autofocus>   
-                                            <option value="{{ $user->campus }}">{{ $user->campus }}</option> 
-                                            @foreach($tutors as $tutor)                                             
-                                            <option value="Instituto Tecnológico de Acapulco">{{$tutor->name }} </option> 
-                                            @endforeach 
-                                        </select>
-                                        
-                                        <label>{{$tutor->name }} </label>
-                                    </div>
-                                
-                            </div>
-                        </div> -->
-
-
                         <button type="submit" class="btn btn-warning">Actualizar</button>
                     </form>                    
                 </div>

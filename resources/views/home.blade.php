@@ -25,7 +25,8 @@
                     <h5>Bienvenido Tutor, cuentas con: # pupilos.</h5>
                     <p>En este sitio, usted podra ver quienes son sus pupilos, crear la fecha y hora de su proxima reunion, y ver los formularios contestados por sus estudiantes.</p> 
                     <hr>
-                    <a href="#pReunion">Proxima reuniones</a> | <a href="#mPupilos">Mis pupilos</a>
+                    <a href="#pReunion">Proxima reuniones</a> | <a href="#mPupilos">Mis pupilos</a> 
+                    
                     
                     @endcan
                     <hr>
@@ -110,6 +111,7 @@
                                             <th scope="col">p_id</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Facultad</th> 
+                                            <th scope="col">Accion</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,6 +121,11 @@
                                                         <td>{{ $pupil->id }}</td>
                                                         <td>{{ $pupil->users->name }}</td>
                                                         <td>{{ $pupil->users->faculty }}</td>
+                                                        <td>
+                                                            <a href="{{ route('tutor.pupil.form.show', $pupil->users->id) }}">
+                                                                <button type="button" class="btn btn-success float-left">Ver formularios</button>
+                                                            <a>
+                                                        </td>
                                                     </tr>
                                                 @endif  
                                             @endforeach                 

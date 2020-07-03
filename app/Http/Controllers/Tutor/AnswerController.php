@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Question;
+use App\Answer;
 
 class AnswerController extends Controller
 {
@@ -57,7 +59,10 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        // var_dump($id); die();
+        $forms = Form::all();
+        $questions = Question::all();
+        return view('tutor.pupil.form.answer.show')->with('id',$id)->with('forms',$forms)->with('questions',$questions);
     }
 
     /**
