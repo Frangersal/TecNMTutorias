@@ -32,17 +32,31 @@
 
                         <div class="form-group row">
                             <div class="col-md-3 text-md-right">
-                                <label for="titulo">Asignar Formulario</label>
+                                <label for="titulo">Cambiar Formulario</label>
                             </div>
                             <div class="col-md-6">
-                                <select class="form-control " name="form_id" >
-
+                                <select class="form-control " name="txtIdForm" >
                                     @foreach($forms as $form)
-                                        <option>{{ $form->id }}</option>                                        
-                                    @endforeach
+                                        <option value="{{ $form->id }}">{{ $form->id }} - {{ $form->name }}</option> 
+                                    @endforeach                                     
                                 </select>                                                                
                             </div>  
                         </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3 text-md-right">
+                                <label for="titulo">Cambiar tipo de pregunta</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control " name="txtIdAnswerType" >
+                                    @foreach($answers_types as $answer_type)
+                                        <option value="{{ $answer_type->id }}" >{{ $answer_type->id }} - {{ $answer_type->name }}</option> 
+                                    @endforeach                                     
+                                </select>                                                                
+                            </div>  
+                        </div>
+
+                        
 
 
 

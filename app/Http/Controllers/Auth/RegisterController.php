@@ -54,6 +54,12 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+
+            'campus' => ['required', 'string', 'max:255'],
+            'faculty' => ['required', 'string', 'max:255'],
+            'controlNumber' => ['required', 'numeric', 'min:8', 'unique:users'],
+
+            
         ]);
     }
 
@@ -69,6 +75,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
+            'campus' => $data['campus'],
+            'faculty' => $data['faculty'],
+            'controlNumber' => $data['controlNumber'],
+            'picture' => '',
+
+           
         ]);
 
         $role = Role::select('id')->where('name','student')->first();

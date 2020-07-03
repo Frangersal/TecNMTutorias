@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{{ csrf_token() }}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -138,17 +139,17 @@
 
                 @can('manage-users')
                 <!-- Acciones para Admin y Tutor-->
-                <li><a href="{{ route('admin.users.index') }}"><i class="fas fa-chalkboard-teacher"></i>  Tutores</a></li>
-                <li><a href="{{ route('admin.users.index') }}"><i class="fas fa-users"></i>  Pupilos</a></li>
-                <li><a href="{{ route('admin.forms.index') }}"><i class="fas fa-question-circle"></i>  Formularios</a></li>
-                <li><a href="{{ route('admin.questions.index') }}"><i class="fas fa-address-card"></i>  Preguntas</a></li> 
-                <li><a href="#"><i class="fas fa-chart-bar"></i>  Estadisticas</a></li> 
+                <li><a href="{{ route('users.tutor.index') }}"><i class="fas fa-chalkboard-teacher"></i>  Tutores</a></li>
+                <li><a href="{{ route('users.pupil.index') }}"><i class="fas fa-users"></i>  Pupilos</a></li>
+                <li><a href="{{ route('admin.forms.index') }}"><i class="fas fa-address-card"></i>  Formularios</a></li>
+                <li><a href="{{ route('admin.questions.index') }}"><i class="fas fa-question-circle"></i>  Preguntas</a></li> 
+                <li><a href="{{ route('admin.chart.index') }}"><i class="fas fa-chart-bar"></i>  Estadisticas</a></li> 
                 @endcan
 
                 <!-- Acciones de Estudiante-->
                 @can('student-action')
-                <li><a href="{{ route('student.forms.index') }}"><i class="fas fa-question-circle"></i>  Formularios alum</a></li>                
-                <li><a href="{{ route('student.answers.index') }}"><i class="fas fa-address-card"></i>  Preguntas</a></li> 
+                <li><a href="{{ route('student.forms.index') }}"><i class="fas fa-address-card"></i>  Formularios alum</a></li>                
+                <!-- <li><a href="{{ route('student.answers.index') }}"><i class="fas fa-question-circle"></i>  Preguntas</a></li>  -->
                 
                 @endcan
 
@@ -165,6 +166,11 @@
                 
             </ul>
         </nav>
+        <script src="/menujs/jquery.min.js"></script>
+        <script src="/menujs/popper.js"></script>
+        <script src="/menujs/bootstrap.min.js"></script>
+        <script src="/menujs/main.js"></script>
+        
             <!-- Page Content class=""> -->
         <div id="content" class="p-4 p-md-5 pt-5" style="background-color:lavender;">
             <main class="py-4" >
@@ -178,11 +184,5 @@
 
 @endguest
 
-
-
-    <script src="/menujs/jquery.min.js"></script>
-    <script src="/menujs/popper.js"></script>
-    <script src="/menujs/bootstrap.min.js"></script>
-    <script src="/menujs/main.js"></script>
 </body>
 </html>

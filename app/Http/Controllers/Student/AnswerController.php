@@ -37,6 +37,11 @@ class AnswerController extends Controller
         return view('student.answers.create');
     }
 
+    //public function arriba(Request $request, $id){
+    //    $id=21;
+    //    return view();
+    //}
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,21 +51,43 @@ class AnswerController extends Controller
     //Argumentos question_id=id 
     public function store(Request $request)
     {
-        $request->validate([
-            'txtName'=>'required',
-        ]);
+        $parametros = json_decode($request->json, true);
+        
+        // echo $parametros['name'];die;        //var_dump(); die();
+        // $request->validate([
+        // ]);
 
-        //$question_id = Question::find($id);
-        $user_id = Auth::user()->id;
+
+        $user_id = auth()->id();
+        $question_id = $request->get('idQuestion'); //$parametros['question_id'];
+
+
+        // $answerOfStudenExist = DB::table('answers')->whereUser_idAndQuestion_id($user_id, $question_id)->first();            
+        //         // var_dump($pupilExist);  die();
+        //         if ($tutanswerOfStudenExistorExist==null) {
+        //             $answer = new Answer([
+        //                 'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
+        //                 'user_id' =>$user_id,
+        //                 'name' =>  $parametros['name']//$request->get('txtName')
+        //             ]);
+             
+        //             $answer->save();
+                    
+        //             return "success";
+        //         }
+        // return "success";
+
+
 
         $answer = new Answer([
-            'question_id' =>'1',
+            'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
             'user_id' =>$user_id,
-            'name' => $request->get('txtName')
+            'name' =>  $parametros['name']//$request->get('txtName')
         ]);
  
         $answer->save();
-        return redirect()->route('student.forms.index');
+        return "success";
+        // return redirect()->route('student.forms.index');
     }
 
     /**
@@ -69,9 +96,23 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show( Request $request)
+    { /*
+        $request->validate([
+            'txtName'=>'required',
+        ]);
+
+        //$question_id = Question::find($id);
+        $user_id = auth()->id();
+
+        $answer = new Answer([
+            'question_id' =>'1',
+            'user_id' =>$user_id,
+            'name' => $request->get('txtName')
+        ]);
+ 
+        $answer->save();
+        return redirect()->route('student.forms.index');*/
     }
 
     /**

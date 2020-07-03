@@ -45,6 +45,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!-- Es Martes 23 de Junio de 2020, 12:12 AM, hay una pandemia alla afuera y yo solo quiero terminar esto. Hola persona del futuro que esta leyendo esto, espero que este pasando un lindo dia y recuerda: . xD  -->
 </div>
 @endsection

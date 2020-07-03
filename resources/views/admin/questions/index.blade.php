@@ -18,6 +18,11 @@
                     <a href="{{ route('admin.questions.create') }}">
                         <button type="button" class="btn btn-success">Crear Pregunta</button>
                     </a> 
+                    
+                    <br><br>
+                    <a href="{{ route('admin.options.index') }}">
+                        <button type="button" class="btn btn-primary">Crear Opciones</button>
+                    </a> 
                     <br><br>
                     
                     <table class="table">
@@ -25,6 +30,7 @@
                             <tr>
                             <th scope="col">f_id</th>
                             <th scope="col">q_id</th>
+                            <th scope="col">tipo q</th>
                             <th scope="col">Pregunta</th>
                             <th scope="col">Accion</th>
                             </tr>
@@ -35,6 +41,7 @@
                             <tr>
                             <th scope="row">{{ $question->form_id }}  </th>
                             <th scope="row">{{ $question->id }} </th>
+                            <th scope="row">{{ $question->answer_type_id }} </th>
                             <td>{{ $question->name }}</td>
                             <td>
                                 <a href="{{ route('admin.questions.edit', $question->id) }}">
@@ -46,6 +53,10 @@
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
+                                
+
+
+                                
 
                             </td>
                             </tr>

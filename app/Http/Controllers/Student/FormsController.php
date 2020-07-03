@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Student;
 use App\Form;
 use App\User;
 use App\Question;
+use App\Option;
+use App\Answer;
 use Gate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -59,10 +61,14 @@ class FormsController extends Controller
      // Mostrar las preguntas con el ID del formulario
     public function show($id)
     {
+        $userId = auth()->id();
+
         $questions = Question::where('form_id', $id)->get();
+        $options = Option::all();
+        $answers = Answer::all();
 
 
-        return view('student.forms.show')->with('questions',$questions);
+        return view('student.forms.show')->with('userId',$userId)->with('questions',$questions)->with('options',$options)->with('answers',$answers);
     }
 
     /**

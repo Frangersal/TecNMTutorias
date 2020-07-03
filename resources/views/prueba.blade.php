@@ -10,6 +10,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <!-- Style -->
         <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        
         
     </head>
     <body>
@@ -49,7 +51,23 @@
                 </nav>
 
                 <main role="main" class="col-12 col-md-9 col-lg-10 px-4">
-                some content
+                Diseño pre-alpha 
+                <hr> >> ------ Tutor Vista ------ <<  <br>
+                    <a href="{{ route('users.pupil.index') }}"> 
+                        <button type="button" class="btn btn-warning float-lef">/users/pupil/</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.form.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/form/</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.form.answer.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/form/anwer</button>
+                    </a>
+                    <a href="{{ route('tutor.pupil.reunion.index') }}">
+                        <button type="button" class="btn btn-warning float-lef">/tutor/pupil/reunion/</button>
+                    </a>
+                    
+                <hr>
+
                 <!-- when you uncomment code below, it works -->
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>a
                 lot of content
