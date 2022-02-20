@@ -33,9 +33,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //Iniciar como admin
+        if(Gate::denies('tutor-student-action')) { 
+            $user_id    = auth()->id();
+
+            $pupils     = Pupil::all();
+            $users      = User::all();
+            $reunions   = Reunion::all();
+
+            return view('home')->with('users',$users)->with('pupils',$pupils)->with('reunions',$reunions);
+        }
+
         //Iniciar como tutor
         if(Gate::denies('admin-student-action')) { 
-            $user_id    = auth()->id();     
+            $user_id    = auth()->id();   
             $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); 
             $tutor_id   = $tutor->id;
 

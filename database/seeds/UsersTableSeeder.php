@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+
         $admin = DB::table('users')->insert([
             'name' => 'Admin User',
             'email' => 'Admin@user.com',
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
             'controlNumber' => '10321000',
             'picture' => '',        
         ]);
+        
 
         $tutor = DB::table('users')->insert([
             'name' => 'Tutor User',

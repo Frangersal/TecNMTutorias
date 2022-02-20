@@ -14,6 +14,13 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
+
+// Inicio testBootstrap
+Route::get('/remakeHome', 'RemakeController@remakeHome')->name('home');
+Route::get('/remakeUsers', 'RemakeController@remakeUsers')->name('users');
+Route::get('/remakeUsersdos', 'RemakeController@remakeUsersDos')->name('usersdos');
+Route::get('/testBootstrap', 'RemakeController@remakeTestBS')->name('remakeTestBS');
+
 Route::get('/perfil/forms', function () {
     return view('forms');
 });

@@ -4,12 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>TecNM Tutorias</title>
+        <title>Tutorias ITA </title>
+        <link href="{{asset('/css/TecNM/style.css')}}" rel="stylesheet">
+        <link href="{{asset('/css/TecNM/home.css')}}" rel="stylesheet">
+        
+        <!-- Icono -->
+        <link rel="icon" href="{{asset('/images/Icon.png')}}">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
+        <!-- Styles 
         <style>
             html, body {
                 background-color: #fff;
@@ -62,31 +64,30 @@
                 margin-bottom: 30px;
             }
         </style>
+        -->
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Perfil</a>
-                    @else
-                        <a href="{{ route('login') }}">Iniciar sesion.</a>
+    <body class="body body-bg">
+        <var class="body-caja">
+            
+        </var>
+        <img class="body_img" src="{{asset('/images/Logo.png')}}" alt="Logotipo oficial de TecNM">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Registrarse.</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div>
-                    <img src="/images/Logo-TecNM-2017.png" width="320" height="197">
-                </div>
-                <div class="title m-b-md">
-                    TecNM Tutorias [Beta]
-                </div>
-            </div>
-        </div>
+        <h1 class="body_h1">
+            Tutorias ITA
+        </h1>
+        @if (Route::has('login'))
+        <form class="body_from" action="">
+            @auth
+            <a class="body_from_input" href="{{ url('/home') }}">Perfil</a>
+            @else
+                <a class="body_from_input" href="{{ route('login') }}">Iniciar sesion</a>
+                @if (Route::has('register'))
+                    <a class="body_from_input" href="{{ route('register') }}">Registrarse</a>
+                @endif
+            @endauth
+        </form>
+        @endif
+        
     </body>
+
 </html>

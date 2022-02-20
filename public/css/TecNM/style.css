@@ -1,0 +1,103 @@
+/* 
+Colores oficiales
+azulTecNM #233D7B
+reyTecNM #080F1F
+*/
+:root{
+    --color-primario: #233D7B;
+    --color-secundario: #080F1F;
+    --color-terciario: #fff;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body-bg{
+    /*
+    background: rgb(35,61,123);
+    background: linear-gradient(90deg, rgba(35,61,123,0.45) 0%, rgba(255,255,255,0.45) 100%);
+    */
+    background: linear-gradient(104deg, #233d7b4f, #ffffff);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
+}
+
+.body{
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
+/*
+.body-caja{
+    width: 15rem;
+    height: 10rem;
+    background-color:brown;
+
+}*/
+.body_img{
+    width: 32rem;
+    /*
+    background-color:yellowgreen;
+    */
+    
+}
+.body_h1{
+    /*
+    background-color: rgb(255, 166, 0);
+    */
+    height: 6rem;
+    width: 32rem;
+    color: var(--color-primario);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.body_from{
+    width: 32rem;
+    /*
+    background-color:yellowgreen;
+    */
+    display: flex;
+    justify-content:space-around;
+    
+}
+/*
+.body_from_input{
+    background-color: rgb(0, 255, 13);
+    
+}
+*/
+.body_from_input {
+	box-shadow:inset 0px -3px 7px 0px #3b75d9;
+	background-color:#2f549e;
+	border-radius:42px;
+	border:0px solid #233e7b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 54px;
+	text-decoration:none;
+	/*
+    text-shadow:0px 1px 0px #080f1f;
+    */
+}
+.body_from_input:hover {
+	background-color:#233e7b;
+}
+.body_from_input:active {
+	position:relative;
+	top:1px;
+}
