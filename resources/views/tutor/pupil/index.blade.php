@@ -9,22 +9,18 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        tutor/pupil/index.blade.php
-                    </h5>
-                </div>
+        <section class="main_section">
+            <h2 class="main_section_h2">tutor/pupil/index.blade.php</h2>
+            <section class="main_section_section">
                 <div class="card-body">
                     
                    <h2>Viva nuestro dios Sid Meier.</h2>
                    botones: ['editar','reunion','ver formularios'];
                     
                 </div>
-            </div>
-        </div>
-    </div> 
+                
+            </section>
+        </section>
+
 </main>
 @endsection

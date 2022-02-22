@@ -13,15 +13,10 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Esctadisticas
-                    </h5>
-                </div>
-                                    
+
+        <section class="main_section">
+            <h2 class="main_section_h2">Esctadisticas</h2>
+            <section class="main_section_section">
                 <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -60,15 +55,8 @@
                     @endforeach
                 </table>
 
+                <canvas id="myChart"  width="150" height="100"></canvas>  
 
-                
-                
-                
-
-                <canvas id="myChart"  width="150" height="100"></canvas>   
-
-                
-                    
                 <script>                
                     let myChart = document.getElementById('myChart').getContext('2d');
 
@@ -138,8 +126,9 @@
                     }
                     });
                 </script>
-            </div>
-        </div>
-    </div>
+                
+            </section>
+        </section>
+
 </main>
 @endsection

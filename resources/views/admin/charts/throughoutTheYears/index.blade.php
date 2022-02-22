@@ -12,16 +12,11 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Esctadisticas
-                    </h5>
-                </div>
-                
 
+        <section class="main_section">
+            <h2 class="main_section_h2">Esctadisticas</h2>
+            <section class="main_section_section">
+                
                 <div class="card-body">
                     <button type="button" class="btn btn-success  btn-lg btn-block">Año en especifico</button>
                     <button type="button" class="btn btn-secondary btn-lg btn-block">A lo largo de los años</button>
@@ -35,11 +30,10 @@
                     <p> Aqui desglosaremos las estadisticas mas importantes de cada formulario contestado por los alumnos del plantel. Cada pregunta (con opciones) cuenta con su respectivo grafico que muestra visualmente. bla bla...</p>
                     
                 </div>
-            </div>
+                
+            </section>
+        </section>
 
 
-            
-        </div>
-    </div>
 </main>
 @endsection

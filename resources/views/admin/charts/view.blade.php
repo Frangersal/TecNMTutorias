@@ -9,30 +9,16 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Esctadisticas y graficos
-                    </h5>
-                </div>
-                <div class="card-body">
+
+        <section class="main_section">
+            <h2 class="main_section_h2">Esctadisticas y graficos</h2>
+            <section class="main_section_section">
+                
                 <button type="button" class="btn btn-dark btn-lg">General</button>
                 <button type="button" class="btn btn-dark btn-lg">Large button</button>
                 
-                    
+            </section>
+        </section>
 
-                    
-                    
-                    
-                   
-                </div>
-            </div>
-
-
-            
-        </div>
-    </div>
 </main>
 @endsection

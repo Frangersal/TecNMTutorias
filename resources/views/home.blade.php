@@ -8,45 +8,47 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
 
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
+            
+            <section class="main_section">
+                <h2 class="main_section_h2">Perfil de : {{ Auth::user()->name }}</h2>
+                <section class="main_section_section">
+                    <div class="card-body"> 
+                        @can('student-action')
+                        <h5>Bienvenido estudiante, tu tutor asignado es: {{ $nombreTutor }}</h5>
+                        Tu eres un Estudiante, o pupilo.
+                        <p>En este sitio, usted podra ver quien es su tutor asignado, ver la fecha y hora de su proxima reunion, y contestar los formularios que le corresponde contestar.</p> 
+                        
+                        @endcan
 
-            <div class="card"><a name="inicio" id="inicio"></a>
-                <div class="card-header"> <h5>Perfil de : {{ Auth::user()->name }}  </h5></div>
-                <div class="card-body"> 
-                    @can('student-action')
-                    <h5>Bienvenido estudiante, tu tutor asignado es: {{ $nombreTutor }}</h5>
-                    Tu eres un Estudiante, o pupilo.
-                    <p>En este sitio, usted podra ver quien es su tutor asignado, ver la fecha y hora de su proxima reunion, y contestar los formularios que le corresponde contestar.</p> 
+                        @can('tutor-action')
+                        <h5>Bienvenido Tutor, cuentas con: # pupilos.</h5>
+                        <p>En este sitio, usted podra ver quienes son sus pupilos, crear la fecha y hora de su proxima reunion, y ver los formularios contestados por sus estudiantes.</p> 
+                        <hr>
+                        <a href="#pReunion">Proxima reuniones</a> | <a href="#mPupilos">Mis pupilos</a> 
+                        
+                        
+                        @endcan
+                        <hr>
+                        Bienvenido al sistema de tutorias del TecNM
+                        
                     
-                    @endcan
-
-                    @can('tutor-action')
-                    <h5>Bienvenido Tutor, cuentas con: # pupilos.</h5>
-                    <p>En este sitio, usted podra ver quienes son sus pupilos, crear la fecha y hora de su proxima reunion, y ver los formularios contestados por sus estudiantes.</p> 
-                    <hr>
-                    <a href="#pReunion">Proxima reuniones</a> | <a href="#mPupilos">Mis pupilos</a> 
+                    </div>     
                     
-                    
-                    @endcan
-                    <hr>
-                    Bienvenido al sistema de tutorias del TecNM
-                    
-                   
-                </div>                 
-            </div>
+                </section>
+            </section>
             <!-- Zona exclusiva para el tutor y estudiante -->
             @can('tutor-student-action')
-                <br>
-                <div class="card"><a name="pReunion" id="pReunion"></a>
-                    <div class="card-header"> <h5>Proximas Reuniones</h5><a href="#inicio">Inicio</a></div>
+
+            <section class="main_section">
+                <h2 class="main_section_h2">Proximas Reuniones</h2>
+                <section class="main_section_section">
                         <div class="card-body"> 
                             @can('tutor-action')
                                 <a href="{{ route('tutor.pupil.reunion.index') }}">
@@ -97,14 +99,15 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>  
-
-                    <br>
+                    
+                </section>
+            </section>
 
                     @can('tutor-action')
-                        <div class="card"><a name="mPupilos" id="mPupilos"></a>
-                            <div class="card-header"> <h5>Mis Pupilos</h5> <a href="#inicio">Inicio</a></div>
-                            
+
+                    <section class="main_section">
+                        <h2 class="main_section_h2">Mis Pupilos</h2>
+                        <section class="main_section_section">
                                 <div class="card-body">
                                     <a href="#">
                                         <button type="button" class="btn btn-warning float-left">Administrar</button>
@@ -139,14 +142,13 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>   
-                        </div> 
+                            
+                        </section>
+                    </section>
+                        
                     @endcan
 
-                </div> 
             @endcan 
             
-        </div>
-    </div>
 </main>
 @endsection

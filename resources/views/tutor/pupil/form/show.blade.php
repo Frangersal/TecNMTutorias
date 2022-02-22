@@ -9,15 +9,10 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Ver Formularios contestados por: {{ $pupilName }}
-                    </h5>
-                </div>
-                
+
+        <section class="main_section">
+            <h2 class="main_section_h2">Ver Formularios contestados por: {{ $pupilName }}</h2>
+            <section class="main_section_section">
                 <a href="{{ route('pdf.users.show', $id ?? '') }}">
                     <button type="button" class="btn btn-success float-left">Descargar PDF</button>
                 <a>
@@ -51,8 +46,10 @@
                     @endforeach
 
                 </div>
-            </div>
-        </div>
-    </div>
+                
+            </section>
+        </section>
+
+    
 </main>
 @endsection

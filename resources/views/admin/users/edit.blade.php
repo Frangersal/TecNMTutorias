@@ -9,11 +9,10 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"> <h5>Editar Usuarios y asignar Tutores </h5></div>
 
+        <section class="main_section">
+            <h2 class="main_section_h2">Editar Usuarios y asignar Tutores</h2>
+            <section class="main_section_section">
                 <div class="card-body">
                     <form action ="{{ route('admin.users.update', $user)}}" method="POST">
                         <div class="form-group row">
@@ -134,8 +133,9 @@
                         <button type="submit" class="btn btn-warning">Actualizar</button>
                     </form>                    
                 </div>
-            </div>
-        </div>
-    </div>
+                
+            </section>
+        </section>
+
 </main>
 @endsection

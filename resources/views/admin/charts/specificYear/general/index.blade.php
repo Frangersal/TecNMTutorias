@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -12,15 +9,10 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Esctadisticas
-                    </h5>
-                </div>
-                                    
+
+        <section class="main_section">
+            <h2 class="main_section_h2">Esctadisticas</h2>
+            <section class="main_section_section">
                 <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -61,11 +53,10 @@
                     <div id="piechart_3d" style="width: 550px; height: 400px;"></div>
                     <hr>
                 </div>
-            </div>
+                
+            </section>
+        </section>
 
-
-            
-        </div>
-    </div>
+   
 </main>
 @endsection

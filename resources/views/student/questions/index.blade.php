@@ -9,14 +9,9 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        Lista de Formularios
-                    </h5>
-                </div>
+        <section class="main_section">
+            <h2 class="main_section_h2">Lista de Formularios</h2>
+            <section class="main_section_section">
                 <div class="card-body">
                     
                     <table class="table">
@@ -49,8 +44,10 @@
                     </table>
                     
                 </div>
-            </div>
-        </div>
-    </div>
+                
+            </section>
+        </section>
+
+   
 </main>
 @endsection

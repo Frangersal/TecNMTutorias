@@ -102,7 +102,6 @@
                 </p>
                 
             </section>
-
         </section>
 
         <section class="main_section">

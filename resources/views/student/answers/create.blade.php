@@ -8,12 +8,10 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                <h5>Crear Pregunta </h5></div>
 
+        <section class="main_section">
+            <h2 class="main_section_h2">Crear Pregunta</h2>
+            <section class="main_section_section">
                 <div class="card-body">
 
                     <form action ="{{ route('student.answers.store')}}" method="POST">
@@ -36,8 +34,9 @@
                         <button type="submit" class="btn btn-success">Crear</button>
                     </form>                    
                 </div>
-            </div>
-        </div>
-    </div>
+                
+            </section>
+        </section>
+
 </main>
 @endsection
