@@ -15,7 +15,7 @@
     <link rel="icon" href="{{asset('/images/Icon.png')}}">
 
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="body body-bg">
     <nav class="nav">

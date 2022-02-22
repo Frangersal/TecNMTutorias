@@ -15,17 +15,31 @@ reyTecNM #080F1F
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-.body-bg{
-    /*
-    background: rgb(35,61,123);
-    background: linear-gradient(90deg, rgba(35,61,123,0.45) 0%, rgba(255,255,255,0.45) 100%);
-    */
+
+/*BG animation*/
+.body-bg {
     background: linear-gradient(104deg, #233d7b4f, #ffffff);
     background-size: 400% 400%;
 
     -webkit-animation: AnimationName 30s ease infinite;
     -moz-animation: AnimationName 30s ease infinite;
     animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
 }
 
 .body{

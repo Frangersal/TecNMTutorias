@@ -2,7 +2,13 @@
 
 @section('content')
 
-<div class="container">
+<main class="main">
+    <nav clasS="title">
+        <h1 class="title_h1">
+            Tutorias ITA
+        </h1>
+        <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
+    </nav>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -66,5 +72,5 @@
             </div>
         </div>
     </div> 
-</div>
+</main>
 @endsection
