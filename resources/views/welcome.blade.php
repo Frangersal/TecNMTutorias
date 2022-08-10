@@ -78,7 +78,7 @@
         @if (Route::has('login'))
         <form class="body_from" action="">
             @auth
-            <a class="body_from_input" href="{{ url('/home') }}">Perfil</a>
+            <a class="body_from_input" href="{{ url('/perfil') }}">Perfil</a>
             @else
                 <a class="body_from_input" href="{{ route('login') }}">Iniciar sesion</a>
                 @if (Route::has('register'))

@@ -12,9 +12,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 
-
-
-class HomeController extends Controller
+class PerfilController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -41,7 +39,7 @@ class HomeController extends Controller
             $users      = User::all();
             $reunions   = Reunion::all();
 
-            return view('home')->with('users',$users)->with('pupils',$pupils)->with('reunions',$reunions);
+            return view('perfil')->with('users',$users)->with('pupils',$pupils)->with('reunions',$reunions);
         }
 
         //Iniciar como tutor
@@ -54,7 +52,7 @@ class HomeController extends Controller
             $users      = User::all();
             $reunions   = Reunion::all();
 
-            return view('home')->with('tutor_id',$tutor_id)->with('users',$users)->with('pupils',$pupils)->with('reunions',$reunions);
+            return view('perfil')->with('tutor_id',$tutor_id)->with('users',$users)->with('pupils',$pupils)->with('reunions',$reunions);
         }
 
         //Iniciar como student
@@ -76,7 +74,7 @@ class HomeController extends Controller
             $users = User::all();
             $pupils = Pupil::all();
             $reunions = Reunion::all();
-            return view('home')
+            return view('perfil')
             ->with('pupil_id',$pupil_id)->with('users',$users)->with('nombreTutor',$nombreTutor)
             ->with('pupils',$pupils)->with('reunions',$reunions);
         }

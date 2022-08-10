@@ -27,6 +27,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <!-- Fonts -->
     <!-- 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,7 +77,7 @@
                     Inicio
                 </span> 
             </a>
-            <a class="nav_section_button" href="{{ url('/home') }}">
+            <a class="nav_section_button" href="{{ url('/perfil') }}">
                 <i class="nav_section_button_i fas fa-user"></i>   
                 <span class="nav_section_button_span">
                     Perfil
@@ -95,12 +99,15 @@
                         Pupilos                 
                     </span> 
                 </a>
+                <!-- 
                 <a class="nav_section_button"  >
                     <i class="nav_section_button_i fas fa-user-clock"></i>   
                     <span class="nav_section_button_span">
                         Reuniones               
                     </span> 
-                </a>                
+                </a> 
+
+                -->               
                 <a class="nav_section_button"  href="{{ route('admin.forms.index') }}">
                     <i class="nav_section_button_i fas fa-address-card"></i>   
                     <span class="nav_section_button_span">
@@ -179,8 +186,9 @@
                
                 
                 
-        </nav>
+        </nav> <!--
         <script src="/menujs/jquery.min.js"></script>
+        -->
         <script src="/menujs/popper.js"></script>
         <script src="/menujs/bootstrap.min.js"></script>
         <script src="/menujs/main.js"></script>
@@ -193,6 +201,7 @@
             </main>
         </div>
     </div>
+    
 
 <!-- Fin del menu sin una sesion iniciada --->
 

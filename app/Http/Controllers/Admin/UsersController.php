@@ -9,6 +9,8 @@ use App\User;
 use App\Tutor;
 use App\Pupil;
 use Gate;
+use Auth;
+
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
