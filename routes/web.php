@@ -15,12 +15,6 @@ Route::get('/prueba', function () {
 });
 
 
-// Inicio testBootstrap
-Route::get('/remakeHome', 'RemakeController@remakeHome')->name('home');
-Route::get('/remakeUsers', 'RemakeController@remakeUsers')->name('users');
-Route::get('/remakeUsersdos', 'RemakeController@remakeUsersDos')->name('usersdos');
-Route::get('/testBootstrap', 'RemakeController@remakeTestBS')->name('remakeTestBS');
-
 Route::get('/perfil/forms', function () {
     return view('forms');
 });
@@ -35,7 +29,7 @@ Route::namespace('Tutor')->prefix('users')->name('pdf.')->middleware('can:manage
 Auth::routes();
 
 // Inicio
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/perfil', 'PerfilController@index')->name('perfil');
 
 // ------ >> ------ Admin cruds ------ << ------ //
 // Admin crud Usuarios

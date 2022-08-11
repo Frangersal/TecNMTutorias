@@ -73,7 +73,7 @@
                     Inicio
                 </span> 
             </a>
-            <a class="nav_section_button" href="{{ url('/home') }}">
+            <a class="nav_section_button" href="{{ url('/perfil') }}">
                 <i class="nav_section_button_i fas fa-user"></i>   
                 <span class="nav_section_button_span">
                     Perfil

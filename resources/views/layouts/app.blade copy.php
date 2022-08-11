@@ -149,7 +149,7 @@
             
                 <!-- Acciones para TODOS-->
                 <li class="active"><a href="{{ url('/') }}"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="{{ url('/home') }}"><i class="fas fa-user"></i>  Perfil</a></li>
+                <li><a href="{{ url('/perfil') }}"><i class="fas fa-user"></i>  Perfil</a></li>
                 
                 <!-- Acciones de Administrador-->
                 @can('admin-action')
