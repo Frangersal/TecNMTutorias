@@ -28,45 +28,53 @@ Route::namespace('Tutor')->prefix('users')->name('pdf.')->middleware('can:manage
 
 Auth::routes();
 
-// Inicio
+// perfil
 Route::get('/perfil', 'PerfilController@index')->name('perfil');
 
 // ------ >> ------ Admin cruds ------ << ------ //
 // Admin crud Usuarios
+// TecNMTutorias/public/admin/users
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/users','UsersController', ['except'=>['show','create','store']]);
 });
 
 // Admin crud Froms
+// TecNMTutorias/public/admin/forms
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/forms','FormsController', ['except'=>['show',]]);
 });
 
 // Admin crud Question
+// TecNMTutorias/public/admin/questions
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/questions','QuestionsController', ['except'=>['show',]]);
 });
 
 // Admin crud AnswerOption
+// TecNMTutorias/public/admin/options
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/options','OptionsController', ['except'=>['show',]]);
 });
 
 // ------ >> ------ Admin/Tutor Vista ------ << ------ //
 // Pupilos
+// TecNMTutorias/public/users/pupil
 Route::namespace('Pupil')->prefix('users')->name('users.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/pupil','PupilController');
 });
 // Pupilos
+// TecNMTutorias/public/users/tutor
 Route::namespace('Tutor')->prefix('users')->name('users.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/tutor','TutorController');
 });
-// Asignar tutor users/pupil/asignarTutor
+// Asignar tutor 
+// TecNMTutorias/public/users/pupil/asignar
 Route::namespace('Pupil')->prefix('users/pupil')->name('users.pupil.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/asignar','AsignarTutorController');
 });
 // ------ >> ------ Tutor Vista ------ << ------ //
 // Reunion
+// TecNMTutorias/public/tutor/pupils/reunion
 Route::namespace('Tutor')->prefix('tutor/pupils')->name('tutor.pupil.')->middleware('can:manage-users')->group(function(){
 	Route::resource('/reunion','ReunionController');
 });

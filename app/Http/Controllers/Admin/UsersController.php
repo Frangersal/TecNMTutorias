@@ -78,8 +78,9 @@ class UsersController extends Controller
         {$query->where('name', '=', 'tutor'); })->get();
 
         $roles = Role::all();
+        $pupils = Pupil::all();
         return view('admin.users.edit')->with([
-            'user'=>$user,'roles'=>$roles,'tutors'=>$tutors
+            'user'=>$user,'roles'=>$roles,'tutors'=>$tutors,'pupils'=>$pupils
         ]);
     }
 
@@ -111,7 +112,7 @@ class UsersController extends Controller
         //Id del usuario que estamos editando
         $id = $user->id;
         $nada= "puej naah";
-        $tutorDefecto= 1;
+        $tutorDefecto = 1;
         
         // $user->save(); 
         //var_dump($role,$id); die;

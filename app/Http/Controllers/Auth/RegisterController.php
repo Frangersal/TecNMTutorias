@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Role;
+///use App\Pupil;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -83,9 +84,16 @@ class RegisterController extends Controller
 
            
         ]);
+/*
+        Pupil::create([
+            'coment' => 'Nada poh',
+            'user_id' => DB::table('users')->where('id')->last(),
+            'tutor_id' => '1',
 
+           
+        ]);
+*/
         $role = Role::select('id')->where('name','student')->first();
-
         $student->roles()->attach($role);
 
         return $student;

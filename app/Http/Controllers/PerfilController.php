@@ -36,6 +36,8 @@ class PerfilController extends Controller
         //Iniciar como admin
         if(Gate::denies('tutor-student-action')) { 
             $user_id    = auth()->id();
+            //echo "index admin, user_id: ".$user_id;
+            //var_dump($user_id);
 
             $pupils     = Pupil::all();
             $users      = User::all();
@@ -46,7 +48,9 @@ class PerfilController extends Controller
 
         //Iniciar como tutor
         if(Gate::denies('admin-student-action')) { 
-            $user_id    = auth()->id();   
+            $user_id    = auth()->id();
+            //echo "index tutor, user_id: ".$user_id;
+            //var_dump($user_id);   
             $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); 
             $tutor_id   = $tutor->id;
 
@@ -60,25 +64,47 @@ class PerfilController extends Controller
         //Iniciar como student
         if(Gate::denies('admin-tutor-action')) { 
             //Obtener el id de pupilo del usuario student
-            $user_id    = auth()->id();  
-            $pupil      = DB::table('pupils')->whereUser_id($user_id)->first(); 
-            $pupil_id   = $pupil->id;
+            $user_id    = auth()->id(); 
+            //echo "index student, user_id: ".$user_id;
+            //var_dump($user_id);
+            $pupil      = DB::table('pupils')->whereUser_id($user_id)->first();
+            if ($pupil == null) {
+                $pupil_id       = " Aun sin asignar... ";
+                 //Obtener el nombre del tutor del usuario
+                $pupilFila      = " Aun sin asignar... ";
+                $idTutor        = " Aun sin asignar... ";
+                $tutorTutorFila = " Aun sin asignar... ";
+                $idUserDelTutor = " Aun sin asignar... ";
+                $tutorFila      = " Aun sin asignar... "; 
+                $nombreTutor    = " Aun sin asignar... ";
+                // var_dump($nombreTutor);  die();
 
-            //Obtener el nombre del tutor del usuario
-            $pupilFila      = DB::table('pupils')->whereId($pupil_id)->first(); 
-            $idTutor        = $pupilFila->tutor_id;
-            $tutorTutorFila      = DB::table('tutors')->whereId($idTutor )->first(); 
-            $idUserDelTutor = $tutorTutorFila->user_id;
-            $tutorFila     = DB::table('users')->whereId($idUserDelTutor )->first(); 
-            $nombreTutor    = $tutorFila->name;
-            // var_dump($nombreTutor);  die();
+                $users = User::all();
+                $pupils = Pupil::all();
+                $reunions = Reunion::all();
+                return view('perfil')
+                ->with('pupil_id',$pupil_id)->with('users',$users)->with('nombreTutor',$nombreTutor)
+                ->with('pupils',$pupils)->with('reunions',$reunions);
+            } else {
+                $pupil_id   = $pupil->id;
+                 //Obtener el nombre del tutor del usuario
+                $pupilFila      = DB::table('pupils')->whereId($pupil_id)->first(); 
+                $idTutor        = $pupilFila->tutor_id;
+                $tutorTutorFila      = DB::table('tutors')->whereId($idTutor )->first(); 
+                $idUserDelTutor = $tutorTutorFila->user_id;
+                $tutorFila     = DB::table('users')->whereId($idUserDelTutor )->first(); 
+                $nombreTutor    = $tutorFila->name;
+                // var_dump($nombreTutor);  die();
 
-            $users = User::all();
-            $pupils = Pupil::all();
-            $reunions = Reunion::all();
-            return view('perfil')
-            ->with('pupil_id',$pupil_id)->with('users',$users)->with('nombreTutor',$nombreTutor)
-            ->with('pupils',$pupils)->with('reunions',$reunions);
+                $users = User::all();
+                $pupils = Pupil::all();
+                $reunions = Reunion::all();
+                return view('perfil')
+                ->with('pupil_id',$pupil_id)->with('users',$users)->with('nombreTutor',$nombreTutor)
+                ->with('pupils',$pupils)->with('reunions',$reunions);
+            }
+
+           
         }
     }
 }

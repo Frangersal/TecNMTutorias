@@ -120,12 +120,28 @@
                             <div class="col-md-6">
                                 @foreach($roles as $role)
                                     <div class="form-check">
-                                        <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                        <input type="radio" name="roles[]" value="{{ $role->id }}"
                                         @if ($user->roles->pluck('id')->contains($role->id)) checked @endif> 
                                         <label>{{$role->name }} </label>
                                        
                                     </div>
                                 @endforeach 
+                            </div>
+                        </div>
+                        <hr>
+
+                        @csrf
+                        {{ method_field('PUT') }}
+                        
+                        <div class="form-group row">
+                            <label for="tutores" class="col-md-2 col-form-label text-md-right">Asignar tutor</label>
+                            <div class="col-md-6">
+                                <select id="asignar" class="form-control  @error('asignar') is-invalid @enderror asignar" name="asignar" required autofocus >   <!-- value="{{ $user->faculty }}"  -->
+                                    @foreach($pupils as $pupil)
+                                        <option value="tutor uno">tutor uno.</option> 
+                                    @endforeach 
+
+                                </select>
                             </div>
                         </div>
                         <hr>
