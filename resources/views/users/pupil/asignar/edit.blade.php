@@ -11,7 +11,7 @@
     </nav>
 
         <section class="main_section">
-            <h2 class="main_section_h2">Asignar tutor MUAJAJAJA</h2>
+            <h2 class="main_section_h2">Paso 2: Asignar tutor</h2>
             <section class="main_section_section">
                 <div class="card-body">
 
@@ -22,9 +22,9 @@
                         <div class="form-group row">
                             <label for="tutor" class="col-md-2 col-form-label text-md-right">Tutor</label>
 
-                            <select class="form-control opcion" name="txtTutorId" > 
+                            <select class="form-control opcion" name="txtTutorId"  > 
                                 @foreach($tutors as $tutor)
-                                        <option value="{{ $tutor->id }}">{{ $tutor->id }}</option>   
+                                        <option value="{{ $tutor->id }}">{{ $tutor->users->name }} </option>   
                                 @endforeach 
                             </select>
                         </div>

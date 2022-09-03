@@ -182,7 +182,7 @@ class UsersController extends Controller
                 }
                 else {
                     $pupil = $pupilExist;
-                    var_dump($pupil);  die();
+                    //var_dump($pupil);  die();
 
                     $tutors = Tutor::all();
             

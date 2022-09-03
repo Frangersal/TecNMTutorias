@@ -11,7 +11,7 @@
     </nav>
 
         <section class="main_section">
-            <h2 class="main_section_h2">Editar Usuarios y asignar Tutores</h2>
+            <h2 class="main_section_h2">Paso 1: Editar informacion de usuario</h2>
             <section class="main_section_section">
                 <div class="card-body">
                     <form action ="{{ route('admin.users.update', $user)}}" method="POST">
@@ -130,22 +130,24 @@
                         </div>
                         <hr>
 
+                        <!-- value="{{ $user->faculty }}"  -->
+                        <!--
                         @csrf
                         {{ method_field('PUT') }}
                         
                         <div class="form-group row">
                             <label for="tutores" class="col-md-2 col-form-label text-md-right">Asignar tutor</label>
                             <div class="col-md-6">
-                                <select id="asignar" class="form-control  @error('asignar') is-invalid @enderror asignar" name="asignar" required autofocus >   <!-- value="{{ $user->faculty }}"  -->
-                                    @foreach($pupils as $pupil)
-                                        <option value="tutor uno">tutor uno.</option> 
+                                <select id="asignar" class="form-control  @error('asignar') is-invalid @enderror asignar" name="asignar" required autofocus >  
+                                    @foreach($tutors as $tutor)
+                                        <option value="{{$tutor->id }}">{{$tutor->name }}</option> 
                                     @endforeach 
 
                                 </select>
                             </div>
                         </div>
                         <hr>
-                        
+                        -->
                         <button type="submit" class="btn btn-warning">Actualizar</button>
                     </form>                    
                 </div>
