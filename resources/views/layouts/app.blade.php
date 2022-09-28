@@ -95,12 +95,14 @@
                         Pupilos                 
                     </span> 
                 </a>
-                <a class="nav_section_button"  >
+                <!-- 
+                <a class="nav_section_button"  href="{{ route('tutor.pupil.reunion.index') }}" >
                     <i class="nav_section_button_i fas fa-user-clock"></i>   
                     <span class="nav_section_button_span">
                         Reuniones               
                     </span> 
-                </a>                
+                </a>  
+                -->              
                 <a class="nav_section_button"  href="{{ route('admin.forms.index') }}">
                     <i class="nav_section_button_i fas fa-address-card"></i>   
                     <span class="nav_section_button_span">
@@ -129,7 +131,7 @@
                         Pupilos                 
                     </span> 
                 </a>
-                <a class="nav_section_button" >
+                <a class="nav_section_button" href="{{ route('tutor.pupil.reunion.index') }}">
                     <i class="nav_section_button_i fas fa-user-clock"></i>   
                     <span class="nav_section_button_span">
                         Reuniones             
