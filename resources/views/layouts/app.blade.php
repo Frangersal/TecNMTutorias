@@ -15,6 +15,7 @@
 
     <link href="{{asset('/css/TecNM/users.css')}}" rel="stylesheet">
 
+    <link href="{{asset('/css/TecNM/style.css')}}" rel="stylesheet">
     <!-- Icono -->
     <link rel="icon" href="{{asset('/images/Icon.png')}}">
 
@@ -49,8 +50,8 @@
 @guest
 @if (Route::has('register'))
 <!-- Si aun no se ha iniciado sesion--->
-<div id="content" class="p-4 p-md-5 pt-5" style="background-color:lavender;">
-    <main class="py-4">
+<div id="content" class="main_login body-bg">
+    <main class="">
             @yield('content')
     </main>
 </div>
@@ -188,7 +189,7 @@
         <script src="/menujs/main.js"></script>
         
             <!-- Page Content class=""> -->
-        <div id="content" class="p-4 p-md-5 pt-5" style="background-color:lavender;">
+        <div id="content" class="p-4 p-md-5 pt-5  body-bg" >
             <main class="py-4" >
                     @yield('content')
                     

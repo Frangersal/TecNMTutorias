@@ -18,7 +18,7 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">q d</th>
+                                <th scope="col">q test d</th>
                                 <th scope="col">f id</th>
                                 <th scope="col">Pregunta</th>
                                 <th scope="col">Respuesta</th>

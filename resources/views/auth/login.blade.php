@@ -2,19 +2,18 @@
 
 @section('content')
 <main class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h5>{{ __('Iniciar sesion') }}</F5></div>
-
-                <div class="card-body">
+    <section class="main_section">
+        <h2 class="main_section_h2">
+                {{ __('Iniciar sesion') }}
+        </h2>
+                <section class="main_section_section">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
+                            <label for="email" class="col-md-5 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -24,11 +23,12 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                            <label for="password" class="col-md-5 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -38,9 +38,10 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-8 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -53,7 +54,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="body_from_input">
                                     {{ __('Iniciar sesion') }}
                                 </button>
 
@@ -65,9 +66,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
+                </section>
     </div>
 </main>
 @endsection
