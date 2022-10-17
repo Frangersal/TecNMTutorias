@@ -23,10 +23,18 @@ class FormsController extends Controller
      */
     public function index()
     {        
+        $userId = auth()->id();
+
         $forms = Form::all();
-        //$answers = Answer::all();,'answers',$answers
+        $questions = Question::all();
+        $answers = Answer::where('user_id', '=', $userId);
+        //$queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$x])->where('user_id', '=', $user_id)->get();
         
-        return view('student.forms.index')->with('forms',$forms);
+        
+        return view('student.forms.index')
+        ->with('forms',$forms)
+        ->with('questions' ,$questions)
+        ->with('answers',$answers);
     }
 
     /**

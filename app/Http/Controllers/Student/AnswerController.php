@@ -51,43 +51,40 @@ class AnswerController extends Controller
     //Argumentos question_id=id 
     public function store(Request $request)
     {
-        $parametros = json_decode($request->json, true);
-        
-        // echo $parametros['name'];die;        //var_dump(); die();
-        // $request->validate([
-        // ]);
-
-
+        // Variables
+        $arrayName = $request->get('txtName');
+        $arrayQuestionId= $request->get('idQuestion');
         $user_id = auth()->id();
-        $question_id = $request->get('idQuestion'); //$parametros['question_id'];
+        // Echo Tests 
+        echo  "arrayName Vanila: ".var_dump($arrayName)."<br>";
+        echo  "arrayName Tipo: ".gettype($arrayName)."<br>";
+        // Ciclo segun cuantas preguntas tenga el formulario.
+        for ($x = 0; $x <= count($arrayQuestionId)-1 ; $x++) {
+            // Echo Tests  /* echo "->> Iteracion : $x <br>"; echo  $arrayName[$x]."<br>"; echo  $arrayQuestionId[$x]."<br>"; echo  $user_id."<br>"; */
+            
+            $queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$x])->where('user_id', '=', $user_id)->get();
+            $queryArrayAnswer = json_decode($queryObjAnswer, true);
+            echo "<br>--*queryAnswer: ";  var_dump(empty($queryArrayAnswer));  echo "*--<br>";
 
-
-        // $answerOfStudenExist = DB::table('answers')->whereUser_idAndQuestion_id($user_id, $question_id)->first();            
-        //         // var_dump($pupilExist);  die();
-        //         if ($tutanswerOfStudenExistorExist==null) {
-        //             $answer = new Answer([
-        //                 'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
-        //                 'user_id' =>$user_id,
-        //                 'name' =>  $parametros['name']//$request->get('txtName')
-        //             ]);
-             
-        //             $answer->save();
-                    
-        //             return "success";
-        //         }
-        // return "success";
-
-
-
-        $answer = new Answer([
-            'question_id' =>  $parametros['question_id'],//$request->get('idQuestion'),
-            'user_id' =>$user_id,
-            'name' =>  $parametros['name']//$request->get('txtName')
-        ]);
- 
-        $answer->save();
-        return "success";
-        // return redirect()->route('student.forms.index');
+            //Si $arrayName[$x] el es nulo entonces...empty(
+            if ($arrayName[$x]!=null) {
+                //Checar Si user_id ya contesto el $arrayQuestionId[$x]
+                if ($queryArrayAnswer!=null) {
+                    // Echo Tests /* echo "<br>->> TRUE Iteracion : $x <br>"; echo "queryArrayAnswer: ".$queryArrayAnswer."<br>"; echo  $arrayName[$x]."<br>"; echo  $arrayQuestionId[$x]."<br>"; echo  $user_id."<br>"; echo ">> :( NO guarda en BD!<br>";*/
+                } elseif ($queryArrayAnswer==null) {
+                    // Echo Test /* echo "<br>->>FALSE Iteracion : $x <br>"; echo "queryArrayAnswer: ".$queryArrayAnswer."<br>"; echo  $arrayName[$x]."<br>"; echo  $arrayQuestionId[$x]."<br>"; echo  $user_id."<br>"; echo ">> :) Crea instancia y guarda en BD<br>"; */
+                    //Crear una instancia de Answer y guardarla para la BD
+                    $answer = new Answer([
+                        'name' => $arrayName[$x],               
+                        'question_id' => $arrayQuestionId[$x], 
+                        'user_id' => $user_id,
+                    ]);
+                    $answer->save();
+                }
+            }
+        }
+        //Regresar al index del formulario de estudiantes
+        return redirect()->route('student.forms.index');
     }
 
     /**
@@ -97,22 +94,8 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show( Request $request)
-    { /*
-        $request->validate([
-            'txtName'=>'required',
-        ]);
-
-        //$question_id = Question::find($id);
-        $user_id = auth()->id();
-
-        $answer = new Answer([
-            'question_id' =>'1',
-            'user_id' =>$user_id,
-            'name' => $request->get('txtName')
-        ]);
- 
-        $answer->save();
-        return redirect()->route('student.forms.index');*/
+    { 
+        
     }
 
     /**

@@ -26,16 +26,48 @@
                         </thead>
                         <tbody>
 
-                        @foreach($forms as $form)
+                        
+                        @foreach($forms as $form) <!-- Foreach de Forms -->
                             <tr>
                             <th scope="row">{{ $form->id }} </th>
                             <td>{{ $form->name }} </td>
                             <td>{{ $form->description }} </td>
                             <td>
+                                <!-- El foreach de Forms, nos dara el form-Id<p>{{ $form->id }} </p>-->
+                                
+                                @php
+                                    //$contadorQuestions=0;
+                                    //$contadorAnswers=0;
+                                @endphp
 
+                                @foreach($questions as $question)
+
+                                    <!-- Solo revisare las questions que tengan ese mismo form-Id-->
+                                    @if("{$form->id}" == "{$question->form_id}")
+                                            <!-- <p>if es el mismo formIF del question  </p>
+                                            un for de las questions que revisen el numero de questions que tengan el form-id,con un contador-->
+                                            @php
+                                               // $contadorQuestions++;
+                                                //echo "<p>>>Q#:".$contadorQuestions."</p>"; 
+                                            @endphp
+                                    @endif
+                                @endforeach
+
+
+                                
+                               
+                                <!-- un for de las answers que revise el numero de answers, con un contador-->
+
+                                <!-- comparar el numero de los contadores-->     
                                 <a href="{{ route('student.forms.show', $form->id) }}">
-                                    <button type="button" class="btn btn-warning float-lef">Preguntas</button>
+                                    <button type="button" class="btn btn-danger float-lef">Preguntas</button>
                                 </a>
+                                <!--
+                                <a href="{{ route('student.forms.edit', $form->id) }}">
+                                    <button type="button" class="btn btn-success float-lef">Editar</button>
+                                </a> 
+
+                                -->
 
                             </td>
                             </tr>

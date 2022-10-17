@@ -90,11 +90,13 @@ Route::namespace('Tutor')->prefix('tutor/pupil/forms')->name('tutor.pupil.form.'
 
 // ------ >> ------ Estudiante Vista ------ << ------ //
 // Estudiante ve Form
+// student/forms/index
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
 	Route::resource('/forms','FormsController', ['except'=>['store','update','destroy']]);
 });
 
 // Estudiante ve Preguntas
+// student/answers/index
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
 	Route::resource('/answers','AnswerController', ['except'=>['show','update','destroy']]);
 });
