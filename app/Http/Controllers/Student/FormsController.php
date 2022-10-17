@@ -27,9 +27,10 @@ class FormsController extends Controller
 
         $forms = Form::all();
         $questions = Question::all();
-        $answers = Answer::where('user_id', '=', $userId);
+        //$answers = Answer::where('user_id', '=', $userId);
+        $answers = Answer::where('user_id', '=', $userId)->get();
         //$queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$x])->where('user_id', '=', $user_id)->get();
-        
+        //echo $answers;
         
         return view('student.forms.index')
         ->with('forms',$forms)

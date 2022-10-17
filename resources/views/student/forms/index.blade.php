@@ -33,42 +33,54 @@
                             <td>{{ $form->name }} </td>
                             <td>{{ $form->description }} </td>
                             <td>
-                                <!-- El foreach de Forms, nos dara el form-Id<p>{{ $form->id }} </p>-->
+                                <!-- El foreach de Forms, nos dara el form-Id
+                                <p>>F#: {{ $form->id }} </p>-->
                                 
                                 @php
-                                    //$contadorQuestions=0;
-                                    //$contadorAnswers=0;
+                                    $contadorQuestions=0;
+                                    $contadorAnswers=0;
                                 @endphp
 
                                 @foreach($questions as $question)
-
                                     <!-- Solo revisare las questions que tengan ese mismo form-Id-->
                                     @if("{$form->id}" == "{$question->form_id}")
-                                            <!-- <p>if es el mismo formIF del question  </p>
-                                            un for de las questions que revisen el numero de questions que tengan el form-id,con un contador-->
-                                            @php
-                                               // $contadorQuestions++;
-                                                //echo "<p>>>Q#:".$contadorQuestions."</p>"; 
-                                            @endphp
+                                        <!-- <p>if es el mismo formIF del question  </p>
+                                        un for de las questions que revisen el numero de questions que tengan el form-id,con un contador-->
+                                        @php
+                                            $contadorQuestions++;
+                                            //echo "<p>>>Q#:".$contadorQuestions."</p>"; 
+                                        @endphp
+                                        <!-- un for de las answers que revise el numero de answers, con un contador-->
+                                        @foreach($answers as $answer)
+                                            @if("{$question->id}"=="{$answer->question_id}")
+                                                @php
+                                                    $contadorAnswers++;
+                                                    //echo "<p>>>>A#:".$contadorAnswers."</p>"; 
+                                                @endphp
+                                            @endif
+                                        @endforeach
                                     @endif
                                 @endforeach
-
-
                                 
-                               
-                                <!-- un for de las answers que revise el numero de answers, con un contador-->
-
-                                <!-- comparar el numero de los contadores-->     
-                                <a href="{{ route('student.forms.show', $form->id) }}">
-                                    <button type="button" class="btn btn-danger float-lef">Preguntas</button>
-                                </a>
-                                <!--
-                                <a href="{{ route('student.forms.edit', $form->id) }}">
-                                    <button type="button" class="btn btn-success float-lef">Editar</button>
-                                </a> 
-
-                                -->
-
+                                <!-- comparar el numero de los contadores--> 
+                                @php
+                                    //echo "<p>-----------</p>"; 
+                                    //echo "<p>Q#:".$contadorQuestions."</p>"; 
+                                    //echo "<p>A#:".$contadorAnswers."</p>"; 
+                                    if($contadorQuestions == $contadorAnswers){
+                                        //echo "<p>SON IGUALES. :D</p>"; 
+                                @endphp
+                                        <a href="{{ route('student.forms.edit', $form->id) }}">
+                                            <button type="button" class="btn btn-success float-lef">Editar</button>
+                                        </a> 
+                                @php    }else{
+                                        //echo "<p>NO son iguales... :(</p>";
+                                @endphp
+                                        <a href="{{ route('student.forms.show', $form->id) }}">
+                                            <button type="button" class="btn btn-danger float-lef">Preguntas</button>
+                                        </a>
+                                @php     }
+                                @endphp
                             </td>
                             </tr>
                         @endforeach

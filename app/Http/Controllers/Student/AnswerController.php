@@ -66,8 +66,11 @@ class AnswerController extends Controller
             $queryArrayAnswer = json_decode($queryObjAnswer, true);
             echo "<br>--*queryAnswer: ";  var_dump(empty($queryArrayAnswer));  echo "*--<br>";
 
+            echo  "X in for antes de if: ".$x."<br>";
             //Si $arrayName[$x] el es nulo entonces...empty(
-            if ($arrayName[$x]!=null) {
+            if ($arrayName[$x]==null) {//unset($arrayName[$x]);
+                echo  "arrayName Vanila: ".var_dump($arrayName)."<br>";
+            }else {
                 //Checar Si user_id ya contesto el $arrayQuestionId[$x]
                 if ($queryArrayAnswer!=null) {
                     // Echo Tests /* echo "<br>->> TRUE Iteracion : $x <br>"; echo "queryArrayAnswer: ".$queryArrayAnswer."<br>"; echo  $arrayName[$x]."<br>"; echo  $arrayQuestionId[$x]."<br>"; echo  $user_id."<br>"; echo ">> :( NO guarda en BD!<br>";*/
@@ -81,6 +84,7 @@ class AnswerController extends Controller
                     ]);
                     $answer->save();
                 }
+                
             }
         }
         //Regresar al index del formulario de estudiantes

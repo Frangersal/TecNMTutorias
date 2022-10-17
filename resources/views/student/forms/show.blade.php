@@ -26,13 +26,13 @@
                                 <select class="form-control opcion" name="txtName[]" > 
                                     @foreach($options as $option)
                                         @if("{$question->id}" == "{$option->question_id}")
-                                            <option value="{{ $option->name }}">{{ $option->question_id }} - {{ $option->name }}</option>   
+                                            <option value="{{ $option->name }}"  required>{{ $option->question_id }} - {{ $option->name }}</option>   
                                             @else                                    
                                         @endif
                                     @endforeach 
                                 </select>
                             @else
-                                <input id="txtName" type="text" class=" form-control @error('txtName') is-invalid @enderror" name="txtName[]">
+                                <input id="txtName" type="text" class=" form-control @error('txtName') is-invalid @enderror" name="txtName[]"  required>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
