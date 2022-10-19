@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Form;
+use App\Question;
 use App\User;
 use Gate;
 use App\Http\Controllers\Controller;
@@ -50,9 +51,9 @@ class FormsController extends Controller
         $name = $request->get('txtName');
         $description=$request->get('txtDescription');
         $queryObjForm = Form::where('name', '=', $name)->where('description', '=', $description)->first();
-        echo gettype($queryObjForm)."<br>";
-        var_dump(empty($queryObjForm));
-        echo $queryObjForm;
+        //echo gettype($queryObjForm)."<br>";
+        //var_dump(empty($queryObjForm));
+        //echo $queryObjForm;
 
         $request->validate([
             'txtName'=>'required',
@@ -61,14 +62,14 @@ class FormsController extends Controller
 
         if ($create==null) {
             
-            echo $queryObjForm;
+            //echo $queryObjForm;
                 $form = new Form([
                     'name' => $request->get('txtName'),
                     'description'=> $request->get('txtDescription'),
                 ]);
                 $form->save();
                 return view('admin.forms.edit')->with(['form'=>$queryObjForm]);
-                echo "no se salva porque esta repetido";
+                //echo "no se salva porque esta repetido";
             //echo "<br>---";
             //echo "<br>Vista Crear y editar";
         } else{
@@ -103,14 +104,28 @@ class FormsController extends Controller
      */
     public function edit(Form $form)
     {
-        //echo $form;
+        //echo "<br>".$form;
         //echo "<br>tipo form: ".gettype($form);
+        $arrayForm = json_decode($form, true);
+        //echo "<br>".$arrayForm['id'];
+        //echo "<br>tipo form: ".gettype($arrayForm['id']);
+        
+        $questions = Question::where('form_id', '=', $arrayForm['id'])->get();
+        //echo "<br>".$questions;
+        
+        //$arrayquestions = json_decode($questions, true);
+        //echo "<br>".$arrayquestions['id'];
+        //for ($i=0; $i <= count($arrayquestions) ; $i++) { 
+        //    echo "<br>-questions".$arrayquestions[$i];
+        //}
         $forms = Form::all();
         if(Gate::denies('admin-action')) { 
             return redirect()->route('admin.forms.index');
         }
-        return view('admin.forms.edit')->with([
-            'form'=>$form
+        
+        return view('admin.forms.edit')->with([ 
+            'form'=>$form,
+            'questions'=>$questions
         ]);
     }
 

@@ -32,6 +32,7 @@
                             @enderror
                         </div>
                     </div>
+                    <br>
 
                     <div class="form-group row">
                         <label for="description" class="col-md-3 col-form-label text-md-right">Descripcion</label>
@@ -60,7 +61,7 @@
                 <div class="card-body">
                     
 
-                    <a href="{{ route('admin.forms.create') }}">
+                    <a href="{{ route('admin.questions.create') }}">
                         <button type="button" class="btn btn-success">Crear Pregunta</button>
                     </a> 
                     <br><br>
@@ -71,24 +72,46 @@
                             <tr>
                             <th scope="col">f_id</th>
                             <th scope="col">q_id</th>
+                            <th scope="col">Tipo Q</th>
                             <th scope="col">Pregunta</th>
                             <th scope="col">Accion</th>
                             </tr>
                         </thead>
+                        @foreach($questions as $question)
                         <tbody>
 
                             <tr>
-                            <th scope="row">e </th>
-                            <th scope="row">e </th>
-                            <td>e</td>
+                            <th scope="row">{{ $question->form_id }}  </th>
+                            <th scope="row">{{ $question->id }} </th>
+                            <th scope="row">{{ $question->answer_type_id }} -
+                                @if($question->answer_type_id==1)
+                                Texto
+                                @else
+                                Option
+                                @endif
+                                
+                            </th>
+                            <td>{{ $question->name }}</td>
                             <td>
+                                <a href="{{ route('admin.questions.edit', $question->id) }}">
                                     <button type="button" class="btn btn-warning float-lef">Editar</button>
+                                </a>
+
+                                <form action="{{ route('admin.questions.destroy', $question) }}" method="POST" class="float-left"> 
+                                    @csrf
+                                    {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                                
+
+
+                                
 
                             </td>
                             </tr>
 
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
                 
