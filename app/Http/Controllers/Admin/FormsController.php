@@ -45,18 +45,43 @@ class FormsController extends Controller
 
     public function store(Request $request)
     {
+        $create = $request->get('create');
+        $create_editQuestion = $request->get('create_editQuestion');
+        $name = $request->get('txtName');
+        $description=$request->get('txtDescription');
+        $queryObjForm = Form::where('name', '=', $name)->where('description', '=', $description)->first();
+        echo gettype($queryObjForm)."<br>";
+        var_dump(empty($queryObjForm));
+        echo $queryObjForm;
+
         $request->validate([
             'txtName'=>'required',
             'txtDescription'=> 'required'
         ]);
 
-        $form = new Form([
-            'name' => $request->get('txtName'),
-            'description'=> $request->get('txtDescription'),
-        ]);
- 
-        $form->save();
-        return redirect()->route('admin.forms.index');
+        if ($create==null) {
+            
+            echo $queryObjForm;
+                $form = new Form([
+                    'name' => $request->get('txtName'),
+                    'description'=> $request->get('txtDescription'),
+                ]);
+                $form->save();
+                return view('admin.forms.edit')->with(['form'=>$queryObjForm]);
+                echo "no se salva porque esta repetido";
+            //echo "<br>---";
+            //echo "<br>Vista Crear y editar";
+        } else{
+            $form = new Form([
+                'name' => $request->get('txtName'),
+                'description'=> $request->get('txtDescription'),
+            ]);
+                $form->save();
+            return redirect()->route('admin.forms.index');
+            //echo "<br>Vista Crear y ya ALV";
+        }
+        
+        
     }
 
     /**
@@ -78,6 +103,8 @@ class FormsController extends Controller
      */
     public function edit(Form $form)
     {
+        //echo $form;
+        //echo "<br>tipo form: ".gettype($form);
         $forms = Form::all();
         if(Gate::denies('admin-action')) { 
             return redirect()->route('admin.forms.index');

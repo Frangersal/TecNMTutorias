@@ -31,6 +31,7 @@
                         @enderror
                     </div>
                 </div>
+                <br>
                 
 
                 <div class="form-group row">
@@ -46,13 +47,30 @@
                         @enderror
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-success">Crear</button>
-            </form>                    
+                <br>
+                    <input id="create" type="hidden" value="create" class="create" name="create">
+                <button onclick="desaparecerCEQ()" type="submit" class="btn btn-success">Solo Crear Formulario</button>
+                <br><br>
+                    <input id="create_editQuestion" type="hidden" value="create_editQuestion" class="create_editQuestion" name="create_editQuestion">
+                <button onclick="desaparecerC()" type="submit" class="btn btn-primary" >Crear Formulario y editar preguntas</button>
+            </form>       
+                         
             </div>
                 
             </section>
         </section>
 
 </main>
+
+
+<script>
+function desaparecerCEQ() {
+  const element = document.getElementById("create_editQuestion");
+  element.remove();
+}
+function desaparecerC() {
+  const element = document.getElementById("create");
+  element.remove();
+}
+</script>
 @endsection
