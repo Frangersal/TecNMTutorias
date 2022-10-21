@@ -33,39 +33,24 @@
                                 @enderror
                             </div>
                         </div>
-                        
-
+                        <br>
                         <div class="form-group row">
                             <div class="col-md-3 text-md-right">
-                                <label for="titulo">Cambiar Formulario</label>
+                                <label for="titulo">Tipo de pregunta</label>
                             </div>
                             <div class="col-md-6">
-                                <select class="form-control " name="txtIdForm" >
-                                    @foreach($forms as $form)
-                                        <option value="{{ $form->id }}">{{ $form->id }} - {{ $form->name }}</option> 
-                                    @endforeach                                     
-                                </select>                                                                
-                            </div>  
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-3 text-md-right">
-                                <label for="titulo">Cambiar tipo de pregunta</label>
-                            </div>
-                            <div class="col-md-6">
-                                <select class="form-control " name="txtIdAnswerType" >
+                                <select class="form-control " name="txtIdAnswerType"  id="answerType" onchange="changeButton()" >
+                                    <option value="" disabled selected hidden>Elija tipo</option>
                                     @foreach($answers_types as $answer_type)
                                         <option value="{{ $answer_type->id }}" >{{ $answer_type->id }} - {{ $answer_type->name }}</option> 
                                     @endforeach                                     
                                 </select>                                                                
                             </div>  
                         </div>
+                        <br><br><br>
 
+                        <button disabled id="botoncito" type="submit" class="btn btn-success" name="">Crear</button>
                         
-
-
-
-                        <button type="submit" class="btn btn-warning ">Actualizar</button>
                     </form> 
                 </div>
                 
@@ -73,4 +58,24 @@
         </section>
 
 </main>
+<script>
+function changeButton() {
+    var x = document.getElementById("answerType").value;
+        document.getElementById("botoncito").disabled = false;
+    if (x == 2) {
+        document.getElementById("botoncito").innerHTML = "Actualizar pregunta y crear las opciones. ";
+        document.getElementById("botoncito").setAttribute("name","crearIrOpcion");
+        document.getElementById("botoncito").setAttribute("class","btn btn-primary");
+    } else {
+        document.getElementById("botoncito").innerHTML = "Solo actualizar pregunta. ";
+        document.getElementById("botoncito").setAttribute("name","crear");
+        document.getElementById("botoncito").setAttribute("class","btn btn-success");
+    }
+    //alert("Valor: "+botoncito.getAttribute('name'));
+    
+
+    window.onload=changeButton;
+}
+
+</script>
 @endsection

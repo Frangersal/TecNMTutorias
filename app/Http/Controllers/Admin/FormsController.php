@@ -51,6 +51,7 @@ class FormsController extends Controller
         $name = $request->get('txtName');
         $description=$request->get('txtDescription');
         $queryObjForm = Form::where('name', '=', $name)->where('description', '=', $description)->first();
+        //echo $create;
         //echo gettype($queryObjForm)."<br>";
         //var_dump(empty($queryObjForm));
         //echo $queryObjForm;
