@@ -47,7 +47,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 // Admin crud Question
 // TecNMTutorias/public/admin/questions
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/questions','QuestionsController', ['except'=>['show',]]);
+	Route::resource('/questions','QuestionsController');
 });
 
 // Admin crud AnswerOption

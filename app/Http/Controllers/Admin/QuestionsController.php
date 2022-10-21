@@ -37,9 +37,12 @@ class QuestionsController extends Controller
      */
     public function create()
     {
+        // HOY
+        echo "<br> -- ".$request;
+        echo "<br> -- ".gettype($request);
         $answersTypes = AnswerType::all();
         $forms = Form::all();
-        return view('admin.questions.create')->with('forms',$forms,)->with('answers_types',$answersTypes,);
+        //return view('admin.questions.create')->with('forms',$forms,)->with('answers_types',$answersTypes,);
     }
 
     /**
@@ -50,6 +53,19 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
+        $crear = $request->get('crear');
+        $crearIrOpcion = $request->get('crearIrOpcion');
+
+        echo "<br> -- crear: ".$crear;
+        echo "<br> -- crearIrOpcion: ".$crearIrOpcion;
+        $arrayRequest = json_decode($request, true);
+        
+        $shit = count($arrayRequest);
+        for ($i = 0; $i < $shit; ++$i){
+            echo "<br> * ".$i.".-".$arrayRequest[$i];
+        }
+        //echo "<br> -- arrayRequest: ".$arrayRequest['crearIrOpcion'];
+        echo "<br> --  ".gettype($arrayRequest); 
         
         $request->validate([
             'txtName'=>'required',
@@ -61,12 +77,10 @@ class QuestionsController extends Controller
             'answer_type_id' =>$request->get('txtIdAnswerType'),
             'name' => $request->get('txtName'),
            // 'option' => $request->get('txtOption'),
-            
-            
         ]);
- 
         $question->save();
-        return redirect()->route('admin.questions.index');
+        $formId = $request->get('txtIdForm');
+        return redirect()->route('admin.forms.edit',[$formId]);
     }
 
     /**
@@ -75,9 +89,16 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
-    {
-        //
+    public function show($formId)
+    {   
+        // formId, tipo de pregunta, 
+        echo "<br> -- formId: ".$formId; 
+        echo "<br> --  ".gettype($formId); 
+        $answersTypes = AnswerType::all(); 
+        $form = Form::where('id', '=', $formId)->first();  
+        //echo "<br> -- form: ".$form; 
+
+        return view('admin.questions.show')->with('form',$form,)->with('answers_types',$answersTypes,);
     }
 
     /**
@@ -88,8 +109,13 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)    
     {
+        $idForm = $question['form_id'];
         //Asignar form a question
-        $forms = Form::all();
+        $form = Form::where('id', '=', $idForm)->first(); 
+        //$arrayForm = json_decode($objForm, true);
+        //echo "<br> -- arrayForm: ".$arrayForm['id']; 
+        //echo "<br> -- tipo: ".gettype($arrayForm['id']);
+        //$formId = $arrayForm['id'];
         //---
         $answers_types = AnswerType::all();
         $questions = Question::all();
@@ -97,7 +123,7 @@ class QuestionsController extends Controller
         return view('admin.questions.edit')->with([
             'question'=>$question,
             'answers_types' => $answers_types,
-            'forms' => $forms,
+            'form' => $form,
         ]);
     }
 
@@ -123,8 +149,9 @@ class QuestionsController extends Controller
         $question->name = $request->get('name');
         //$question->option = $request->get('txtOption');
         $question->update();
-
-        return redirect()->route('admin.questions.index');
+        $formId = $request->get('txtIdForm');
+        //return redirect()->route('admin.questions.index');
+        return redirect()->route('admin.forms.edit',[$formId]);
     }
 
     /**
@@ -135,8 +162,22 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        
+        $idForm = $question['form_id'];
+        //Asignar form a question
+        $objForm = Form::where('id', '=', $idForm)->first(); 
+        $arrayForm = json_decode($objForm, true);
+        //echo "<br> -- arrayForm: ".$arrayForm['id']; 
+        //echo "<br> -- tipo: ".gettype($arrayForm['id']);
+        $formId = $arrayForm['id'];
+        //---
+        $answers_types = AnswerType::all();
+
         $question->delete();
 
-        return redirect()->route('admin.questions.index');
+        
+        //return redirect()->route('admin.questions.index');
+        return redirect()->route('admin.forms.edit',[$formId]);
+
     }
 }

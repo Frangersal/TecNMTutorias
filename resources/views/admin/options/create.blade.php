@@ -30,7 +30,6 @@
                             </div>
                         </div>
 
-                        <!--
                         <div class="form-group row">
                             <label for="txtName" class="col-md-3 col-form-label text-md-right">Selecciona un Formulario</label>
                             <div class="col-md-6">
@@ -42,7 +41,6 @@
                                 </select> 
                             </div>
                         </div>
-                        -->
 
                         
                         <div class="form-group row">

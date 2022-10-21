@@ -61,8 +61,8 @@
                 <div class="card-body">
                     
 
-                    <a href="{{ route('admin.questions.create') }}">
-                        <button type="button" class="btn btn-success">Crear Pregunta</button>
+                    <a href="{{ route('admin.questions.show', $form->id) }}">
+                        <button type="button" class="btn btn-success">Crear Pregunta para {{$form->id}}</button>
                     </a> 
                     <br><br>
 
