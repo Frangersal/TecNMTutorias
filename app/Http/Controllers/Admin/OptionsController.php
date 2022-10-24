@@ -51,7 +51,7 @@ class OptionsController extends Controller
      */
     public function store(Request $request)
     {
-        //var_dump($request->get('idQuestion')); die();
+        $questionsId = $request->get('txtIdQuestion');
         
         $request->validate([
             'txtName'=>'required',
@@ -60,11 +60,11 @@ class OptionsController extends Controller
         $option = new Option([
             'name' => $request->get('txtName'),
             'question_id' => $request->get('txtIdQuestion'),
-            
         ]);
  
         $option->save();
-        return redirect()->route('admin.options.index');
+        //return redirect()->route('admin.options.index');
+        return redirect()->route('admin.questions.edit',[$questionsId]);
     }
 
     /**
@@ -73,9 +73,12 @@ class OptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($questionId)
     {
-        //
+        
+        $question = Question::where('id', '=', $questionId)->first();  
+
+        return view('admin.options.show')->with('question',$question);
     }
 
     /**
@@ -86,11 +89,22 @@ class OptionsController extends Controller
      */
     public function edit(Option $option)
     {
-        $questions = Question::all();
-        //$options = Option::all();
-        var_dump($option); 
+        //$questionId = $option['question_id'];
+        $optionId = $option['id'];
+        //echo " <br> - optionId".$optionId;
 
-        return view('admin.options.edit')->with('questions',$questions)->with('option',$option);
+        //$question= Option::where('question_id', '=', $questionId)->first(); 
+        $option= Option::where('id', '=', $optionId)->first(); 
+        
+        //echo " <br> - question".$question;
+        //echo " <br> - option".$option;
+        //die;
+        //$questions = Question::all();
+        //$options = Option::all();
+        //var_dump($optionQuery); 
+
+        return view('admin.options.edit')->with('option',$option);
+        //return redirect()->route('admin.questions.edit',[$questionsId]);
     }
 
     /**
@@ -102,18 +116,24 @@ class OptionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $request->validate([
-            'name'=>'required',
+        //$request->validate([
+            //'name'=>'required',
             //'question_id'=>'required',
-        ]);
+        //]);
+        //echo " <br> - id".$id; die;
+        
 
         $option = Option::find($id);
         $option->name = $request->get('txtName');
-        $option->question_id= $request->get(1);
+        $option->question_id= $request->get('txtIdQuestion');
         $option->update();
 
-        return redirect()->route('admin.options.index');
+        $questionsId = $request->get('txtIdQuestion');
+        //$question->save();
+        echo " <br> - questionsId".$questionsId;
+        //die;
+        //return redirect()->route('admin.options.index');
+        return redirect()->route('admin.questions.edit',[$questionsId]);
     }
 
     /**
@@ -124,9 +144,13 @@ class OptionsController extends Controller
      */
     public function destroy(Option $option)
     {
-        //
+        //$objForm = Form::where('id', '=', $idForm)->first(); 
+        //$arrayForm = json_decode($objForm, true);
+        $questionsId = $option['question_id'];
+        //echo $questionId;
+        //die;
         $option->delete();
 
-        return redirect()->route('admin.options.index');
+        return redirect()->route('admin.questions.edit',[$questionsId]);
     }
 }

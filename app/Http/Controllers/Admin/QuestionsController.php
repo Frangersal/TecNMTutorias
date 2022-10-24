@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Form;
 use App\User;
 use App\Question;
+use App\Option;
 use App\AnswerType;
 
 use App\Http\Controllers\Controller;
@@ -37,7 +38,6 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        // HOY
         echo "<br> -- ".$request;
         echo "<br> -- ".gettype($request);
         $answersTypes = AnswerType::all();
@@ -53,20 +53,10 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $crear = $request->get('crear');
-        $crearIrOpcion = $request->get('crearIrOpcion');
+        $formId = $request->get('txtIdForm');
+        $crear = $request->get('bottonVariable');
+        //echo "<br> -- ". $crear; var_dump($request->all()); //die;
 
-        echo "<br> -- crear: ".$crear;
-        echo "<br> -- crearIrOpcion: ".$crearIrOpcion;
-        $arrayRequest = json_decode($request, true);
-        
-        $shit = count($arrayRequest);
-        for ($i = 0; $i < $shit; ++$i){
-            echo "<br> * ".$i.".-".$arrayRequest[$i];
-        }
-        //echo "<br> -- arrayRequest: ".$arrayRequest['crearIrOpcion'];
-        echo "<br> --  ".gettype($arrayRequest); 
-        
         $request->validate([
             'txtName'=>'required',
             //'txtAnswer_Type'=>'required',
@@ -78,9 +68,17 @@ class QuestionsController extends Controller
             'name' => $request->get('txtName'),
            // 'option' => $request->get('txtOption'),
         ]);
-        $question->save();
-        $formId = $request->get('txtIdForm');
-        return redirect()->route('admin.forms.edit',[$formId]);
+        
+
+        if ($crear == "crear") {
+            $question->save();
+            return redirect()->route('admin.forms.edit',[$formId]);
+        } elseif ($crear == "crearIrOpcion"){
+            $question->save();
+            //Crear el ir a option edit view, de forma provisional ira a edit
+            //return redirect()->route('admin.forms.edit',[$formId]);
+            return redirect()->route('admin.forms.edit',[$formId]);
+        }
     }
 
     /**
@@ -92,8 +90,8 @@ class QuestionsController extends Controller
     public function show($formId)
     {   
         // formId, tipo de pregunta, 
-        echo "<br> -- formId: ".$formId; 
-        echo "<br> --  ".gettype($formId); 
+        //echo "<br> -- formId: ".$formId; 
+        //echo "<br> --  ".gettype($formId); 
         $answersTypes = AnswerType::all(); 
         $form = Form::where('id', '=', $formId)->first();  
         //echo "<br> -- form: ".$form; 
@@ -110,8 +108,14 @@ class QuestionsController extends Controller
     public function edit(Question $question)    
     {
         $idForm = $question['form_id'];
+        $idQuestion = $question['id'];
+        //echo $idQuestion;
         //Asignar form a question
-        $form = Form::where('id', '=', $idForm)->first(); 
+        $form = Form::where('id', '=', $idForm)->first();
+        $options = Option::where('question_id', '=', $idQuestion)->get(); 
+        //echo $options;
+        //die;
+        
         //$arrayForm = json_decode($objForm, true);
         //echo "<br> -- arrayForm: ".$arrayForm['id']; 
         //echo "<br> -- tipo: ".gettype($arrayForm['id']);
@@ -124,6 +128,7 @@ class QuestionsController extends Controller
             'question'=>$question,
             'answers_types' => $answers_types,
             'form' => $form,
+            'options' => $options,
         ]);
     }
 
@@ -136,21 +141,22 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $editar = $request->get('bottonVariable');
+        
         $request->validate([
             'txtIdForm'=>'required',
             'txtIdAnswerType'=>'required',
             'name'=>'required',
-            //'txtOption'=>'required',
         ]);
 
         $question = Question::find($id);
         $question->form_id = $request->get('txtIdForm');
         $question->answer_type_id = $request->get('txtIdAnswerType');
         $question->name = $request->get('name');
-        //$question->option = $request->get('txtOption');
         $question->update();
         $formId = $request->get('txtIdForm');
-        //return redirect()->route('admin.questions.index');
+        
+        $question->save();
         return redirect()->route('admin.forms.edit',[$formId]);
     }
 

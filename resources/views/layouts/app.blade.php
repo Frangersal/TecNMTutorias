@@ -110,12 +110,14 @@
                     Formularios 
                     </span> 
                 </a>
+                <!-- 
                 <a class="nav_section_button"  href="{{ route('admin.questions.index') }}">
                     <i class="nav_section_button_i fas fa-question-circle"></i>   
                     <span class="nav_section_button_span">
                         Pregunta                    
                     </span> 
-                </a>
+                </a> 
+                -->  
                 <a class="nav_section_button"  href="{{ route('admin.chart.index') }}">
                     <i class="nav_section_button_i fas fa-chart-bar"></i> 
                     <span class="nav_section_button_span">

@@ -53,7 +53,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 // Admin crud AnswerOption
 // TecNMTutorias/public/admin/options
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/options','OptionsController', ['except'=>['show',]]);
+	Route::resource('/options','OptionsController');
 });
 
 // ------ >> ------ Admin/Tutor Vista ------ << ------ //

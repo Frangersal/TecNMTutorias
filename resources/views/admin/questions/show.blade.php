@@ -10,7 +10,7 @@
     </nav>
 
         <section class="main_section">
-            <h2 class="main_section_h2">Crear Pregunta del Formulario: {{ $form->id }} - {{ $form->name }}</h2>
+            <h2 class="main_section_h2">Crear Pregunta del Formulario: "{{ $form->id }} - {{ $form->name }}"</h2>
             <section class="main_section_section">
                 <div class="card-body">
 
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <br>                        
-                        <input id="bottonVariable" type="hidden" value="bottonVariable" class="bottonVariable" name="">
+                        <input id="bottonVariable" type="hidden" value="1" class="bottonVariable" name="bottonVariable">
                         
                         <button disabled id="botoncito" type="submit" class="btn btn-success" name="">Crear</button>
                         
@@ -54,27 +54,11 @@
                 </div>
                 
             </section>
-        </section>
-
-   
+        </section>   
 </main>
 <script>
     
 function changeButton() {
-    var x = document.getElementById("answerType").value;
-        document.getElementById("botoncito").disabled = false;
-    if (x == 2) {
-        document.getElementById("botoncito").innerHTML = "Crear pregunta y crear las opciones. ";
-        document.getElementById("bottonVariable").setAttribute("name","crearIrOpcion");
-        document.getElementById("botoncito").setAttribute("name","crearIrOpcion");
-        document.getElementById("botoncito").setAttribute("class","btn btn-primary");
-    } else {
-        document.getElementById("botoncito").innerHTML = "Crear pregunta. ";
-        document.getElementById("bottonVariable").setAttribute("name","crear");
-        document.getElementById("botoncito").setAttribute("name","crear");
-        document.getElementById("botoncito").setAttribute("class","btn btn-success");
-    }
-    //alert("Valor bottonVariable name: "+bottonVariable.getAttribute('name'));
 }
 
 </script>
