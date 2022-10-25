@@ -59,6 +59,20 @@
 <script>
     
 function changeButton() {
+    var x = document.getElementById("answerType").value;
+        document.getElementById("botoncito").disabled = false;
+    if (x == 2) {
+        document.getElementById("botoncito").innerHTML = "Crear pregunta y crear las opciones ";
+        document.getElementById("bottonVariable").setAttribute("value","crearIrOpcion");
+        document.getElementById("botoncito").setAttribute("name","crearIrOpcion");
+        document.getElementById("botoncito").setAttribute("class","btn btn-primary");
+    } else {
+        document.getElementById("botoncito").innerHTML = "Crear pregunta ";
+        document.getElementById("bottonVariable").setAttribute("value","crear");
+        document.getElementById("botoncito").setAttribute("name","crear");
+        document.getElementById("botoncito").setAttribute("class","btn btn-success");
+    }
+    //alert("Valor bottonVariable name: "+bottonVariable.getAttribute('name'));
 }
 
 </script>

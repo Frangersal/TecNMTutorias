@@ -41,7 +41,7 @@
                             <label for="titulo">Tipo de pregunta</label>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control " name="txtIdAnswerType"  id="answerType" onchange="changeButton()" >
+                            <select class="form-control " name="txtIdAnswerType"  id="answerType" onclick="toggle(this)" >
                                 @foreach($answers_types as $answer_type)
                                     <option value="{{ $answer_type->id }}" selected >{{ $answer_type->id }} - {{ $answer_type->name }}</option> 
                                 @endforeach  
@@ -60,7 +60,7 @@
         </section>
     </section>
 
-    <section class="main_section">
+    <section class="main_section masElementos">
         <h2 class="main_section_h2">Opciones para la preguna " {{ $question->name }} "</h2>
         <section class="main_section_section">
             <div class="card-body">
@@ -110,22 +110,17 @@
         </section>
     </section>
 </main>
+
+<style>
+    .masElementos { display:none; }
+</style>
 <script>
-   
-function changeButton() {
-    var x = document.getElementById("answerType").value;
-    if (x == 2) {
-        document.getElementById("botoncito").innerHTML = "Actualizar pregunta y crear las opciones ";
-        document.getElementById("bottonVariable").setAttribute("value","editarIrOpcion");
-        document.getElementById("botoncito").setAttribute("name","editarIrOpcion");
-        document.getElementById("botoncito").setAttribute("class","btn btn-primary");
-    } else {
-        document.getElementById("botoncito").innerHTML = "Actualizar pregunta ";
-        document.getElementById("bottonVariable").setAttribute("value","editar");
-        document.getElementById("botoncito").setAttribute("name","editar");
-        document.getElementById("botoncito").setAttribute("class","btn btn-warning");
-    }
-    //alert("Valor bottonVariable name: "+bottonVariable.getAttribute('name'));
+ 
+function toggle(o) {
+var el=document.querySelector(".masElementos");
+    if (o.value=="1") {el.style.display="none";}
+    else {el.style.display="block";}
 }
+window.onload = toggle;
 </script>
 @endsection

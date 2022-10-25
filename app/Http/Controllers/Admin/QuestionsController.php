@@ -68,16 +68,17 @@ class QuestionsController extends Controller
             'name' => $request->get('txtName'),
            // 'option' => $request->get('txtOption'),
         ]);
+        $question->save();
         
-
         if ($crear == "crear") {
-            $question->save();
             return redirect()->route('admin.forms.edit',[$formId]);
+
         } elseif ($crear == "crearIrOpcion"){
-            $question->save();
-            //Crear el ir a option edit view, de forma provisional ira a edit
-            //return redirect()->route('admin.forms.edit',[$formId]);
-            return redirect()->route('admin.forms.edit',[$formId]);
+            $answer_type_id = $request->get('txtIdAnswerType');
+            $name = $request->get('txtName');
+            $queryObjQuestion = Question::where('form_id', '=', $formId)->where('answer_type_id', '=', $answer_type_id)->where('name', '=', $name)->first();
+            $questionId = $queryObjQuestion['id'];
+            return redirect()->route('admin.questions.edit',[$questionId]);
         }
     }
 
