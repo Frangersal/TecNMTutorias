@@ -41,7 +41,7 @@
                                             <button type="button" class="btn btn-success float-left">Asignar Tutor</button>
                                             <a> -->
                                             
-                                            <a href="#">
+                                            <a href="{{ route('tutor.pupil.form.show', $user->id) }}">
                                             <button type="button" class="btn btn-success float-left">Ver formularios</button>
                                             <a>
                                         </td>
