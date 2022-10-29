@@ -11,29 +11,34 @@
     </nav>
 
     <section class="main_section">
-        <h2 class="main_section_h2">Lista de preguntas del formulario</h2>
+        <h2 class="main_section_h2">Lista de preguntas del formulario (Editar Respuestas)</h2>
         <section class="main_section_section">
             <div class="card-body">
-                <form action ="{{ route('student.answers.store')}}" method="POST">
+                <form action ="{{ route('student.forms.update', 
+                    [$answers[0]->id],
+                    )}}" method="POST"> 
                     @csrf
+                    {{ method_field('PUT') }}   
                     
                     <div class="form-group row">
+                        <?php $i = 0 ?>
                         @foreach($questions as $question)
-                            <label for="txtDescription" class="col-form-label text-md-right">Qid: {{ $question->id }} | {{ $question->name }}</label>
+                            <label for="txtDescription" class="col-form-label text-md-right">
+                                Qid: {{ $question->id }} | {{ $question->name }}</label>
 
                             <!-- Tipo opcion IF-->
                             @if(("{$question->answer_type_id}" == "2") ) 
                                 <select class="form-control opcion" name="txtName[]" > 
-                                    <option value="" disabled selected hidden>Elija una respuesta...</option>
+                                    <option value="{{ $answers[$i]->name }}" disabled selected hidden>{{ $answers[$i]->name }}</option>
                                     @foreach($options as $option)
                                         @if("{$question->id}" == "{$option->question_id}")
-                                            <option value="{{ $option->name }}"  required>{{ $option->question_id }} - {{ $option->name }}</option>   
-                                            @else                                    
+                                            <option value="{{ $question->$answers }}"  required>{{ $option->question_id }} - {{ $option->name }}</option>   
+                                            @else                                 
                                         @endif
                                     @endforeach 
                                 </select>
                             @else
-                                <input id="txtName" type="text" class=" form-control @error('txtName') is-invalid @enderror" name="txtName[]"  required>
+                                <input value="{{ $answers[$i]->name }}" required id="txtName" type="text" class=" form-control @error('txtName') is-invalid @enderror" name="txtName[]"  >
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,7 +55,8 @@
                             
                             @endphp
                             
-                            <input  type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion[]">
+                            <input  type="hidden" value="{{ $answers[$i]->id }}" class="idAnswers" name="idAnswers[]">
+                        <?php $i++ ?>
                         @endforeach
 
                     </div>

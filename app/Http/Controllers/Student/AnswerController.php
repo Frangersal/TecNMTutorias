@@ -99,7 +99,6 @@ class AnswerController extends Controller
      */
     public function show( Request $request)
     { 
-        
     }
 
     /**
@@ -108,11 +107,8 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $answers = Answer::all();
-
-        return view('student.answers.index')->with('questions',$questions);
     
     }
 
@@ -125,7 +121,22 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // id, name, question_id, user_id
+
+        echo "<br>-".$request;
+        die;
+
+        /* $request->validate([ 'name'=>'required',
+            'question_id'=> 'required', 'user_id'=>'required', ]); */
+
+        $answer = Form::find($id);
+        $answer->name = $request->get('name');
+        $answer->question_id=$request->get('question_id');
+        $answer->user_id=$request->get('user_id');
+        $answer->update();
+
+        //return redirect()->route('admin.forms.index');
+        //return view('student.answers.index')->with('questions',$questions);
     }
 
     /**

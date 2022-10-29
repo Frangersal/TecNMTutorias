@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Tutor;
-
-use Barryvdh\DomPDF\Facade as PDF;
+//use Barryvdh\DomPDF\Facade\Pdf;  //Dont work
+//use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 use Illuminate\Support\Facades\Storage;
 
 use App\Http\Controllers\Controller;
@@ -60,31 +61,21 @@ class PDFController extends Controller
     public function show($id)
     {
         $pupilId        = $id;
-        $userIdPupil    = DB::table('users')->whereId($pupilId)->first(); 
-        // var_dump($userIdPupil->name); die();
+        $userIdPupil    = DB::table('users')->whereId($pupilId)->first();
         $pupilName  = $userIdPupil->name;
-        $forms      = Form::all();
+        $forms      = Form::all(); 
         $questions  = Question::all();
         $answers    = Answer::all();
 
-        $arrayData = [
+        $pdf = PDF::loadView('tutor.pupil.form.showpdf', [
             'id'        => $id,
             'pupilName' => $pupilName,
             'forms'     => $forms,
             'questions' => $questions,
             'answers'   => $answers
-        ];
-
-        $data = (object) $arrayData;
-
-        // var_dump($data); die();
-
-        // var_dump($data->pupilName); die();
-        // var_dump($data["pupilName"]); die();
-
-        
-        $pdf = \PDF::loadView('tutor.pupil.form.showpdf', compact('data'));
-        return $pdf->download('formulariosAlumno.pdf');
+        ]);
+        //var_dump($pdf); die();
+        return $pdf->download('Formularios Tutoria '.$id.'_'.$pupilName.'.pdf');
     }
 
     /**

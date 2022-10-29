@@ -10,7 +10,7 @@
     </nav>
 
         <section class="main_section">
-            <h2 class="main_section_h2">Crear Pregunta del Formulario: "{{ $form->id }} - {{ $form->name }}"</h2>
+            <h2 class="main_section_h2">Crear Pregunta del formulario: " {{ $form->name }} "</h2>
             <section class="main_section_section">
                 <div class="card-body">
 

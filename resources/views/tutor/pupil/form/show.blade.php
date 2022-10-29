@@ -12,18 +12,20 @@
 
         <section class="main_section">
             <h2 class="main_section_h2">Ver Formularios contestados por: {{ $pupilName }}</h2>
-            <section class="main_section_section">
-                <a href="{{ route('pdf.users.show', $id ?? '') }}">
-                    <button type="button" class="btn btn-success float-left">Descargar PDF</button>
-                <a>
+                <section class="main_section_section">
 
-                <div class="card-body">
+                    <div class="card-body">
+                    <a href="{{ route('pdf.users.show', $id ?? '') }}">
+                        <button type="button" class="btn btn-success float-left">Descargar PDF</button>
+                    <a>
                 
                     @foreach($forms as $form)
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ $form->name }}</th>
+                                    <th scope="col"><h2> {{ $form->name }} </h2></th>
+                                </tr>
+                                <tr>
                                     <th scope="col">{{ $form->description }}</th>
                                 </tr>
                             </thead>
@@ -45,9 +47,9 @@
                         </table>
                     @endforeach
 
-                </div>
+                    </div>
                 
-            </section>
+                </section>
         </section>
 
     

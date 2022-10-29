@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Student;
-
+use DB;
 use App\Form;
 use App\User;
 use App\Question;
@@ -74,10 +74,10 @@ class FormsController extends Controller
 
         $questions = Question::where('form_id', $id)->get();
         $options = Option::all();
-        $answers = Answer::all();
+        //$answers = Answer::all();
 
 
-        return view('student.forms.show')->with('userId',$userId)->with('questions',$questions)->with('options',$options)->with('answers',$answers);
+        return view('student.forms.show')->with('userId',$userId)->with('questions',$questions)->with('options',$options);
     }
 
     /**
@@ -86,11 +86,33 @@ class FormsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {  
-        $questions = Question::all();
+        // - Id del usuario/pupilo  *HECHO*
+        $userId = auth()->id();
+        // - Preguntas del formulario en especifico *HECHO*
+        $questions = Question::where( 'form_id', $id)->get();
+        //Respuestas hechas por el pupilo en este formulario en especifico *HECHO
+        // - Answer tiene: id, name, question_id, user_id
+        //Creamos un array, donde almacenaremos la columna 'id' del objeto convertido a array '$question'
+        $questionsIDS = array_column($questions->toArray() , 'id');
+        // Query de eloquent 'donde' user es la variable $userId 
+        //y 'donde en' la columna question_id sera todos los elementos del array $questionsIDS...
+        $answers = Answer::where( "user_id",  $userId )->whereIn('question_id', $questionsIDS)->get();
+        //Opciones solo de este formulario en especifico
+        // - Option tiene: id, name, question_id        
+        $options = Option::whereIn('question_id', $questionsIDS)->get();
 
-        return view('student.forms.answer')->with('questions',$questions);
+        echo "<br> <br> - userId: ".$userId;
+        echo "<br> <br> - questions: ".$questions;
+        echo "<br> <br> - answers: ".$answers;
+        //echo "<br> <br> - options: ".$options;
+
+        return view('student.forms.edit')
+        ->with('userId', $userId)
+        ->with('questions', $questions)
+        ->with('options', $options)
+        ->with('answers', $answers);
     
     }
 
@@ -103,7 +125,28 @@ class FormsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //   u.U
+        // id, name, question_id, user_id
+
+        //echo "<br>-".$request; txtName
+        //$arrayRequest = json_decode($request, true);$request;
+        echo "<br>- request: ". $request;
+        echo "<br>- request: ".gettype($request);
+        echo "<br>- id: ". $id;
+        echo "<br>- id: ".gettype($id);
+        //echo "<br>-".$id;
+        die;
+
+        /* $request->validate([ 'name'=>'required',
+            'question_id'=> 'required', 'user_id'=>'required', ]); */
+
+        $answer = Form::find($id);
+        $answer->name = $request->get('txtName');
+        $answer->question_id = $request->get('question_id');
+        $answer->user_id = $request->get('user_id');
+        $answer->update();
+
+        return redirect()->route('student.forms.index');
+        //return view('student.answers.index')->with('questions',$questions);        
     }
 
     /**
