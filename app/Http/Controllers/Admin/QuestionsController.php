@@ -180,6 +180,7 @@ class QuestionsController extends Controller
         //---
         $answers_types = AnswerType::all();
 
+        //$user->roles()->detach();
         $question->delete();
 
         

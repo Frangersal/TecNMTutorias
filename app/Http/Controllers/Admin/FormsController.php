@@ -50,7 +50,6 @@ class FormsController extends Controller
         $create_editQuestion = $request->get('create_editQuestion');
         $name = $request->get('txtName');
         $description=$request->get('txtDescription');
-        $queryObjForm = Form::where('name', '=', $name)->where('description', '=', $description)->first();
         //echo $create;
         //echo gettype($queryObjForm)."<br>";
         //var_dump(empty($queryObjForm));
@@ -69,7 +68,12 @@ class FormsController extends Controller
                     'description'=> $request->get('txtDescription'),
                 ]);
                 $form->save();
-                return view('admin.forms.edit')->with(['form'=>$queryObjForm]);
+                $queryObjForm = Form::where('name', '=', $name)->where('description', '=', $description)->first();
+                $queryObjQuestion = Question::where('form_id', '=', $queryObjForm['id'])->first();
+                //echo $queryObjQuestion;
+                
+                //var_dump(empty($queryObjQuestion));
+                return view('admin.forms.edit')->with(['form'=>$queryObjForm,'questions'=>$queryObjQuestion]);
                 //echo "no se salva porque esta repetido";
             //echo "<br>---";
             //echo "<br>Vista Crear y editar";

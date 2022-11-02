@@ -77,31 +77,34 @@
                         <th scope="col">Accion</th>
                         </tr>
                     </thead>
-                    @foreach($questions as $question)
-                    <tbody>
+                    @if($questions == '')
+                    @else
+                        @foreach($questions as $question)
+                        <tbody>
 
-                        <tr>
-                        <th scope="row">{{ $question->form_id }}  </th>
-                        <th scope="row">{{ $question->id }} </th>
-                        <th scope="row">{{ $question->answer_type_id }} -
-                            @if($question->answer_type_id==1) Texto @else Option @endif
-                        </th>
-                        <td>{{ $question->name }}</td>
-                        <td>
-                            <a href="{{ route('admin.questions.edit', $question->id) }}">
-                                <button type="button" class="btn btn-warning float-lef">Editar</button>
-                            </a>
+                            <tr>
+                            <th scope="row">{{ $question->form_id }}  </th>
+                            <th scope="row">{{ $question->id }} </th>
+                            <th scope="row">{{ $question->answer_type_id }} -
+                                @if($question->answer_type_id==1) Texto @else Option @endif
+                            </th>
+                            <td>{{ $question->name }}</td>
+                            <td>
+                                <a href="{{ route('admin.questions.edit', $question->id) }}">
+                                    <button type="button" class="btn btn-warning float-lef">Editar</button>
+                                </a>
 
-                            <form action="{{ route('admin.questions.destroy', $question) }}" method="POST" class="float-left"> 
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
-                        </tr>
+                                <form action="{{ route('admin.questions.destroy', $question) }}" method="POST" class="float-left"> 
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                            </tr>
 
-                    </tbody>
-                    @endforeach
+                        </tbody>
+                        @endforeach
+                    @endif
                 </table>
             </div>
         </section>

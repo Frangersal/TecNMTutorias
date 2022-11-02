@@ -1247,7 +1247,7 @@ ALTER TABLE `answers`
 -- Filtros para la tabla `answers_options`
 --
 ALTER TABLE `answers_options`
-  ADD CONSTRAINT `answers_options_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
+   ADD CONSTRAINT `answers_options_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `form_user`
