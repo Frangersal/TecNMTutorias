@@ -8,14 +8,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Perfil</title>
+    <title>Perfil</title> 
+
+    <!-- Diseño no Responsive DESCONTINUADO
+    <link href="{{asset('/css/TecNM/users.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/TecNM/style.css')}}" rel="stylesheet">-->
+    
+    <!-- Diseño no Responsive -->
+    
+    <link href="{{asset('/css/TecNM-RD/core.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/TecNM-RD/layout.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/TecNM-RD/styleNav.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/TecNM-RD/styleMain.css')}}" rel="stylesheet"> 
 
     <!-- Archivo CSS Bootstrap 5 -->
     <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-
-    <link href="{{asset('/css/TecNM/users.css')}}" rel="stylesheet">
-
-    <link href="{{asset('/css/TecNM/style.css')}}" rel="stylesheet">
     <!-- Icono -->
     <link rel="icon" href="{{asset('/images/Icon.png')}}">
 
@@ -45,7 +52,7 @@
          -->
     <!-- End Menu shit -->
 </head>
-<body>
+<body class="body body-bg">
 
 @guest
 @if (Route::has('register'))
@@ -185,19 +192,19 @@
                 
                 
         </nav>
+         
+            @yield('content')  
+        
+        
+        
+        
+        
         <script src="/menujs/jquery.min.js"></script>
         <script src="/menujs/popper.js"></script>
         <script src="/menujs/bootstrap.min.js"></script>
         <script src="/menujs/main.js"></script>
+         
         
-            <!-- Page Content class=""> -->
-        <div id="content" class="p-4 p-md-5 pt-5  body-bg" >
-            <main class="py-4" >
-                    @yield('content')
-                    
-            </main>
-        </div>
-    </div>
 
 <!-- Fin del menu sin una sesion iniciada --->
 

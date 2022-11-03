@@ -8,58 +8,55 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
+    <article class="flex-container">
+        <section class="flex-item-large"> 
+            <section class="flex_section">
+                <h2 class="flex_section_h2">Crear Fomulario</h2>
+                <section class="flex_section_section">
+                    <div class="card-body"> 
 
-        <section class="main_section">
-            <h2 class="main_section_h2">Crear Fomulario</h2>
-            <section class="main_section_section">
-                
-            <div class="card-body">
+                        <form action ="{{ route('admin.forms.store')}}" method="POST">
+                            @csrf
 
-            <form action ="{{ route('admin.forms.store')}}" method="POST">
-                @csrf
+                            <div class="row mb-3">
+                                <label for="txtName" class="col-sm-2 col-form-label">Nombre</label>
+                                <div class="col-sm-10">
+                                    <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName" >
 
-                <div class="form-group row">
-                    <label for="txtName" class="col-md-3 col-form-label text-md-right">Nombre</label>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
 
-                    <div class="col-md-6">
-                        <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName" >
+                            <div class="row mb-3">
+                                <label for="txtDescription" class="col-sm-2 col-form-label">Descripcion</label>
+                                <div class="col-sm-10">
+                                    <input id="txtDescription" type="text" class="form-control @error('txtDescription') is-invalid @enderror" name="txtDescription" >
 
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
+                                <input id="create" type="hidden" value="create" class="create" name="create">
+                            <button onclick="desaparecerCEQ()" type="submit" class="btn btn-success">Solo Crear Formulario</button>
+                            <br><br>
+                                <input id="create_editQuestion" type="hidden" value="create_editQuestion" class="create_editQuestion" name="create_editQuestion">
+                            <button onclick="desaparecerC()" type="submit" class="btn btn-primary" >Crear Formulario y editar preguntas</button>
+                        </form>       
+                     
                     </div>
-                </div>
-                <br>
-                
-
-                <div class="form-group row">
-                    <label for="txtDescription" class="col-md-3 col-form-label text-md-right">Descripcion</label>
-
-                    <div class="col-md-6">
-                        <input id="txtDescription" type="text" class="form-control @error('txtDescription') is-invalid @enderror" name="txtDescription" >
-
-                        @error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <br>
-                    <input id="create" type="hidden" value="create" class="create" name="create">
-                <button onclick="desaparecerCEQ()" type="submit" class="btn btn-success">Solo Crear Formulario</button>
-                <br><br>
-                    <input id="create_editQuestion" type="hidden" value="create_editQuestion" class="create_editQuestion" name="create_editQuestion">
-                <button onclick="desaparecerC()" type="submit" class="btn btn-primary" >Crear Formulario y editar preguntas</button>
-            </form>       
-                         
-            </div>
-                
+                </section>
             </section>
         </section>
-
+    </article> 
 </main>
 
 

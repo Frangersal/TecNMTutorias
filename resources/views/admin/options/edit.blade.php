@@ -9,20 +9,21 @@
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
 
-        <section class="main_section">
-            <h2 class="main_section_h2">Editar opcion " {{ $option->name }} "</h2>
-            <section class="main_section_section">
-                <div class="card-body">
+    <article class="flex-container">
+        <section class="flex-item-large"> 
+            <section class="flex_section">
+                <h2 class="flex_section_h2">Editar opcion " {{ $option->name }} "</h2>
+                <section class="flex_section_section">
+                    <div class="card-body"> 
 
-                    <!--- Editar Opcion ---> 
                     <form action ="{{ route('admin.options.update', $option->id)}}" method="POST">
                         @csrf
                         {{ method_field('PATCH') }}
 
-                        <div class="form-group row">
-                            <label for="txtName" class="col-md-3 col-form-label text-md-right">Cambiar Opcion</label>
+                        <div class="row mb-3">
+                            <label for="txtName"  class="col-sm-2 col-form-label">Cambiar Opcion</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-10">
                                 <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName" value="{{ $option->name }}" required autofocus>
 
                                 @error('name')

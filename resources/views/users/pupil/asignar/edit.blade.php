@@ -9,24 +9,28 @@
         </h1>
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
-
-        <section class="main_section">
-            <h2 class="main_section_h2">Paso 2: Asignar tutor</h2>
-            <section class="main_section_section">
-                <div class="card-body">
+    
+    <article class="flex-container">
+            <section class="flex-item-large"> 
+                <section class="flex_section">
+                    <h2 class="flex_section_h2">Paso 2: Asignar tutor</h2>
+                    <section class="flex_section_section">
+                        <div class="card-body">   
 
                     <form action ="{{ route('users.pupil.asignar.update', $pupil->id)}}" method="POST">
 
                     @csrf
                         {{ method_field('PATCH') }}
-                        <div class="form-group row">
+                        <div class="row mb-3">
                             <label for="tutor" class="col-md-2 col-form-label text-md-right">Tutor</label>
+                            <div class="col-sm-10">
 
-                            <select class="form-control opcion" name="txtTutorId"  > 
-                                @foreach($tutors as $tutor)
-                                        <option value="{{ $tutor->id }}">{{ $tutor->users->name }} </option>   
-                                @endforeach 
-                            </select>
+                                <select class="form-control opcion" name="txtTutorId"  > 
+                                    @foreach($tutors as $tutor)
+                                            <option value="{{ $tutor->id }}">{{ $tutor->users->name }} </option>   
+                                    @endforeach 
+                                </select>
+                            </div>
                         </div>
                         <input  type="hidden" value="{{ $pupil->user_id }}" class="idUser" name="txtUserId">
                         

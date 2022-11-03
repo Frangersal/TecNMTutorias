@@ -1,19 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="container">
-    <section class="main_section">
-        <h2 class="main_section_h2">
-                {{ __('Iniciar sesion') }}
-        </h2>
-                <section class="main_section_section">
+<main class="">
+    
+<article class="flex-container">
+    <section class="flex-item-large"> 
+        <section class="flex_section">
+            <h2 class="flex_section_h2">{{ __('Iniciar sesion') }}</h2>
+            <section class="flex_section_section">
+                <div class="card-body"> 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-2 col-form-label">{{ __('Correo electronico') }}</label>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-5 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
-
-                            <div class="col-md-7">
+                            <div class="col-sm-10">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -23,12 +24,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <br>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-5 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                        <div class="row mb-3">
+                            <label for="password" class="col-sm-2 col-form-label">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-7">
+                            <div class="col-sm-10">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -38,10 +38,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <br>
 
-                        <div class="form-group row">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="row mb-3">
+                            <div class="col-sm-10">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -52,8 +51,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="row mb-3">
+                            <div class="col-sm-10">
                                 <button type="submit" class="body_from_input">
                                     {{ __('Iniciar sesion') }}
                                 </button>
@@ -66,7 +65,10 @@
                             </div>
                         </div>
                     </form>
-                </section>
-    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</article> 
 </main>
 @endsection
