@@ -52,16 +52,12 @@
          -->
     <!-- End Menu shit -->
 </head>
-<body class="body body-bg">
+<body class="body body-bg bodyWithOutNav">
 
 @guest
 @if (Route::has('register'))
-<!-- Si aun no se ha iniciado sesion--->
-<div id="content" class="main_login body-bg">
-    <main class="">
-            @yield('content')
-    </main>
-</div>
+<!-- Si aun no se ha iniciado sesion---> 
+            @yield('content')  
 @endif
 @else
 
@@ -72,37 +68,41 @@
         </section>
         
         <section class="nav_section">
+            <div class="nav_section_items-top">
 
-            <!-- Acciones para TODOS-->
+                <!-- Acciones para TODOS-->
 
-            <a class="nav_section_button button-top"  href="{{ url('/') }}">
-                <i class="nav_section_button_i fas fa-home"></i>  
-                <span class="nav_section_button_span">
-                    Inicio
-                </span> 
-            </a>
-            <a class="nav_section_button" href="{{ url('/perfil') }}">
-                <i class="nav_section_button_i fas fa-user"></i>   
-                <span class="nav_section_button_span">
-                    Perfil
-                </span> 
-            </a>
-
-            <!-- Acciones de Administrador-->
-            @can('admin-action')
-                
-                <a class="nav_section_button" href="{{ route('users.tutor.index') }}">
-                    <i class="nav_section_button_i fas fa-chalkboard-teacher"></i>  
+                <a class="nav_section_button button-top"  href="{{ url('/') }}">
+                    <i class="nav_section_button_i fas fa-home"></i>  
                     <span class="nav_section_button_span">
-                        Tutores                  
-                    </span>  
-                </a>
-                <a class="nav_section_button"  href="{{ route('users.pupil.index') }}">
-                    <i class="nav_section_button_i fas fa-users"></i>   
-                    <span class="nav_section_button_span">
-                        Pupilos                 
+                        Inicio
                     </span> 
                 </a>
+                <a class="nav_section_button" href="{{ url('/perfil') }}">
+                    <i class="nav_section_button_i fas fa-user"></i>   
+                    <span class="nav_section_button_span">
+                        Perfil
+                    </span> 
+                </a>
+
+                <!-- Acciones de Administrador-->
+                @can('admin-action')
+                    
+                    <a class="nav_section_button" href="{{ route('users.tutor.index') }}">
+                        <i class="nav_section_button_i fas fa-chalkboard-teacher"></i>  
+                        <span class="nav_section_button_span">
+                            Tutores                  
+                        </span>  
+                    </a>
+                    <a class="nav_section_button"  href="{{ route('users.pupil.index') }}">
+                        <i class="nav_section_button_i fas fa-users"></i>   
+                        <span class="nav_section_button_span">
+                            Pupilos                 
+                        </span> 
+                    </a>
+            </div>
+            <div class="nav_section_items-bottom">
+
                 <!-- 
                 <a class="nav_section_button"  href="{{ route('tutor.pupil.reunion.index') }}" >
                     <i class="nav_section_button_i fas fa-user-clock"></i>   
@@ -131,16 +131,19 @@
                         Estadistica                
                     </span> 
                 </a>      
-            @endcan
+                @endcan
 
-            <!-- Acciones para Tutor-->
-            @can('tutor-action')
+                <!-- Acciones para Tutor-->
+                @can('tutor-action')
                 <a class="nav_section_button"  href="{{ route('users.pupil.index') }}">
                     <i class="nav_section_button_i fas fa-users"></i>   
                     <span class="nav_section_button_span">
                         Pupilos                 
                     </span> 
                 </a>
+            
+            </div>
+            <div class="nav_section_items-bottom">
                 <a class="nav_section_button" href="{{ route('tutor.pupil.reunion.index') }}">
                     <i class="nav_section_button_i fas fa-user-clock"></i>   
                     <span class="nav_section_button_span">
@@ -152,7 +155,8 @@
                     <span class="nav_section_button_span">
                         Estadistica                   
                     </span> 
-                </a>            
+                </a>  
+                       
             @endcan
 
             <!-- Acciones para Admin y Tutor-->
@@ -168,9 +172,8 @@
                     Formularios                  
                 </span> 
             </a>
-            @endcan
-
-            <!-- Acciones para TODOS-->
+            
+            @endcan 
             <a class="nav_section_button button-bottom" 
                 href="{{ route('logout') }}" 
                 onclick="event.preventDefault();
@@ -183,6 +186,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
+            </div>
         </section>
 
     </nav>

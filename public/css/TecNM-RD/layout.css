@@ -109,3 +109,24 @@
 }
 
 /* --- >> LAYOUT DENTRO DE MAIN << --- */
+/* --- >> LAYOUT ARREGLOS PARA REGISTER Y LOGIN << --- */
+
+.bodyWithOutNav{
+
+}
+.mainWithOutNav{
+  margin-right: 10%;
+  margin-left: 10%;
+  width: 80%;
+}
+
+@media (max-width: 800px) {
+  .bodyWithOutNav { 
+    margin-right: 0; 
+    align-items: 0; 
+  }
+  .mainWithOutNav {
+    margin-top:  0 ; 
+  }
+}
+

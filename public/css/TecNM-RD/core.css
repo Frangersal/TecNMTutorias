@@ -11,13 +11,8 @@
     font-size: 14px; 
     font-family: 'Prompt', sans-serif;
 }
-.body-bg {
-    background: linear-gradient(104deg, #233d7b4f, #ffffff);
-    background-size: 400% 400%;
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
-}
+
+/* --- >> CENTRADO MAGICO! << --- */
 .father-center{
     display: flex;
     justify-content:center;
@@ -26,6 +21,15 @@
 .son-center{
     width: 100%;
 
+}
+
+/* --- >> FONDO! << --- */
+.body-bg {
+    background: linear-gradient(104deg, #233d7b4f, #ffffff);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+    animation: AnimationName 30s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
@@ -43,3 +47,101 @@
     50%{background-position:100% 50%}
     100%{background-position:0% 51%}
 } 
+
+/* --- >> BOTONES! << --- */
+/* --- >> Azul! << --- */
+.boton-azul{
+	box-shadow:inset 0px -3px 7px 0px #3b75d9;
+	background-color:#2f549e;
+	border-radius:42px;
+	border:0px solid #233e7b;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 54px;
+	text-decoration:none;
+	/*
+    text-shadow:0px 1px 0px #080f1f;
+    */
+}
+.boton-azul:hover {
+	background-color:#233e7b;
+}
+.boton-azul:active {
+	position:relative;
+	top:1px;
+}
+/* --- >> Verde! << --- */
+.boton-verde{
+	box-shadow:inset 0px -3px 7px 0px #55d93b;
+	background-color:#2f9e4b;
+	border-radius:42px;
+	border:0px solid #237b2f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 54px;
+	text-decoration:none;
+	/*
+    text-shadow:0px 1px 0px #080f1f;
+    */
+}
+.boton-verde:hover {
+	background-color:#237b2f;
+}
+.boton-verde:active {
+	position:relative;
+	top:1px;
+}
+/* --- >> Anaranjado! << --- */
+.boton-naranja{
+	box-shadow:inset 0px -3px 7px 0px #ffe7a4;
+	background-color:rgb(255, 217, 0);
+	border-radius:42px;
+	border:0px solid #ffad15;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 54px;
+	text-decoration:none;
+	/*
+    text-shadow:0px 1px 0px #080f1f;
+    */
+}
+.boton-naranja:hover {
+	background-color:#ffad15;
+}
+.boton-naranja:active {
+	position:relative;
+	top:1px;
+}
+/* --- >> Rojo! << --- */
+.boton-rojo{
+	box-shadow:inset 0px -3px 7px 0px #ff5b5b;
+	background-color:#d42929;
+	border-radius:42px;
+	border:0px solid #b80000;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 54px;
+	text-decoration:none;
+	/*
+    text-shadow:0px 1px 0px #080f1f;
+    */
+}
+.boton-rojo:hover {
+	background-color:#b80000;
+}
+.boton-rojo:active {
+	position:relative;
+	top:1px;
+}
