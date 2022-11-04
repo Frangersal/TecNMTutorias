@@ -58,6 +58,9 @@ class AnswerController extends Controller
         // Echo Tests 
         echo  "arrayName Vanila: ".var_dump($arrayName)."<br>";
         echo  "arrayName Tipo: ".gettype($arrayName)."<br>";
+        echo  "arrayQuestionId Vanila: ".var_dump($arrayQuestionId)."<br>";
+        echo  "arrayQuestionId Tipo: ".gettype($arrayQuestionId)."<br>";
+        
         // Ciclo segun cuantas preguntas tenga el formulario.
         for ($x = 0; $x <= count($arrayQuestionId)-1 ; $x++) {
             // Echo Tests  /* echo "->> Iteracion : $x <br>"; echo  $arrayName[$x]."<br>"; echo  $arrayQuestionId[$x]."<br>"; echo  $user_id."<br>"; */

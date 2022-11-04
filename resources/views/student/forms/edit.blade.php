@@ -16,20 +16,16 @@
                 <h2 class="flex_section_h2">Lista de preguntas del formulario (Editar Respuestas)</h2>
                 <section class="flex_section_section">
                     <div class="card-body"> 
-                        <form action ="{{ route('student.forms.update', 
-                            [$answers[0]->id],
-                            )}}" method="POST"> 
+                        <form action ="{{ route('student.forms.store')}}" method="POST">
                             @csrf
-                            {{ method_field('PUT') }}   
-                            
-                                <?php $i = 0 ?>
+                                <?php $i=0 ?>  
                                 @foreach($questions as $question)
                                 <div class="row mb-3">
                                     <label for="txtDescription" class="col-sm-4 col-form-label"> Qid: {{ $question->id }} | {{ $question->name }}</label>
                                     <div class="col-sm-7">
                                         <!-- Tipo opcion IF-->
                                         @if(("{$question->answer_type_id}" == "2") ) 
-                                            <select class="form-control opcion" name="txtName[]" > 
+                                            <select class="form-control opcion" name="txtName[]" >  
                                                 <option value="{{ $answers[$i]->name }}" disabled selected hidden>{{ $answers[$i]->name }}</option>
                                                 @foreach($options as $option)
                                                     @if("{$question->id}" == "{$option->question_id}")
@@ -46,7 +42,8 @@
                                                 </span>
                                             @enderror
                                         @endif
-                                        <!-- Tipo opcion END IF-->
+                                        <!-- Tipo opcion END IF
+                                        ">-->
                                         
                                         @php
                                             //$questionId = $question->id;
@@ -55,9 +52,8 @@
                                             //echo $anwereName."<br>";
                                         
                                         @endphp
-                                        
-                                        <input  type="hidden" value="{{ $answers[$i]->id }}" class="idAnswers" name="idAnswers[]">
-                                        <?php $i++ ?>
+                                        <input  type="hidden" value="{{ $question->id }}" class="idQuestion" name="idQuestion[]">
+                                    <?php $i++ ?>
                                     </div>
                                 </div>
                                 <hr>

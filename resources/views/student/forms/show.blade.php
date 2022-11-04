@@ -17,8 +17,7 @@
                 <section class="flex_section_section">
                     <div class="card-body">   
                         <form action ="{{ route('student.answers.store')}}" method="POST">
-                            @csrf
-                            
+                            @csrf 
                                 @foreach($questions as $question)
                                 <div class="row mb-3">
                                     <label for="txtDescription" class="col-sm-4 col-form-label">Qid: {{ $question->id }} | {{ $question->name }}</label>

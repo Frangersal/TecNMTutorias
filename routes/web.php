@@ -92,7 +92,7 @@ Route::namespace('Tutor')->prefix('tutor/pupil/forms')->name('tutor.pupil.form.'
 // Estudiante ve Form
 // student/forms/index
 Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
-	Route::resource('/forms','FormsController', ['except'=>['store','destroy']]);
+	Route::resource('/forms','FormsController', ['except'=>['destroy']]);
 });
 
 // Estudiante ve Preguntas

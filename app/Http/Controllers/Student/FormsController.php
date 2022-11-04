@@ -29,7 +29,7 @@ class FormsController extends Controller
         $questions = Question::all();
         //$answers = Answer::where('user_id', '=', $userId);
         $answers = Answer::where('user_id', '=', $userId)->get();
-        //$queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$x])->where('user_id', '=', $user_id)->get();
+        //$queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$i])->where('user_id', '=', $user_id)->get();
         //echo $answers;
         
         return view('student.forms.index')
@@ -56,8 +56,70 @@ class FormsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        //echo "<br> - arrayName : ".$arrayName;
+        //echo  "<br> - arrayName Vanila : ".var_dump($arrayName);
+        //echo  "<br> - arrayName Tipo : ".gettype($arrayName);
+        //echo $request."<br>"; 
+        //$arrayAnswersId = $request->get('idAnswers');
+        $arrayName = $request->get('txtName');
+        $arrayQuestionId= $request->get('idQuestion');
+        $user_id = auth()->id();
+        
+        //echo  "<br> - arrayAnswersId Vanila : ";
+        //var_dump($arrayAnswersId);
+        echo  "<br> - arrayName Vanila : ";
+        var_dump($arrayName);
+        echo  "<br> - arrayQuestionId Vanila : ";
+        var_dump($arrayQuestionId);
+        
+        for ($i=0; $i<=count($arrayQuestionId)-1; $i++) {
+            echo  "<br> - arrayQuestionId[] Iteration! : ".$arrayQuestionId[$i];
+            $queryObjAnswer = Answer::where('question_id', '=', $arrayQuestionId[$i])->where('user_id', '=', $user_id)->get();
+            $queryArrayAnswer = json_decode($queryObjAnswer, true);
+            echo "<br> - *queryAnswer: ";  
+            //var_dump(empty($queryArrayAnswer)); 
+            var_dump($queryArrayAnswer[0]['id']);
+            echo "*- -<br> arrayQuestionId : ".$queryArrayAnswer[0]['id'];
+            
+            echo  "<br> - i in for antes de if: ".$i."<br>";
+            //Si $arrayName[$i] el es nulo entonces...empty( 
+            if ($arrayName[$i]==null) {//unset($arrayName[$i]);
+                echo  "wtf arrayName Vanila: ".var_dump($arrayName)."<br>";
+            }else {
+                //Checar Si user_id ya contesto el $arrayQuestionId[$i]
+                if ($queryArrayAnswer!=null) {
+                    // Echo Tests 
+                    /* echo "<br>->> TRUE Iteracion : $i <br>"; echo "queryArrayAnswer: ".$queryArrayAnswer."<br>"; echo  $arrayName[$i]."<br>"; echo  $arrayQuestionId[$i]."<br>"; echo  $user_id."<br>"; echo ">> 
+                    :) SI actualizar en BD!<br>";;*/
+                    echo "ACTUALIZAR!!".$i;
+                    
+                    $answer = Answer::find($queryArrayAnswer[0]['id']);
+                    $answer->name = $arrayName[$i];
+                    $answer->question_id=$arrayQuestionId[$i];
+                    $answer->user_id=$user_id;
+                    $answer->update();
+                    // SIIII!!, con esta cosa funcionando dejo registro que esta lista la 2da version estable
+                    // Termine a las 2:19 PM, Viernes 4 de Noviembre del 2022
+                } elseif ($queryArrayAnswer==null) {
+                    // Echo Test 
+                    /* echo "<br>->>FALSE Iteracion : $i <br>"; echo "queryArrayAnswer: ".$queryArrayAnswer."<br>"; echo  $arrayName[$i]."<br>"; echo  $arrayQuestionId[$i]."<br>"; echo  $user_id."<br>"; echo ">> 
+                    xd NO Crea instancia y guarda en BD<br>"; 
+                    //Crear una instancia de Answer y guardarla para la BD
+                    $answer = new Answer([
+                        'name' => $arrayName[$i],               
+                        'question_id' => $arrayQuestionId[$i], 
+                        'user_id' => $user_id,
+                    ]);
+                    $answer->save();*/
+                }
+                
+            }
+        }
+        //die;
+        //Regresar al index del formulario de estudiantes
+        return redirect()->route('student.forms.index');
+
     }
 
     /**
@@ -103,9 +165,9 @@ class FormsController extends Controller
         // - Option tiene: id, name, question_id        
         $options = Option::whereIn('question_id', $questionsIDS)->get();
 
-        echo "<br> <br> - userId: ".$userId;
-        echo "<br> <br> - questions: ".$questions;
-        echo "<br> <br> - answers: ".$answers;
+        //echo "<br> <br> - userId: ".$userId;
+        //echo "<br> <br> - questions: ".$questions;
+        //echo "<br> <br> - answers: ".$answers;
         //echo "<br> <br> - options: ".$options;
 
         return view('student.forms.edit')
@@ -123,8 +185,12 @@ class FormsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function updateServeralAnwser(){
+
+    }
     public function update(Request $request, $id)
     {
+        // En proceso de DESCONTINUAR METODO
         // id, name, question_id, user_id
 
         //echo "<br>-".$request; txtName
