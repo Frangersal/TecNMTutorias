@@ -64,8 +64,8 @@
 <!-- Inicio del menu con una sesion iniciada  --->
     <nav class="nav">
         <section class="nav_section-img">
-            <img class="nav_img" src="{{asset('/images/foto.jpg')}}" alt="">
-        </section>
+            <img class="nav_img" src="{{asset(Auth::user()->picture)}}" alt="Foto de perfil">
+        </section>  <!--  <h2>{{Auth::user()->name}}</h2> <p>{{Auth::user()->picture}}</p> --->
         
         <section class="nav_section">
             <div class="nav_section_items-top">

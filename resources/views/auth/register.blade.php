@@ -16,7 +16,7 @@
                 <section class="flex_section_section">
                     <div class="card-body">  
                 
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row mb-3">
@@ -77,7 +77,7 @@
                                 <label for="controlNumber"  class="col-sm-2 col-form-label">{{ __('Numero de control') }}</label>
 
                                 <div class="col-sm-10">                            
-                                    <input id="controlNumber" type="text" class="form-control @error('controlNumber') is-invalid @enderror" name="controlNumber"  required >
+                                    <input id="controlNumber" type="text" class="form-control @error('controlNumber') is-invalid @enderror" name="controlNumber" maxlength="8" required >
 
                                     @error('controlNumber')
                                         <span class="invalid-feedback" role="alert">
@@ -87,6 +87,21 @@
                                 </div>
                             </div> 
                             <hr> 
+                            <div class="row mb-3">
+                                <label for="profile_picture"  class="col-sm-2 col-form-label">{{ __('Foto') }}</label>
+
+                                <div class="col-sm-10">                            
+                                    <input id="profile_picture" type="file" class="form-control @error('profile_picture') is-invalid @enderror" name="profile_picture"  required >
+
+                                    @error('profile_picture')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div> 
+                            <hr> 
+                            
                             <div class="row mb-3">
                                 <label for="email"  class="col-sm-2 col-form-label">{{ __('Correo electronico') }}</label>
 

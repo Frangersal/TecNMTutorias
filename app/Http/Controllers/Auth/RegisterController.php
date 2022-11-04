@@ -72,6 +72,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $request = request();
+
+        $profileImage = $request->file('profile_picture');
+        $profileImageSaveAsName = time() . "-profile." . $profileImage->getClientOriginalExtension();
+
+        $upload_path = 'images/profile_images/';
+        $profile_image_url = $upload_path . $profileImageSaveAsName;
+        $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+
         $student = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -80,7 +89,7 @@ class RegisterController extends Controller
             'campus' => $data['campus'],
             'faculty' => $data['faculty'],
             'controlNumber' => $data['controlNumber'],
-            'picture' => '',
+            'picture' => $profile_image_url,
 
            
         ]);

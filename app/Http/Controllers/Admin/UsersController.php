@@ -93,14 +93,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        #dd($request);
+        //$request = request();
+
+        $profileImage = $request->file('picture');
+        $profileImageSaveAsName = time() . "-profile." . $profileImage->getClientOriginalExtension();
+
+        $upload_path = 'images/profile_images/';
+        $profile_image_url = $upload_path . $profileImageSaveAsName;
+        $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+
         
         $user->name = $request->name;
         $user->email = $request->email;
         $user->campus = $request->campus;
         $user->faculty = $request->faculty;
         $user->controlNumber = $request->controlNumber;
-        $user->picture = $request->picture;
+        $user->picture = $profile_image_url;
 
         $user->roles()->sync($request->roles);
 
@@ -177,7 +185,8 @@ class UsersController extends Controller
                     $tutors = Tutor::all();
         
                     return view('users.pupil.asignar.edit')->with([
-                        'pupil'=>$pupil,'tutors'=>$tutors,
+                        'pupil'=>$pupil,
+                        'tutors'=>$tutors,
                     ]);
                 }
                 else {
@@ -187,7 +196,8 @@ class UsersController extends Controller
                     $tutors = Tutor::all();
             
                     return view('users.pupil.asignar.edit')->with([
-                        'pupil'=>$pupil,'tutors'=>$tutors,
+                        'pupil'=>$pupil,
+                        'tutors'=>$tutors,
                     ]);
                 }
 

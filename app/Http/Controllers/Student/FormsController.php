@@ -133,6 +133,8 @@ class FormsController extends Controller
         echo "<br>- request: ".gettype($request);
         echo "<br>- id: ". $id;
         echo "<br>- id: ".gettype($id);
+        echo "<br>- $request->get('txtName');: ".$request->get('txtName');
+
         //echo "<br>-".$id;
         die;
 

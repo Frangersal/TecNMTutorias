@@ -16,7 +16,7 @@
                 <section class="flex_section_section">
                     <div class="card-body">  
 
-                        <form action ="{{ route('admin.users.update', $user)}}" method="POST">
+                        <form action ="{{ route('admin.users.update', $user)}}"  enctype="multipart/form-data" method="POST">
 
                             <div class="row mb-3">
                                 <label for="email" class="col-md-2 col-form-label text-md-right">E-Mail</label>
@@ -82,7 +82,7 @@
                             <div class="row mb-3">
                                 <label for="controlNumber" class="col-md-2 col-form-label text-md-right">Control number</label> 
                                 <div class="col-sm-10">
-                                    <input id="controlNumber" type="text" class="form-control @error('controlNumber') is-invalid @enderror" name="controlNumber" value="{{ $user->controlNumber }}" required autofocus>
+                                    <input id="controlNumber" type="text" class="form-control @error('controlNumber') is-invalid @enderror" name="controlNumber" value="{{ $user->controlNumber }}" maxlength="8" required autofocus>
 
                                     @error('controlNumber')
                                         <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                             <div class="row mb-3">
                                 <label for="picture" class="col-md-2 col-form-label text-md-right">Foto</label> 
                                 <div class="col-sm-10">
-                                    <input id="picture" type="text" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ $user->picture }}"autofocus>
+                                    <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ $user->picture }}"autofocus>
 
                                     @error('picture')
                                         <span class="invalid-feedback" role="alert">
