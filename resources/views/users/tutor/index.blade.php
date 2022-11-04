@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>Tutores</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -12,11 +12,10 @@
     <article class="flex-container">
         <section class="flex-item-large"> 
             <section class="flex_section">
-                <h2 class="flex_section_h2">Tutores en la BD</h2>
+                <h2 class="flex_section_h2">Tutores</h2>
                 <section class="flex_section_section">
                     <div class="card-body table-responsive"> 
-                        <button type="button" class="btn btn-success">Crear</button>
-                        <br> <br> 
+                        <!-- <button type="button" class="btn btn-success">Crear</button> -->
                         <table class="table table-bordered">
                             <thead class="table-dark">
                                 <tr>
@@ -37,9 +36,11 @@
                                             <div class="btn-group son-center" role="group" aria-label="Basic mixed styles example">
                                                 <a href="{{ route('admin.users.edit', $user->id) }}">
                                                 <button type="button" class="btn btn-warning ">Editar</button>
-                                                <a>
-                                                <a href="#">
-                                                <button type="button" class="btn btn-success  ">:P</button>
+                                                <a> 
+                                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left"> 
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                <button type="button" class="btn btn-danger  ">Eliminar</button>
                                                 <a>
                                             </div>
                                         </th>

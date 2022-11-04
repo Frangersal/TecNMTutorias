@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>Editar Reunión</title>
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -9,26 +10,20 @@
         <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
     </nav>
 
-        <section class="main_section">
-            <h2 class="main_section_h2">Editar Reunion</h2>
-            <section class="main_section_section">
-                <div class="card-body">
-
-                    <!--- Editar formulario ---> 
-                    
-
-
-                    <!-- JAAAAAAAAAAAAAAAAAAAAAA -->
-
-                    
+    <article class="flex-container">
+        <section class="flex-item-large"> 
+            <section class="flex_section">
+                <h2 class="flex_section_h2">Editar Reunión</h2>
+                <section class="flex_section_section">
+                    <div class="card-body">  
                     <form action ="{{ route('tutor.pupil.reunion.update', $reunion->id)}}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}  
 
-                        <div class="form-group row">
-                            <label for="txtDate_time" class="col-md-3 col-form-label text-md-right">Fecha y hora</label>
+                        <div class="row mb-3">
+                            <label for="txtDate_time"class="col-sm-2 col-form-label">Fecha y hora</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-10">
                                 <input type="datetime-local"  class="form-control @error('txtxtDate_timetName') is-invalid @enderror"
                                 id="txtDate_time"
                                 name="txtDate_time"     value="2017-06-12T19:30"
@@ -45,10 +40,10 @@
                         </div>
                         
 
-                        <div class="form-group row">
-                            <label for="txtDescription" class="col-md-3 col-form-label text-md-right">Descripcion</label>
+                        <div class="row mb-3">
+                            <label for="txtDescription"class="col-sm-2 col-form-label">Descripcion</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm-10">
                                 <input id="txtDescription" type="text" class="form-control @error('txtDescription') is-invalid @enderror" name="txtDescription" >
 
                                 @error('description')
@@ -60,14 +55,14 @@
                         </div>
                         
 
-                        <div class="form-group row">
-                            <label for="txtPupil" class="col-md-3 col-form-label text-md-right">Pupilo</label>
-                            <div class="col-md-6">
+                        <div class="row mb-3">
+                            <label for="txtPupil"class="col-sm-2 col-form-label">Pupilo</label>
+                            <div class="col-sm-10">
                             
                             <select class="form-control opcion" name="txtPupil" > 
                                 @foreach($pupils as $pupil)
-                                    @if(($pupil->tutor_id)==3)
-                                        <option value="{{ $pupil->id }}">{{ $pupil->id }}</option> 
+                                    @if(($pupil->tutor_id)==$tutor_id) 
+                                        <option value="{{ $pupil->id }}">{{ $pupil->users->name }}</option> 
                                     @endif                               
                                           
                                 @endforeach 
@@ -79,11 +74,11 @@
                         
 
                         <button type="submit" class="btn btn-success">Editar</button>
-                    </form> 
-                </div>
-                
+                    </form>  
+                    </div>
+                </section>
             </section>
         </section>
-
+    </article> 
 </main>
 @endsection

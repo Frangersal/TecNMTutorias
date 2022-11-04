@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>Editar Usuario</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -95,7 +95,7 @@
                             <div class="row mb-3">
                                 <label for="picture" class="col-md-2 col-form-label text-md-right">Foto</label> 
                                 <div class="col-sm-10">
-                                    <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ $user->picture }}"autofocus>
+                                    <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ $user->picture }}" required autofocus>
 
                                     @error('picture')
                                         <span class="invalid-feedback" role="alert">

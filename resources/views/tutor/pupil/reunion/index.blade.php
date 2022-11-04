@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>Reuniones</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -13,7 +13,7 @@
 <article class="flex-container">
     <section class="flex-item-large"> 
         <section class="flex_section">
-            <h2 class="flex_section_h2">Lista de reuniones</h2>
+            <h2 class="flex_section_h2">Reuniones</h2>
             <section class="flex_section_section">
                 <div class="card-body table-responsive"> 
                     <a href="{{ route('tutor.pupil.reunion.create') }}">

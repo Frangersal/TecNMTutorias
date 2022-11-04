@@ -8,7 +8,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Perfil</title> 
 
     <!-- Diseño no Responsive DESCONTINUADO
     <link href="{{asset('/css/TecNM/users.css')}}" rel="stylesheet">

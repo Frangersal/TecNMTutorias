@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>Editar Pregunta y Admin. Opciones</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -84,7 +85,7 @@
                                         <div class="btn-group son-center" role="group" aria-label="Basic mixed styles example">
 
                                             <a href="{{ route('admin.options.edit', $option->id) }}">
-                                                <button type="button" class="btn btn-warning ">Actualizar</button>
+                                                <button type="button" class="btn btn-warning ">Editar</button>
                                             </a>
 
                                             

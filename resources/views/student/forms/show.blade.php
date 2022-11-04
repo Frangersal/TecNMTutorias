@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>Formulario: {{ $formName }}</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -13,7 +13,7 @@
     <article class="flex-container">
         <section class="flex-item-large"> 
             <section class="flex_section">
-                <h2 class="flex_section_h2">Ventana Form Formulario</h2>
+                <h2 class="flex_section_h2">Formulario: {{ $formName }}</h2>
                 <section class="flex_section_section">
                     <div class="card-body">   
                         <form action ="{{ route('student.answers.store')}}" method="POST">

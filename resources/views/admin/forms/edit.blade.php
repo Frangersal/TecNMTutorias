@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>Editar Formulario y Admin. Preguntas</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">

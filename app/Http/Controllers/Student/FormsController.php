@@ -135,11 +135,16 @@ class FormsController extends Controller
         $userId = auth()->id();
 
         $questions = Question::where('form_id', $id)->get();
+        $form = Form::where('id', $id)->get();
+        $arrayForm = json_decode($form, true);
+        $formName = $arrayForm[0]['name']; 
         $options = Option::all();
         //$answers = Answer::all();
 
 
-        return view('student.forms.show')->with('userId',$userId)->with('questions',$questions)->with('options',$options);
+        return view('student.forms.show')
+        ->with('userId',$userId)->with('questions',$questions)
+        ->with('options',$options)->with('formName',$formName);
     }
 
     /**
@@ -164,6 +169,10 @@ class FormsController extends Controller
         //Opciones solo de este formulario en especifico
         // - Option tiene: id, name, question_id        
         $options = Option::whereIn('question_id', $questionsIDS)->get();
+        
+        $form = Form::where('id', $id)->get();
+        $arrayForm = json_decode($form, true);
+        $formName = $arrayForm[0]['name']; 
 
         //echo "<br> <br> - userId: ".$userId;
         //echo "<br> <br> - questions: ".$questions;
@@ -174,7 +183,7 @@ class FormsController extends Controller
         ->with('userId', $userId)
         ->with('questions', $questions)
         ->with('options', $options)
-        ->with('answers', $answers);
+        ->with('answers', $answers)->with('formName',$formName);
     
     }
 

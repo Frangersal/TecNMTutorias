@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>Administrar Formularios</title> 
 <main class="main">
     <nav clasS="title">
         <h1 class="title_h1">
