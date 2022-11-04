@@ -57,4 +57,15 @@
     justify-content: center;
     align-items: center;
 }
-/* --- WINDOW / VENTA
+/* --- WINDOW / VENTA */
+
+
+.main_img{
+    background-color: #fff;
+    
+    border-style: solid;
+    border-color: #fff;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 15%;
+}

@@ -62,7 +62,8 @@ class PDFController extends Controller
     {
         $pupilId        = $id;
         $userIdPupil    = DB::table('users')->whereId($pupilId)->first();
-        $pupilName  = $userIdPupil->name;
+        $pupilName      = $userIdPupil->name;
+        $pupilPicture   = $userIdPupil->picture;
         $forms      = Form::all(); 
         $questions  = Question::all();
         $answers    = Answer::all();
@@ -70,6 +71,7 @@ class PDFController extends Controller
         $pdf = PDF::loadView('tutor.pupil.form.showpdf', [
             'id'        => $id,
             'pupilName' => $pupilName,
+            'pupilPicture' => $pupilPicture,
             'forms'     => $forms,
             'questions' => $questions,
             'answers'   => $answers

@@ -84,6 +84,17 @@ footer {
     text-align: center;
     line-height: 1.5cm;
 } 
+
+.nav_img{
+    margin-left: 10%;
+    background-color: #fff;
+    
+    border-style: solid;
+    border-color: #fff;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 15%;
+}
 </style>
 <body >
     <div>
@@ -96,6 +107,8 @@ footer {
 
 
     <div >
+        <img class="nav_img" src="{{asset($pupilPicture)}}" alt="Foto de {{ $pupilName }}"> 
+        <br><br>
         
         @foreach($forms as $form)
             <br>

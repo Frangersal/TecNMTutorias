@@ -19,6 +19,8 @@
                         <a href="{{ route('pdf.users.show', $id ?? '') }}">
                             <button type="button" class="btn btn-success float-left">Descargar PDF</button>
                         <a><br><br>
+                        <img class="nav_img" src="{{asset($pupilPicture)}}" alt="Foto de {{ $pupilName }}"> 
+                        <br><br>
                     
                         @foreach($forms as $form)
                             <table class="table table-bordered">

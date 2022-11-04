@@ -61,10 +61,12 @@
 @endif
 @else
 
-<!-- Inicio del menu con una sesion iniciada  --->
+<!-- Inicio del menu con una sesion iniciada 
+            <img class="nav_img" src="{{asset('/images/profile_images/predeterminado.png')}}" alt="Foto de perfil">
+            --->
     <nav class="nav">
         <section class="nav_section-img">
-            <img class="nav_img" src="{{asset(Auth::user()->picture)}}" alt="Foto de perfil">
+        <img class="nav_img" src="{{asset(Auth::user()->picture)}}" alt="Foto de perfil"> 
         </section>  <!--  <h2>{{Auth::user()->name}}</h2> <p>{{Auth::user()->picture}}</p> --->
         
         <section class="nav_section">

@@ -59,6 +59,7 @@ class FormController extends Controller
         $pupilId        = $id;
         $userIdPupil    = DB::table('users')->whereId($pupilId)->first(); 
         $pupilName      = $userIdPupil->name;
+        $pupilPicture     = $userIdPupil->picture;
         
         // $userId = $id;
         // var_dump($userId); die();
@@ -68,6 +69,7 @@ class FormController extends Controller
         return view('tutor.pupil.form.show')
         ->with('id',$id)
         ->with('pupilName',$pupilName)
+        ->with('pupilPicture',$pupilPicture)
         ->with('forms',$forms)
         ->with('questions',$questions)
         ->with('answers',$answers);
