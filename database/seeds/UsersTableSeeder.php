@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '10321000',
-            'picture' => '',        
+            'picture' => 'images/profile_images/predeterminado.png',        
         ]);
         
 

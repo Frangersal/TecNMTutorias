@@ -25,6 +25,33 @@
                         <h2 class="flex_section_h2">Perfil de {{ Auth::user()->name }}</h2>
                         <section class="flex_section_section">
                             <div class="card-body">   
+                                @can('admin-action')
+                                <p> 
+                                ¡Hola y bienvenido administrador!, que bueno que este de vuelta por sus aposentos. <br>
+                                Seguro ya lo sabes, pero solo para recordarlo, tu Rol aquí, en TecNMTutorias es fundamental.
+                                Desde aquí podrás realizar distintas acciones que afectaran el curso de las tutorías de cada alumno.
+                                </p>
+                                <ol>
+                                    <li>Administrar tanto Tutores como Pupilos</li>
+                                    <p>
+                                    Ver todas las respuestas de los Pupilos y generar PDF’s de estos mismos.<br>
+Editar, Asignar tutores e incluso… Eliminar usuarios.
+
+                                    </p>
+                                    <li>Administrar Formularios</li>
+                                    <p>
+                                    Crear, Ver, Editar y Eliminar tanto Formularios como las Preguntas e incluso, de tenerlas, ¡las opciones de las preguntas!
+                                    </p>
+                                    <li>Estadísticas</li>
+                                    <p>
+                                    Ver todas las estadísticas de cada una de las preguntas con opciones. 
+                                    </p>
+                                </ol>
+                                <p> 
+                                Y recuerda: Un gran poder conlleva una gran responsabilidad…
+                                </p>
+
+                                @endcan
                                 @can('student-action')
                                 <h5>Bienvenido estudiante, tu tutor asignado es: {{ $nombreTutor }}</h5>
                                 Tu eres un Estudiante, o pupilo.

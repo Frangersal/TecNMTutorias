@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>Registrarse</title> 
 <main class="main mainWithOutNav">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -31,8 +32,20 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
-                            <hr>
+                            </div>  
+                            <div class="row mb-3">
+                                <label for="profile_picture"  class="col-sm-2 col-form-label">{{ __('Foto') }}</label>
+
+                                <div class="col-sm-10">                            
+                                    <input id="profile_picture" type="file" class="form-control @error('profile_picture') is-invalid @enderror" name="profile_picture"  required >
+
+                                    @error('profile_picture')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div> 
 
                             <div class="row mb-3">
                                 <label for="campus"  class="col-sm-2 col-form-label">{{ __('Campus') }}</label>
@@ -85,22 +98,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div> 
-                            <hr> 
-                            <div class="row mb-3">
-                                <label for="profile_picture"  class="col-sm-2 col-form-label">{{ __('Foto') }}</label>
-
-                                <div class="col-sm-10">                            
-                                    <input id="profile_picture" type="file" class="form-control @error('profile_picture') is-invalid @enderror" name="profile_picture"  required >
-
-                                    @error('profile_picture')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div> 
-                            <hr> 
+                            </div>
                             
                             <div class="row mb-3">
                                 <label for="email"  class="col-sm-2 col-form-label">{{ __('Correo electronico') }}</label>

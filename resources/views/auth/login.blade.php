@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>Iniciar sesión</title> 
 <main class="main mainWithOutNav">
     <nav clasS="title">
         <h1 class="title_h1">
@@ -12,7 +13,7 @@
     <article class="flex-container">
         <section class="flex-item-large"> 
             <section class="flex_section">
-                <h2 class="flex_section_h2">{{ __('Iniciar sesion') }}</h2>
+                <h2 class="flex_section_h2">{{ __('Iniciar sesión') }}</h2>
                 <section class="flex_section_section">
                     <div class="card-body"> 
                         <form method="POST" action="{{ route('login') }}">
