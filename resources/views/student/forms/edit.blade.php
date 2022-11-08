@@ -25,8 +25,9 @@
                                     <div class="col-sm-7">
                                         <!-- Tipo opcion IF-->
                                         @if(("{$question->answer_type_id}" == "2") ) 
-                                            <select class="form-control opcion" name="txtName[]" >  
-                                                <option value="{{ $answers[$i]->name }}" disabled selected hidden>{{ $answers[$i]->name }}</option>
+                                            <select id="txtName" class="form-control @error('txtName') is-invalid @enderror txtName" 
+                                            class="form-control opcion" name="txtName[]"  value="{{ $answers[$i]->name }}" required autofocus>  
+                                                <option  value="{{ $answers[$i]->name }}" disabled selected hidden>{{ $answers[$i]->name }}</option>
                                                 @foreach($options as $option)
                                                     @if("{$question->id}" == "{$option->question_id}")
                                                         <option value="{{ $question->$answers }}"  required>{{ $option->question_id }} - {{ $option->name }}</option>   
@@ -60,7 +61,7 @@
                                 @endforeach
                             <br>
  
-                            <button type="submit" class="btn btn-success">Responder</button>
+                            <button type="submit" class="btn btn-warning">Editar</button>
                         </form>        
                     </div>
                 </section>

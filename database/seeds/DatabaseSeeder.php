@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FormsSeeder::class);
         $this->call(QuestionsSeeder::class);
         $this->call(Answers_optionsSeeder::class);
+        $this->call(RoleUserSeeder::class);
     }
 }

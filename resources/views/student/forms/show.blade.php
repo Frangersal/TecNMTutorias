@@ -24,11 +24,11 @@
                                     <div class="col-sm-7">
                                         <!-- Tipo opcion IF-->
                                         @if(("{$question->answer_type_id}" == "2") ) 
-                                            <select class="form-control opcion" name="txtName[]" > 
+                                            <select class="form-control opcion" name="txtName[]"  required> 
                                                 <option value="" disabled selected hidden>Elija una respuesta...</option>
                                                 @foreach($options as $option)
                                                     @if("{$question->id}" == "{$option->question_id}")
-                                                        <option value="{{ $option->name }}"  required>{{ $option->question_id }} - {{ $option->name }}</option>   
+                                                        <option value="{{ $option->name }}" >{{ $option->question_id }} - {{ $option->name }}</option>   
                                                         @else                                    
                                                     @endif
                                                 @endforeach 

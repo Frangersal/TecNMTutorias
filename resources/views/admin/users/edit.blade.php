@@ -45,7 +45,8 @@
                             <div class="row mb-3">
                                 <label for="campus" class="col-md-2 col-form-label text-md-right">Campus</label> 
                                 <div class="col-sm-10">
-                                    <select id="campus" class="form-control @error('campus') is-invalid @enderror campus" name="campus" value="{{ $user->campus }}" required autofocus>   
+                                    <select id="campus" class="form-control @error('campus') is-invalid @enderror campus" 
+                                    name="campus" value="{{ $user->campus }}" required autofocus>   
                                         <option value="{{ $user->campus }}">{{ $user->campus }}</option>  
                                         <option value="Instituto Tecnológico de Acapulco">I.T.A.</option> 
                                         <option value="Instituto Tecnológico de ">I.T.Q.</option>  
