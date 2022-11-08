@@ -17,7 +17,7 @@ class CreateFormsTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description', 1500);
             $table->timestamps();
         });
     }
