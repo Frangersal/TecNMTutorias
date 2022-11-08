@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Database\Seeders;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(Answers_TypesSeeder::class);
+        $this->call(FormsSeeder::class);
+        $this->call(QuestionsSeeder::class);
+        $this->call(Answers_optionsSeeder::class);
     }
 }
