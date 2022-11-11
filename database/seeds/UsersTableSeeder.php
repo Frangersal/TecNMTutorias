@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '10321001',
-            'picture' => '',
+            'picture' => 'images/profile_images/tutor.png',
         ]);
 
         $student = DB::table('users')->insert([
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '10321002',
-            'picture' => '',
+            'picture' => 'images/profile_images/student.png',
         ]);
         #php artisan db:seed
         
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '14321079',
-            'picture' => '',
+            'picture' => 'images/profile_images/student.png',
         ]);
 
         
@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '14321080',
-            'picture' => '',
+            'picture' => 'images/profile_images/student.png',
         ]);
 
         
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería Bioquímica',
             'controlNumber' => '14321081',
-            'picture' => '',
+            'picture' => 'images/profile_images/student.png',
         ]);
         
         $student = DB::table('users')->insert([
@@ -93,7 +93,7 @@ class UsersTableSeeder extends Seeder
             'campus' => 'Instituto Tecnologico de Acapulco',
             'faculty' => 'Ingeniería en Sistemas Computacionales',
             'controlNumber' => '14321078',
-            'picture' => '',
+            'picture' => 'images/profile_images/student.png',
         ]);
     }
 }
