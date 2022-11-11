@@ -27,7 +27,7 @@
                             <div class="card-body">   
                                 @can('admin-action')
                                 <p> 
-                                test ¡Hola y bienvenido administrador!, que bueno que este de vuelta por sus aposentos. <br>
+                                ¡Hola y bienvenido administrador!, que bueno que este de vuelta por sus aposentos. <br>
                                 Seguro ya lo sabes, pero solo para recordarlo, tu Rol aquí, en TecNMTutorias es fundamental.
                                 Desde aquí podrás realizar distintas acciones que afectaran el curso de las tutorías de cada alumno.
                                 </p>
