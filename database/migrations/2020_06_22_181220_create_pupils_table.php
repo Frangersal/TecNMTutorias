@@ -19,10 +19,10 @@ class CreatePupilsTable extends Migration
             $table->string('coment');
             
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('tutor_id');
-            $table->foreign('tutor_id')->references('id')->on('tutors');
+            $table->foreign('tutor_id')->references('id')->on('tutors')->onDelete('cascade');
 
             $table->timestamps();
         });
