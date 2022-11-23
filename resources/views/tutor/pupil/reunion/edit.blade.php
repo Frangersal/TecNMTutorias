@@ -26,7 +26,7 @@
                             <div class="col-sm-10">
                                 <input type="datetime-local"  class="form-control @error('txtxtDate_timetName') is-invalid @enderror"
                                 id="txtDate_time"
-                                name="txtDate_time"     value="2017-06-12T19:30"
+                                name="txtDate_time"     value="{{ $reunion->date_time }}"
                                 min="2017-06-07T00:00"  max="2100-06-14T00:00">
 
                                 <!-- <input id="txtName" type="text" class="form-control @error('txtName') is-invalid @enderror" name="txtName" > -->
@@ -44,7 +44,7 @@
                             <label for="txtDescription"class="col-sm-2 col-form-label">Descripcion</label>
 
                             <div class="col-sm-10">
-                                <input id="txtDescription" type="text" class="form-control @error('txtDescription') is-invalid @enderror" name="txtDescription" >
+                                <input id="txtDescription" type="text" class="form-control @error('txtDescription') is-invalid @enderror" value="{{ $reunion->description }}"  required name="txtDescription" >
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
