@@ -37,9 +37,9 @@
 }
 
 .nav_section_items-bottom{
-    /*background-color: rgba(255, 230, 0, 0.623);*/
+    /*background-color: rgba(255, 230, 0, 0.623);
+    flex: 50%;*/
     height: 5rem;
-    flex: 50%;
     width: 100%;
 }
 
@@ -190,7 +190,7 @@ a:link, a:visited, a:active {
     }
     
     .nav_section_items-bottom{ 
-        /*display: flex;*/
+        display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
