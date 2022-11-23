@@ -220,12 +220,12 @@ class UsersController extends Controller
     {        
         // Si el usuario en Gate de la accion edit-users no es Admin, entonces solo recargar la pagina para que no tenga acceso
         if(Gate::denies('admin-tutor-action')){
-            return redirect(route('admin.users.index'));
+            return redirect(route('perfil'));
         }
 
         $user->roles()->detach();
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('perfil');
     }
 }

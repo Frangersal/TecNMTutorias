@@ -41,6 +41,13 @@
                                                 <!-- <a href="#">
                                                 <button type="button" class="btn btn-success float-left">Asignar Tutor</button>
                                                 <a> -->
+                                                @can('delete-users')
+                                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left"> 
+                                                        @csrf
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </form>
+                                                @endcan  
                                                 
                                                 <a href="{{ route('tutor.pupil.form.show', $user->id) }}">
                                                 <button type="button" class="btn btn-success ">Ver formularios</button>

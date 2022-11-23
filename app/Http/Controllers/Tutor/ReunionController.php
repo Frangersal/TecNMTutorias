@@ -100,10 +100,13 @@ class ReunionController extends Controller
         $tutor      = DB::table('tutors')->whereUser_id($user_id)->first(); // asi es como se saca el array chingon. xd
         $tutor_id   = $tutor->id; 
         //var_dump($tutor_id); die();
-        $pupils     = Pupil::all(); 
+        $pupils     = Pupil::all();  
         // var_dump($pupils); die();
 
-        return view('tutor.pupil.reunion.edit')->with('reunion',$reunion)->with('tutor_id',$tutor_id)->with('pupils',$pupils);
+        return view('tutor.pupil.reunion.edit')
+        ->with('reunion',$reunion)
+        ->with('tutor_id',$tutor_id)
+        ->with('pupils',$pupils);
     }
 
     /**

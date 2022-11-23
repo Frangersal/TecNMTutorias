@@ -28,18 +28,18 @@
     
 }
 .nav_section_items-top{
-    /*background-color: rgba(255, 0, 0, 0.623);*/
+    /*background-color: rgba(255, 0, 0, 0.623);
+    margin-bottom: 16px;*/
     height: 5rem;
     flex: 50%;
     width: 100%;
-    margin-bottom: 16px;
 
 }
 
 .nav_section_items-bottom{
-    /*background-color: rgba(255, 230, 0, 0.623);*/
+    /*background-color: rgba(255, 230, 0, 0.623);
+    flex: 50%;*/
     height: 5rem;
-    flex: 50%;
     width: 100%;
 }
 
