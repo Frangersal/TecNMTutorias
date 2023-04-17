@@ -8,7 +8,7 @@
 
 
 
-1. Instalar PHP 7.3 para arriba (8.0 para arriba también)
+1. Instalar PHP 7.3 para arriba (8.0 para arriba también sirve)
 
     - Para esto nos dirigimos a la página https://www.php.net/downloads.php
 
@@ -18,13 +18,13 @@
 
     - Nos aseguramos que "C:\Program Files\php" este en nuestras Variables de entorno.
 
-    - Tener las siguientes extensiones habilitadas: "openssl" y "fileinfo"
+    - Tener las siguientes extensiones habilitadas: "openssl" , "fileinfo" y "pdo_mysql"
 
     - Para esto tenemos que dirigirnos a donde tengamos instalado PHP ej. "C:\Program Files\php"
 
     - Abrimos como administrador el archivo "php.ini"
 
-    - Si no tenemos el archivo "php.ini" copiamos "php.ini-development" y renombramos como "php.ini"
+        - Si no tenemos el archivo "php.ini" copiamos "php.ini-development" y renombramos como "php.ini"
 
     - Buscamos las siguientes líneas y las des-comentamos, para esto basta con eliminar los ";" 
 
@@ -52,7 +52,7 @@
 
 
 
-4. Clonamos (o descargamos .zip) este repositorio a la carpeta C:\xampp\htdocs
+4. Clonamos (o descargamos .zip) este repositorio a la carpeta "C:\xampp\htdocs"
 
 
 
@@ -82,9 +82,7 @@ ingresando "http://localhost/TecNMTutorias/public/" en el navegador
 
     - Ya "phpMyAdmin" damos click en "Nueva" se encuentra en el menú derecho de la pantalla
 
-    - Crearemos una base de datos con el nombre "phpMyAdmin"
-
-    - utf8_general_ci
+    - Crearemos una base de datos con el nombre "tecnm_tutorias" y "utf8_general_ci"
 
 
 
