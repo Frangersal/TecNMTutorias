@@ -31,3 +31,5 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Puerto para Railway
 EXPOSE 80
+WORKDIR /var/www/html
+CMD php -S 0.0.0.0:80 -t public
