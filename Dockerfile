@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y \
 # Habilita mod_rewrite de Apache
 RUN a2enmod rewrite
 
-# Copia los archivos del proyecto
-COPY . /var/www/html/
-
 # Establece el directorio de trabajo
-WORKDIR /var/www/html/
+WORKDIR /var/www/html
+
+# Copia archivos del proyecto
+COPY . /var/www/html
 
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -20,16 +20,20 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Instala dependencias del proyecto
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Copia el archivo .env si no está
+# Copia .env si no existe
 RUN cp .env.example .env || true
 
-# Genera APP_KEY
-RUN php artisan key:generate
+# Genera clave de la app
+RUN php artisan key:generate || true
 
-# Permisos
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Ajusta permisos
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Puerto para Railway
+# Configura Apache para servir desde /public
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
+# Expone puerto
 EXPOSE 80
-WORKDIR /var/www/html
-CMD php -S 0.0.0.0:80 -t public
+
+# Usa Apache (por defecto)
+CMD ["apache2-foreground"]
