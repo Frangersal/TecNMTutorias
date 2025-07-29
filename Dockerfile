@@ -2,8 +2,13 @@ FROM php:8.2-apache
 
 # Instala dependencias necesarias
 RUN apt-get update && apt-get install -y \
-    git unzip zip libzip-dev libonig-dev libxml2-dev \
+    git unzip zip libzip-dev libonig-dev libxml2-dev curl \
     && docker-php-ext-install pdo pdo_mysql zip
+
+# Instala Composer manualmente
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+ && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+ && php -r "unlink('composer-setup.php');"
 
 # Habilita mod_rewrite de Apache
 RUN a2enmod rewrite
@@ -14,13 +19,10 @@ WORKDIR /var/www/html
 # Copia archivos del proyecto
 COPY . /var/www/html
 
-# Instala Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # Instala dependencias del proyecto
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Copia .env si no existe
+# Copia .env.production a .env
 COPY .env.production .env
 
 # Genera clave de la app
@@ -35,5 +37,5 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /et
 # Expone puerto
 EXPOSE 80
 
-# Usa Apache (por defecto)
+# Usa Apache
 CMD ["apache2-foreground"]
