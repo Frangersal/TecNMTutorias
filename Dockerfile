@@ -1,41 +1,30 @@
 FROM php:8.2-apache
 
-# Instala dependencias necesarias
+# Instalar extensiones necesarias para Laravel
 RUN apt-get update && apt-get install -y \
-    git unzip zip libzip-dev libonig-dev libxml2-dev curl \
+    git unzip zip libzip-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo pdo_mysql zip
 
-# Instala Composer manualmente
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
- && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
- && php -r "unlink('composer-setup.php');"
-
-# Habilita mod_rewrite de Apache
+# Habilitar mod_rewrite para Laravel (aunque ya no lo usaremos si vas con `php artisan serve`)
 RUN a2enmod rewrite
 
-# Establece el directorio de trabajo
-WORKDIR /var/www/html
+# Copiar archivos del proyecto
+COPY . /var/www/html/
 
-# Copia archivos del proyecto
-COPY . /var/www/html
+# Establecer carpeta de trabajo
+WORKDIR /var/www/html/
 
-# Instala dependencias del proyecto
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Instalar dependencias Laravel
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Copia .env.production a .env
-COPY .env.production .env
+# Copiar .env si no existe
+RUN cp .env.example .env || true
 
-# Genera clave de la app
-RUN php artisan key:generate || true
+# Cambiar permisos para storage y cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Ajusta permisos
-RUN chown -R www-data:www-data storage bootstrap/cache
-
-# Configura Apache para servir desde /public
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
-
-# Expone puerto
-EXPOSE 80
-
-# Usa Apache
-CMD ["apache2-foreground"]
+# Comando de inicio para Railway usando el puerto asignado
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
