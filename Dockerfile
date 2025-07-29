@@ -27,4 +27,4 @@ RUN cp .env.example .env || true
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Comando de inicio para Railway usando el puerto asignado
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan serve --host=0.0.0.0 --port=8080
