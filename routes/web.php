@@ -130,14 +130,14 @@ Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:mana
 });
 
 
-//charts/throughoutTheYears
-Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/throughoutTheYears','ChartController');
-});
-//charts/throughoutTheYears/forms
-Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/throughoutTheYears/forms','ChartController');
-});
+// //charts/throughoutTheYears
+// Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
+// 	Route::resource('/throughoutTheYears','ChartController');
+// });
+// //charts/throughoutTheYears/forms
+// Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
+// 	Route::resource('/throughoutTheYears/forms','ChartController');
+// });
 
 
 // Made with love, to my ITA <3  
