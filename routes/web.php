@@ -1,11 +1,38 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+// ---- Custom routes converted for Laravel 10 (class-based controllers) ----
+
+// Simple view routes (public)
 Route::get('/index', function () {
     return view('index');
 });
@@ -14,130 +41,84 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
-
 Route::get('/perfil/forms', function () {
     return view('forms');
 });
 
-// Route::get('/pdf', 'Tutor\PDFController@PDF')->name('descargarPDF');
-// Route::get('/pdf/{}', 'Tutor\PDFController@PDFformsStudent')->name('PDFformsStudent');
+// Group routes that require authentication (Breeze uses 'auth')
+Route::middleware('auth')->group(function () {
+    // PDF resource under users prefix (Tutor namespace)
+    Route::prefix('users')->name('pdf.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/users', App\Http\Controllers\Tutor\PDFController::class);
+    });
 
-Route::namespace('Tutor')->prefix('users')->name('pdf.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/users','PDFController');
-});
+    // Perfil
+    Route::get('/perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
 
-Auth::routes();
+    // ------ Admin cruds ------ //
+    Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+        // Users
+        Route::resource('/users', App\Http\Controllers\Admin\UsersController::class)
+            ->except(['show','create','store']);
 
-// perfil
-Route::get('/perfil', 'PerfilController@index')->name('perfil');
+        // Forms
+        Route::resource('/forms', App\Http\Controllers\Admin\FormsController::class)
+            ->except(['show']);
 
-// ------ >> ------ Admin cruds ------ << ------ //
-// Admin crud Usuarios
-// TecNMTutorias/public/admin/users
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/users','UsersController', ['except'=>['show','create','store']]);
-});
+        // Questions
+        Route::resource('/questions', App\Http\Controllers\Admin\QuestionsController::class);
 
-// Admin crud Froms
-// TecNMTutorias/public/admin/forms
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/forms','FormsController', ['except'=>['show',]]);
-});
+        // Options
+        Route::resource('/options', App\Http\Controllers\Admin\OptionsController::class);
 
-// Admin crud Question
-// TecNMTutorias/public/admin/questions
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/questions','QuestionsController');
-});
+        // Chart (Admin)
+        Route::resource('/chart', App\Http\Controllers\Admin\ChartsController::class);
+    });
 
-// Admin crud AnswerOption
-// TecNMTutorias/public/admin/options
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/options','OptionsController');
-});
+    // Admin Chart sub-namespaces
+    Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/chart/specificyear', App\Http\Controllers\Admin\Chart\specificYearController::class);
+        Route::resource('/charts/specificYear/general', App\Http\Controllers\Admin\Chart\generalSYController::class)->names('charts.specificYear.general');
+    });
 
-// ------ >> ------ Admin/Tutor Vista ------ << ------ //
-// Pupilos
-// TecNMTutorias/public/users/pupil
-Route::namespace('Pupil')->prefix('users')->name('users.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/pupil','PupilController');
-});
-// Pupilos
-// TecNMTutorias/public/users/tutor
-Route::namespace('Tutor')->prefix('users')->name('users.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/tutor','TutorController');
-});
-// Asignar tutor 
-// TecNMTutorias/public/users/pupil/asignar
-Route::namespace('Pupil')->prefix('users/pupil')->name('users.pupil.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/asignar','AsignarTutorController');
-});
-// ------ >> ------ Tutor Vista ------ << ------ //
-// Reunion
-// TecNMTutorias/public/tutor/pupils/reunion
-Route::namespace('Tutor')->prefix('tutor/pupils')->name('tutor.pupil.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/reunion','ReunionController');
-});
-// Form
-Route::namespace('Tutor')->prefix('tutor/pupils')->name('tutor.pupil.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/form','FormController');
-});
-// Answer tutor.answers.index  tutor.pupil.form.answer.index
-Route::namespace('Tutor')->prefix('tutor/pupil/forms')->name('tutor.pupil.form.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/answer','AnswerController');
-});
+    // Charts (general)
+    Route::prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/charts', App\Http\Controllers\Chart\ChartController::class);
+        Route::resource('/specificYear', App\Http\Controllers\Chart\ChartController::class);
+        Route::resource('/specificYear/forms', App\Http\Controllers\Chart\ChartController::class);
+    });
 
+    // Users: Pupils and Tutors
+    Route::prefix('users')->name('users.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/pupil', App\Http\Controllers\Pupil\PupilController::class);
+        Route::resource('/tutor', App\Http\Controllers\Tutor\TutorController::class);
+    });
 
-// ------ >> ------ Estudiante Vista ------ << ------ //
-// Estudiante ve Form
-// student/forms/index
-Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
-	Route::resource('/forms','FormsController', ['except'=>['destroy']]);
-});
+    // Assign tutor
+    Route::prefix('users/pupil')->name('users.pupil.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/asignar', App\Http\Controllers\Pupil\AsignarTutorController::class);
+    });
 
-// Estudiante ve Preguntas
-// student/answers/index
-Route::namespace('Student')->prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
-	Route::resource('/answers','AnswerController', ['except'=>['destroy']]);
+    // Tutor area: reunions, forms, answers
+    Route::prefix('tutor/pupils')->name('tutor.pupil.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/reunion', App\Http\Controllers\Tutor\ReunionController::class);
+        Route::resource('/form', App\Http\Controllers\Tutor\FormController::class);
+    });
+
+    Route::prefix('tutor/pupil/forms')->name('tutor.pupil.form.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/answer', App\Http\Controllers\Tutor\AnswerController::class);
+    });
+
+    // Student area
+    Route::prefix('student')->name('student.')->middleware('can:student-action')->group(function(){
+        Route::resource('/forms', App\Http\Controllers\Student\FormsController::class)->except(['destroy']);
+        Route::resource('/answers', App\Http\Controllers\Student\AnswerController::class)->except(['destroy']);
+    });
+
+    // Chart (Chart namespace simplified)
+    Route::prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
+        Route::resource('/charts', App\Http\Controllers\Chart\ChartController::class);
+    });
 });
 
-// ------ >> ------ Admin/Tutor Chart ------ << ------ //
-// Chart
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/chart','ChartsController');
-});
-// Chart specificYear
-Route::namespace('Admin\Chart')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/chart/specificyear','specificYearController');
-});
-// Chart specificYear-> general
-Route::namespace('Admin\Chart')->prefix('admin')->name('admin.charts.specificYear.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/charts/specificYear/general','generalSYController');
-});
-
-
-//Charts
-Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/charts','ChartController');
-});
-//charts/specificYear
-Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/specificYear','ChartController');
-});
-//charts/specificYear/general/forms
-Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-	Route::resource('/specificYear/forms','ChartController');
-});
-
-
-// //charts/throughoutTheYears
-// Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-// 	Route::resource('/throughoutTheYears','ChartController');
-// });
-// //charts/throughoutTheYears/forms
-// Route::namespace('Chart')->prefix('chart')->name('chart.')->middleware('can:manage-users')->group(function(){
-// 	Route::resource('/throughoutTheYears/forms','ChartController');
-// });
-
-
-// Made with love, to my ITA <3  
+// NOTE: Auth routes are provided by Breeze in routes/auth.php (already required above)

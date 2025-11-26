@@ -6,7 +6,7 @@
 
         <title>Tutorias ITA </title>
         <link href="{{asset('/css/TecNM/style.css')}}" rel="stylesheet">
-        <link href="{{asset('/css/TecNM/home.css')}}" rel="stylesheet">
+        <link href="{{asset('/css/TecNM/dashboard.css')}}" rel="stylesheet">
         
         <!-- Icono -->
         <link rel="icon" href="{{asset('/images/Icon.png')}}">

@@ -1,81 +1,47 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-@section('content')
-<title>Iniciar sesión</title> 
-<main class="main mainWithOutNav">
-    <nav clasS="title">
-        <h1 class="title_h1">
-            Tutorias ITA
-        </h1>
-        <img class="title_img" src="{{asset('/images/Logo-ITA.png')}}" alt="">
-    </nav>
-    
-    <article class="flex-container">
-        <section class="flex-item-large"> 
-            <section class="flex_section">
-                <h2 class="flex_section_h2">{{ __('Iniciar sesión') }}</h2>
-                <section class="flex_section_section">
-                    <div class="card-body"> 
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="row mb-3">
-                                <label for="email" class="col-sm-2 col-form-label">{{ __('Correo electronico') }}</label>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-                                <div class="col-sm-10">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
 
-                            <div class="row mb-3">
-                                <label for="password" class="col-sm-2 col-form-label">{{ __('Contraseña') }}</label>
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
 
-                                <div class="col-sm-10">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            </label>
+        </div>
 
-                            <div class="row mb-3">
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
 
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Recordar') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="boton-azul">
-                                        {{ __('Iniciar sesion') }}
-                                    </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('¿Olvido su contraseña?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-            </section>
-        </section>
-    </article> 
-</main>
-@endsection
+            <x-primary-button class="ml-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
